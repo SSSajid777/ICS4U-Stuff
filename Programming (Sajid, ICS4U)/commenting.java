@@ -30,7 +30,7 @@ public class commenting {
 
         // int l=3;
         // int w=4;
-        System.out.println(CYAN + """
+        System.out.println(YELLOW + """
                  .--.                            .--.
                 : .; :                          : .-'
                 :    :.--.  .--.  .--.     .--. : `;    .--.
@@ -47,7 +47,7 @@ public class commenting {
                                                    `._.'
                         """ + RESET);
         int l = 3, w = 4;
-        System.out.println("The area of the rectangle with length " + l + " and width " + w + " is " + l * w);
+        System.out.println(RED + "The area of the rectangle with length " + l + " and width " + w + " is " + (l * w) + RESET);
 
     }
 }
