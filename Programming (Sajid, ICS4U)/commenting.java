@@ -48,6 +48,10 @@ public class commenting {
                         """ + RESET);
         int l = 3, w = 4;
         System.out.println(RED + "The area of the rectangle with length " + l + " and width " + w + " is " + (l * w) + RESET);
+        String first_name = "Sajid";   //creates a string variable called first_name
+        double pi = 3.14; //creates a real variable called pi
+        int num = 10; //creates an integer called num
+
 
     }
 }
