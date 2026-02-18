@@ -29,7 +29,7 @@ String ANSI_WHITE = "\u001B[37m";
 
         //int l=3;
         //int w=4;
-        System.out.println("""
+    System.out.println(ANSI_CYAN + """
  .--.                            .--.              
 : .; :                          : .-'              
 :    :.--.  .--.  .--.     .--. : `;    .--.       
