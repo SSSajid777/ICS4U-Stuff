@@ -72,6 +72,48 @@ public class commenting {
 
         String name1 = input1.nextLine();
         String name2 = input1.next();
+        double decimal = input1.nextDouble();
+        int num1 = input1.nextInt();
+
+        System.out.println(YELLOW + """
+                 .--.                            .--.
+                : .; :                          : .-'
+                :    :.--.  .--.  .--.     .--. : `;    .--.
+                : :: :: ..'' '_.'' .; ;   ' .; :: :    ' .; ;
+                :_;:_;:_;  `.__.'`.__,_;  `.__.':_;    `.__,_;
+
+
+                .---.             .-.                   .-.
+                : .; :           .' `.                  : :
+                :   .' .--.  .--.`. .'.--.  ,-.,-. .--. : :   .--.
+                : :.`.' '_.''  ..': :' .; ; : ,. :' .; :: :_ ' '_.'
+                :_;:_;`.__.'`.__.':_;`.__,_;:_;:_;`._. ;`.__;`.__.'
+                                                   .-. :
+                                                   `._.'
+                        """ + RESET);
+
+
+        System.out.println("What is your name?");
+        String user_name = input1.next();
+
+        System.out.println("Enter your length (as integer)");
+        int length_rectangle = input1.nextInt();
+        System.out.println("Enter your width (as integer)");
+        int width_rectangle = input1.nextInt();
+
+        int Area = (length_rectangle*width_rectangle);
+        System.out.println("The Area is " + Area);
+
+        int Perimenter = (length_rectangle+width_rectangle);
+        System.out.println("The Perimeter is " + Perimenter);
+
+        
+
+
+
+
+
+
 
 
 
