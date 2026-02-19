@@ -57,10 +57,11 @@ public class commenting {
         System.out.println("1.) item 1");
         System.out.println("2.) item 2");
         System.out.println("3.) item 3");
-        System.out.println("1.) item 1\n2.) item 2\n3.) item 3");
+
+        System.out.println("1.) item 1\n2.) item 2\n3.) item 3"); //prints on 1 line using \n which means a new line
 
 
-        System.out.println("Apple\tOrange\tPear\tBanana");
+        System.out.println("Apple\tOrange\tPear\tBanana"); //this is a tab space between strings
 
     }
 }
