@@ -70,10 +70,10 @@ public class commenting {
         System.out.println("\"Hello\"");
         System.out.println("\\Hello\\");
 
-        String name1 = input1.nextLine();
+        /*String name1 = input1.nextLine();
         String name2 = input1.next();
         double decimal = input1.nextDouble();
-        int num1 = input1.nextInt();
+        int num1 = input1.nextInt(); */
 
         System.out.println(YELLOW + """
                  .--.                            .--.
