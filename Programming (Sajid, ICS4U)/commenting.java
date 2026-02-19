@@ -9,7 +9,10 @@ Name: Sajid
 Date: Feb 12, 2026
 Description: this is a sample header
  */
+
+import java.util.Scanner;
 public class commenting {
+
 
     public static void main(String[] args) {
 
@@ -17,6 +20,8 @@ public class commenting {
         // Posted by WhiteFang34, modified by community. See post 'Timeline' for change
         // history
         // Retrieved 2026-02-18, License - CC BY-SA 3.0
+
+        Scanner input1 = new Scanner(System.in);
 
         String RESET = "\u001B[0m"; // Resets the colour back to default
         String BLACK = "\u001B[30m";
@@ -64,6 +69,13 @@ public class commenting {
         System.out.println("Apple\tOrange\tPear\tBanana"); //this is a tab space between strings
         System.out.println("\"Hello\"");
         System.out.println("\\Hello\\");
+
+        String name1 = input1.nextLine();
+        String name2 = input1.next();
+
+
+
+
 
     }
 }
