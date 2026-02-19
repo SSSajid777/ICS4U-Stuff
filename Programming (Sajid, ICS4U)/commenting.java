@@ -62,6 +62,8 @@ public class commenting {
 
 
         System.out.println("Apple\tOrange\tPear\tBanana"); //this is a tab space between strings
+        System.out.println("\"Hello\"");
+        System.out.println("\\Hello\\");
 
     }
 }
