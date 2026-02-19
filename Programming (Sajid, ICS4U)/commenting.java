@@ -54,5 +54,13 @@ public class commenting {
         double pi = 3.14; // creates a real variable called pi
         int num = 10; // creates an integer called num
 
+        System.out.println("1.) item 1");
+        System.out.println("2.) item 2");
+        System.out.println("3.) item 3");
+        System.out.println("1.) item 1\n2.) item 2\n3.) item 3");
+
+
+        System.out.println("Apple\tOrange\tPear\tBanana");
+
     }
 }
