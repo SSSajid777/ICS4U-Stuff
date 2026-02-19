@@ -18,7 +18,7 @@ public class commenting {
         // history
         // Retrieved 2026-02-18, License - CC BY-SA 3.0
 
-        String RESET = "\u001B[0m";
+        String RESET = "\u001B[0m"; // Resets the colour back to default
         String BLACK = "\u001B[30m";
         String RED = "\u001B[31m";
         String GREEN = "\u001B[32m";
@@ -27,6 +27,7 @@ public class commenting {
         String PURPLE = "\u001B[35m";
         String CYAN = "\u001B[36m";
         String WHITE = "\u001B[37m";
+        // prints ASCII art title
 
         // int l=3;
         // int w=4;
@@ -47,11 +48,11 @@ public class commenting {
                                                    `._.'
                         """ + RESET);
         int l = 3, w = 4;
-        System.out.println(RED + "The area of the rectangle with length " + l + " and width " + w + " is " + (l * w) + RESET);
-        String first_name = "Sajid";   //creates a string variable called first_name
-        double pi = 3.14; //creates a real variable called pi
-        int num = 10; //creates an integer called num
-
+        System.out.println(
+                RED + "The area of the rectangle with length " + l + " and width " + w + " is " + (l * w) + RESET);
+        String first_name = "Sajid"; // creates a string variable called first_name
+        double pi = 3.14; // creates a real variable called pi
+        int num = 10; // creates an integer called num
 
     }
 }
