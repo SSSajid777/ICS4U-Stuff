@@ -92,7 +92,7 @@ public class commenting {
                                                    `._.'
                         """ + RESET);
 
-
+          /*   
         System.out.println("What is your name?");
         String user_name = input1.next();
 
@@ -107,16 +107,26 @@ public class commenting {
         int Perimenter = (length_rectangle+width_rectangle);
         System.out.println("The Perimeter is " + Perimenter);
 
+        */
+
+        double num_deci = 3.2424236747;
+        //rounds to 2 decimal places
+        System.out.println(Math.round((num_deci*100.0)/100.0));
+        //rounds to 2 decimal places
+        System.out.println(Math.round((num_deci*1000.0)/1000.0));
+        System.out.println((int)Math.pow(10.0,2.0));
+        double num2 = 4.324252525;
+        int num3 = 5;
+        double num4 = (double)num3;
+        System.out.println(num4);
+
+        //rounds up
+        System.out.println(Math.ceil(4.2324252525));
+        //rounds down
+         System.out.println(Math.floor(4.2324252525));
+
+
         
-
-
-
-
-
-
-
-
-
 
 
     }
