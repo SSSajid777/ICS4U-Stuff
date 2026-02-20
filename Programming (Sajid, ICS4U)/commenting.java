@@ -11,6 +11,8 @@ Description: this is a sample header
  */
 
 import java.util.Scanner;
+
+import java.util.Random;
 public class commenting {
 
 
