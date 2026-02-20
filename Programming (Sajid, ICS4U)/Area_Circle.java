@@ -55,9 +55,9 @@ public class Area_Circle {
                                                    `._.'                     
                 """ + RESET);
 
-        System.out.println(RED + "What is your name?"+ RESET);
+        System.out.println(RED + "What is your name?"+ RESET + GREEN);
         String user_name = scan.next();
-        System.out.println(BLUE + "Welcome to the Area and Perimeter of a Circle Program, " + user_name + RESET);
+        System.out.println(RESET + BLUE + "Welcome to the Area and Perimeter of a Circle Program, " + user_name + RESET);
 
         double pi=3.14;
 
