@@ -61,7 +61,7 @@ public class Area_Circle {
 
         double pi=3.14;
 
-        System.out.println(WHITE + "Enter your radius (as integer)" + RESET);
+        System.out.println(PURPLE + "Enter your radius (as integer)" + RESET);
         int user_radius = scan.nextInt();
 
         double Area = (pi*(user_radius*user_radius));
