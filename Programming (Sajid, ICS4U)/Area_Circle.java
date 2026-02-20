@@ -17,6 +17,9 @@ public class Area_Circle {
         Scanner scan = new Scanner(System.in);
 
 
+        
+
+
         String RESET = "\u001B[0m"; // Resets the colour back to default
         String BLACK = "\u001B[30m";
         String RED = "\u001B[31m";
@@ -28,20 +31,44 @@ public class Area_Circle {
         String WHITE = "\u001B[37m";
         // prints ASCII art title
 
+        System.out.println(YELLOW + """
+ .--.                                     .-.                                
+: .; :                                    : :                                
+:    :.--.  .--.  .--.     .--.  ,-.,-. .-' :                                
+: :: :: ..'' '_.'' .; ;   ' .; ; : ,. :' .; :                                
+:_;:_;:_;  `.__.'`.__,_;  `.__,_;:_;:_;`.__.'                                
+                                                                             
+                                                                             
+.---.            _                .-.                    .--.                
+: .; :          :_;              .' `.                  : .-'                
+:  _.'.--. .--. .-.,-.,-.,-. .--.`. .'.--. .--.    .--. : `;                 
+: :  ' '_.': ..': :: ,. ,. :' '_.': :' '_.': ..'  ' .; :: :                  
+:_;  `.__.':_;  :_;:_;:_;:_;`.__.':_;`.__.':_;    `.__.':_;                  
+                                                                             
+                                                                             
+ .--.  _            .-.          .---.                                       
+: .--':_;           : :          : .; :                                      
+: :   .-..--.  .--. : :   .--.   :  _.'.--.  .--.  .--. .--.  .--.  ,-.,-.,-.
+: :__ : :: ..''  ..': :_ ' '_.'  : :   : ..'' .; :' .; :: ..'' .; ; : ,. ,. :
+`.__.':_;:_;  `.__.'`.__;`.__.'  :_;   :_;  `.__.'`._. ;:_;  `.__,_;:_;:_;:_;
+                                                   .-. :                     
+                                                   `._.'                     
+                """ + RESET);
+
         System.out.println(RED + "What is your name?"+ RESET);
         String user_name = scan.next();
-        System.out.println("Welcome to the Area and Perimeter of a Circle Program, " + user_name);
+        System.out.println(BLUE + "Welcome to the Area and Perimeter of a Circle Program, " + user_name + RESET);
 
         double pi=3.14;
 
-        System.out.println("Enter your radius (as integer)");
+        System.out.println(WHITE + "Enter your radius (as integer)" + RESET);
         int user_radius = scan.nextInt();
 
         double Area = (pi*(user_radius*user_radius));
-        System.out.println("The Area is " + (int)Area);
+        System.out.println(GREEN + "The Area is " + (int)Area + RESET);
 
         double Perimenter = (2*pi*user_radius);
-        System.out.println("The Perimeter is " + (int)Perimenter);
+        System.out.println(GREEN + "The Perimeter is " + (int)Perimenter + RESET);
 
 
 
