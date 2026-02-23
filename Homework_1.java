@@ -74,6 +74,23 @@ public class Homework_1 {
         System.out.println(GREEN + "The Perimeter is " + (int)Perimenter + RESET);
 
 
+        System.out.println(YELLOW + """
+
+.---.  _       .-.                                      
+: .  ::_;     .' `.                                     
+: :: :.-. .--.`. .'.--.  ,-.,-. .--.  .--.              
+: :; :: :`._-.': :' .; ; : ,. :'  ..'' '_.'             
+:___.':_;`.__.':_;`.__,_;:_;:_;`.__.'`.__.'             
+                                                        
+                                                        
+ .--.        .-.              .-.         .-.           
+: .--'       : :              : :        .' `.          
+: :    .--.  : :   .--. .-..-.: :   .--. `. .'.--. .--. 
+: :__ ' .; ; : :_ '  ..': :; :: :_ ' .; ; : :' .; :: ..'
+`.__.'`.__,_;`.__;`.__.'`.__.'`.__;`.__,_;:_;`.__.':_;  
+                """ + RESET);
+
+
 
         System.out.println(RED + "What is your name?"+ RESET + GREEN);
         String user_name_dist = scan.next();
@@ -82,20 +99,20 @@ public class Homework_1 {
         
 
         System.out.println(PURPLE + "Enter the x value of your first point (as integer)" + RESET);
-        double user_x1 = scan.nextInt();
+        double user_x1 = scan.nextDouble();
 
         System.out.println(PURPLE + "Enter the y value of your first point (as integer)" + RESET);
-        double user_y1 = scan.nextInt();
+        double user_y1 = scan.nextDouble();
 
 
         System.out.println(PURPLE + "Enter the x value of your second point (as integer)" + RESET);
-        double user_x2 = scan.nextInt();
+        double user_x2 = scan.nextDouble();
 
         System.out.println(PURPLE + "Enter the y value of your second point (as integer)" + RESET);
-        double user_y2 = scan.nextInt();
+        double user_y2 = scan.nextDouble();
 
-        double Distance = (Math.sqrt(Math.pow((user_x2-user_x1,2.00)*(user_y2-user_y1),2.00)));
-        System.out.println(GREEN + "The Area is " + (int)Area + RESET);
+        double Distance = Math.sqrt(Math.pow((user_x2-user_x1),2.00)+Math.pow((user_y2-user_y1),2.00));
+        System.out.println(GREEN + "The Distance is " + (int)Distance + RESET);
 
         
 
