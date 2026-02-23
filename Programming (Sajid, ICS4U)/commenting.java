@@ -11,8 +11,6 @@ Description: this is a sample header
  */
 
 import java.util.Scanner;
-
-import java.util.Random;
 public class commenting {
 
 
@@ -126,6 +124,14 @@ public class commenting {
         System.out.println(Math.ceil(4.2324252525));
         //rounds down
          System.out.println(Math.floor(4.2324252525));
+
+
+         String name1 = "ApplePie";
+         System.out.println(name1.length()); //returns the length of the string
+
+         System.out.println(name1.toUpperCase());
+         System.out.println(name1.toLowerCase());
+         
 
 
         
