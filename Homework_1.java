@@ -75,9 +75,45 @@ public class Homework_1 {
 
 
 
+        System.out.println(RED + "What is your name?"+ RESET + GREEN);
+        String user_name_dist = scan.next();
+        System.out.println(RESET + BLUE + "Welcome to the Distance Calculator, " + user_name + RESET);
+
+        
+
+        System.out.println(PURPLE + "Enter the x value of your first point (as integer)" + RESET);
+        double user_x1 = scan.nextInt();
+
+        System.out.println(PURPLE + "Enter the y value of your first point (as integer)" + RESET);
+        double user_y1 = scan.nextInt();
+
+
+        System.out.println(PURPLE + "Enter the x value of your second point (as integer)" + RESET);
+        double user_x2 = scan.nextInt();
+
+        System.out.println(PURPLE + "Enter the y value of your second point (as integer)" + RESET);
+        double user_y2 = scan.nextInt();
+
+        double Distance = (Math.sqrt(Math.pow((user_x2-user_x1,2.00)*(user_y2-user_y1),2.00)));
+        System.out.println(GREEN + "The Area is " + (int)Area + RESET);
+
+        
+
+
 
         
 
     }
 }
+
+
+
+
+        
+
+    }
+}
+
+
+
 
