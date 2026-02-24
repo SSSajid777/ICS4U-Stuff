@@ -18,7 +18,7 @@ public class test4 {
          String name2 = "    Hello    ".strip();
          System.out.println(name2);
          String name3 = scan.nextLine().strip().toLowerCase();
-         System.out.println(name3);
+         System.out.println(name3.isEmpty());
 
 
 
