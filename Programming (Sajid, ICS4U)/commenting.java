@@ -134,6 +134,7 @@ public class commenting {
          System.out.println(name1.toUpperCase()); //returns the string to all uppercase
          System.out.println(name1.toLowerCase()); //returns the string to all lowercase
          
+         
 
 
         
