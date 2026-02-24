@@ -56,7 +56,7 @@ public class homework_2 {
 
         }
         else if (grade < 60) {
-            System.out.println("Keep practicing!");
+            System.out.println(" Level 1 - Keep practicing!");
 
         }
         else if (grade < 0 || grade > 100) {
