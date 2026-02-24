@@ -27,8 +27,12 @@ public class decision {
             System.out.println("Grade D");
 
         }
-        else{
-            System.out.println("You failed");
+        else if (grade < 0 && grade < 50) {
+            System.out.println("Grade F");
+        }
+        else if (grade < 0 || grade > 100) {
+            System.out.println("Invalid Grade");
+        
         }
         
 
