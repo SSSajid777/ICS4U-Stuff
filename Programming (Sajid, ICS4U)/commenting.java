@@ -126,11 +126,13 @@ public class commenting {
          System.out.println(Math.floor(4.2324252525));
 
 
+
+         //we are looking at functions involving strings
          String name1 = "ApplePie";
          System.out.println(name1.length()); //returns the length of the string
 
-         System.out.println(name1.toUpperCase());
-         System.out.println(name1.toLowerCase());
+         System.out.println(name1.toUpperCase()); //returns the string to all uppercase
+         System.out.println(name1.toLowerCase()); //returns the string to all lowercase
          
 
 
