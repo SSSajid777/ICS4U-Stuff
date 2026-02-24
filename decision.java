@@ -7,8 +7,24 @@ public class decision {
         System.out.println("Please enter a grade");
         int grade = scan.nextInt();
 
-        if (grade >= 50 && grade <= 100) {
-            System.out.println("You pass");
+        if (grade >= 80 && grade <= 100) {
+            System.out.println("Grade A");
+
+        }
+        else if (grade >= 80 && grade <= 100) {
+            System.out.println("Grade A");
+
+        }
+        else if (grade >= 70 && grade < 80) {
+            System.out.println("Grade B");
+
+        }
+        else if (grade >= 60 && grade < 70) {
+            System.out.println("Grade C");
+
+        }
+        else if (grade >= 50 && grade < 60) {
+            System.out.println("Grade D");
 
         }
         else{
