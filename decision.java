@@ -27,7 +27,7 @@ public class decision {
             System.out.println("Grade D");
 
         }
-        else if (grade < 0 && grade < 50) {
+        else if (grade >= 0 && grade < 50) {
             System.out.println("Grade F");
         }
         else if (grade < 0 || grade > 100) {
