@@ -36,7 +36,7 @@ public class homework_2 {
         String user_name = scan.next();
         System.out.println(RESET + BLUE + "Welcome to the Grade Calculator Program, " + user_name + RESET);
         
-        System.out.println("Please enter your test percentage (without percentage sign)");
+        System.out.println(PURPLE + "Please enter your test percentage (without percentage sign)" + RESET);
         int grade = scan.nextInt();
 
         if (grade >= 90 && grade <= 100) {
@@ -86,7 +86,7 @@ public class homework_2 {
         String user_name_2 = scan.next();
         System.out.println(RESET + BLUE + "Welcome to the Password Adviser, " + user_name + RESET);
         
-        System.out.println("Please enter your password");
+        System.out.println(PURPLE + "Please enter your password" + RESET);
         String password= scan.next();
         if (password.length() < 6) {
             System.out.println("Your password is too short, please enter at least 6 characters");
