@@ -65,5 +65,42 @@ public class homework_2 {
         }
         
 
+
+        System.out.println(YELLOW + """
+.---.                                          .-.
+: .; :                                         : :
+:  _.'.--.   .--.  .--. .-..-..-. .--. .--.  .-' :
+: :  ' .; ; `._-.'`._-.': `; `; :' .; :: ..'' .; :
+:_;  `.__,_;`.__.'`.__.'`.__.__.'`.__.':_;  `.__.'
+                                                  
+                                                  
+ .--.    .-.       _                              
+: .; :   : :      :_;                             
+:    : .-' :.-..-..-. .--.  .--. .--.             
+: :: :' .; :: `; :: :`._-.'' .; :: ..'            
+:_;:_;`.__.'`.__.':_;`.__.'`.__.':_;                                     
+           
+                """ + RESET);
+
+        System.out.println(RED + "What is your name?"+ RESET + GREEN);
+        String user_name_2 = scan.next();
+        System.out.println(RESET + BLUE + "Welcome to the Password Adviser, " + user_name + RESET);
+        
+        System.out.println("Please enter your password");
+        String password= scan.next();
+        if (password.length() < 6) {
+            System.out.println("Your password is too short, please enter at least 6 characters");
+        }
+        else if (password.length() >= 6 && password.length() <= 10) {
+            System.out.println("Your password is moderate strength, enter 10 characters or more for a strong password");
+        }
+        else if (password.length() > 10) {
+            System.out.println("Your password is strong");
+        }
+        else {
+            System.out.println("Error: please enter a password");
+        }
+        
+
     }
 }
