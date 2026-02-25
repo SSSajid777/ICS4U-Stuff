@@ -11,8 +11,8 @@ Description: this is a sample header
  */
 
 import java.util.Scanner;
-public class commenting {
 
+public class commenting {
 
     public static void main(String[] args) {
 
@@ -63,17 +63,18 @@ public class commenting {
         System.out.println("2.) item 2");
         System.out.println("3.) item 3");
 
-        System.out.println("1.) item 1\n2.) item 2\n3.) item 3"); //prints on 1 line using \n which means a new line
+        System.out.println("1.) item 1\n2.) item 2\n3.) item 3"); // prints on 1 line using \n which means a new line
 
-
-        System.out.println("Apple\tOrange\tPear\tBanana"); //this is a tab space between strings
+        System.out.println("Apple\tOrange\tPear\tBanana"); // this is a tab space between strings
         System.out.println("\"Hello\"");
         System.out.println("\\Hello\\");
 
-        /*String name1 = input1.nextLine();
-        String name2 = input1.next();
-        double decimal = input1.nextDouble();
-        int num1 = input1.nextInt(); */
+        /*
+         * String name1 = input1.nextLine();
+         * String name2 = input1.next();
+         * double decimal = input1.nextDouble();
+         * int num1 = input1.nextInt();
+         */
 
         System.out.println(YELLOW + """
                  .--.                            .--.
@@ -92,53 +93,45 @@ public class commenting {
                                                    `._.'
                         """ + RESET);
 
-          /*   
-        System.out.println("What is your name?");
-        String user_name = input1.next();
-
-        System.out.println("Enter your length (as integer)");
-        int length_rectangle = input1.nextInt();
-        System.out.println("Enter your width (as integer)");
-        int width_rectangle = input1.nextInt();
-
-        int Area = (length_rectangle*width_rectangle);
-        System.out.println("The Area is " + Area);
-
-        int Perimenter = (length_rectangle+width_rectangle);
-        System.out.println("The Perimeter is " + Perimenter);
-
-        */
+        /*
+         * System.out.println("What is your name?");
+         * String user_name = input1.next();
+         * 
+         * System.out.println("Enter your length (as integer)");
+         * int length_rectangle = input1.nextInt();
+         * System.out.println("Enter your width (as integer)");
+         * int width_rectangle = input1.nextInt();
+         * 
+         * int Area = (length_rectangle*width_rectangle);
+         * System.out.println("The Area is " + Area);
+         * 
+         * int Perimenter = (length_rectangle+width_rectangle);
+         * System.out.println("The Perimeter is " + Perimenter);
+         * 
+         */
 
         double num_deci = 3.2424236747;
-        //rounds to 2 decimal places
-        System.out.println(Math.round((num_deci*100.0)/100.0));
-        //rounds to 2 decimal places
-        System.out.println(Math.round((num_deci*1000.0)/1000.0));
-        System.out.println((int)Math.pow(10.0,2.0));
+        // rounds to 2 decimal places
+        System.out.println(Math.round((num_deci * 100.0) / 100.0));
+        // rounds to 2 decimal places
+        System.out.println(Math.round((num_deci * 1000.0) / 1000.0));
+        System.out.println((int) Math.pow(10.0, 2.0));
         double num2 = 4.324252525;
         int num3 = 5;
-        double num4 = (double)num3;
+        double num4 = (double) num3;
         System.out.println(num4);
 
-        //rounds up
+        // rounds up
         System.out.println(Math.ceil(4.2324252525));
-        //rounds down
-         System.out.println(Math.floor(4.2324252525));
+        // rounds down
+        System.out.println(Math.floor(4.2324252525));
 
+        // we are looking at functions involving strings
+        String name1 = "ApplePie";
+        System.out.println(name1.length()); // returns the length of the string
 
-
-         //we are looking at functions involving strings
-         String name1 = "ApplePie";
-         System.out.println(name1.length()); //returns the length of the string
-
-         System.out.println(name1.toUpperCase()); //returns the string to all uppercase
-         System.out.println(name1.toLowerCase()); //returns the string to all lowercase
-         
-         
-
-
-        
-
+        System.out.println(name1.toUpperCase()); // returns the string to all uppercase
+        System.out.println(name1.toLowerCase()); // returns the string to all lowercase
 
     }
 }
