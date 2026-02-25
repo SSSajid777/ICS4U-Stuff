@@ -60,7 +60,7 @@ public class homework_2 {
 
         }
         else if (grade < 0 || grade > 100) {
-            System.out.println("Invalid Grade");
+            System.out.println("Invalid Grade, enter your grade between 0 and 100");
         
         }
         
