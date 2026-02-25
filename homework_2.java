@@ -17,90 +17,79 @@ public class homework_2 {
         // prints ASCII art title
 
         System.out.println(YELLOW + """
- .--.                .-.                                
-: .--'               : :                                
-: : _ .--.  .--.   .-' : .--.                           
-: :; :: ..'' .; ; ' .; :' '_.'                          
-`.__.':_;  `.__,_;`.__.'`.__.'                          
-                                                        
-                                                        
- .--.        .-.              .-.         .-.           
-: .--'       : :              : :        .' `.          
-: :    .--.  : :   .--. .-..-.: :   .--. `. .'.--. .--. 
-: :__ ' .; ; : :_ '  ..': :; :: :_ ' .; ; : :' .; :: ..'
-`.__.'`.__,_;`.__;`.__.'`.__.'`.__;`.__,_;:_;`.__.':_;                          
-           
-                """ + RESET);
+                 .--.                .-.
+                : .--'               : :
+                : : _ .--.  .--.   .-' : .--.
+                : :; :: ..'' .; ; ' .; :' '_.'
+                `.__.':_;  `.__,_;`.__.'`.__.'
 
-        System.out.println(RED + "What is your name?"+ RESET + GREEN);
+
+                 .--.        .-.              .-.         .-.
+                : .--'       : :              : :        .' `.
+                : :    .--.  : :   .--. .-..-.: :   .--. `. .'.--. .--.
+                : :__ ' .; ; : :_ '  ..': :; :: :_ ' .; ; : :' .; :: ..'
+                `.__.'`.__,_;`.__;`.__.'`.__.'`.__;`.__,_;:_;`.__.':_;
+
+                                """ + RESET);
+
+        System.out.println(RED + "What is your name?" + RESET + GREEN);
         String user_name = scan.next();
         System.out.println(RESET + BLUE + "Welcome to the Grade Calculator Program, " + user_name + RESET);
-        
+
         System.out.println(PURPLE + "Please enter your test percentage (without percentage sign)" + RESET);
         int grade = scan.nextInt();
 
         if (grade >= 90 && grade <= 100) {
             System.out.println("Level 4+");
 
-        }
-        else if (grade >= 80 && grade <= 89) {
+        } else if (grade >= 80 && grade <= 89) {
             System.out.println("Level 4");
 
-        }
-        else if (grade >= 70 && grade < 79) {
+        } else if (grade >= 70 && grade < 79) {
             System.out.println("Level 3");
 
-        }
-        else if (grade >= 60 && grade < 69) {
+        } else if (grade >= 60 && grade < 69) {
             System.out.println("Level 2");
 
-        }
-        else if (grade < 60 && grade >= 0) {
+        } else if (grade < 60 && grade >= 0) {
             System.out.println(" Level 1 - Keep practicing!");
 
-        }
-        else if (grade < 0 || grade > 100) {
+        } else if (grade < 0 || grade > 100) {
             System.out.println("Invalid Grade, enter your grade between 0 and 100");
-        
-        }
-        
 
+        }
 
         System.out.println(YELLOW + """
-.---.                                          .-.
-: .; :                                         : :
-:  _.'.--.   .--.  .--. .-..-..-. .--. .--.  .-' :
-: :  ' .; ; `._-.'`._-.': `; `; :' .; :: ..'' .; :
-:_;  `.__,_;`.__.'`.__.'`.__.__.'`.__.':_;  `.__.'
-                                                  
-                                                  
- .--.    .-.       _                              
-: .; :   : :      :_;                             
-:    : .-' :.-..-..-. .--.  .--. .--.             
-: :: :' .; :: `; :: :`._-.'' .; :: ..'            
-:_;:_;`.__.'`.__.':_;`.__.'`.__.':_;                                     
-           
-                """ + RESET);
+                .---.                                          .-.
+                : .; :                                         : :
+                :  _.'.--.   .--.  .--. .-..-..-. .--. .--.  .-' :
+                : :  ' .; ; `._-.'`._-.': `; `; :' .; :: ..'' .; :
+                :_;  `.__,_;`.__.'`.__.'`.__.__.'`.__.':_;  `.__.'
 
-        System.out.println(RED + "What is your name?"+ RESET + GREEN);
+
+                 .--.    .-.       _
+                : .; :   : :      :_;
+                :    : .-' :.-..-..-. .--.  .--. .--.
+                : :: :' .; :: `; :: :`._-.'' .; :: ..'
+                :_;:_;`.__.'`.__.':_;`.__.'`.__.':_;
+
+                                """ + RESET);
+
+        System.out.println(RED + "What is your name?" + RESET + GREEN);
         String user_name_2 = scan.next();
         System.out.println(RESET + BLUE + "Welcome to the Password Adviser, " + user_name_2 + RESET);
-        
+
         System.out.println(PURPLE + "Please enter your password" + RESET);
-        String password= scan.next();
+        String password = scan.next();
         if (password.length() < 6) {
             System.out.println("Your password is too short, please enter at least 6 characters");
-        }
-        else if (password.length() >= 6 && password.length() <= 10) {
+        } else if (password.length() >= 6 && password.length() <= 10) {
             System.out.println("Your password is moderate strength, enter 10 characters or more for a strong password");
-        }
-        else if (password.length() > 10) {
+        } else if (password.length() > 10) {
             System.out.println("Your password is strong");
-        }
-        else {
+        } else {
             System.out.println("Error: please enter a password");
         }
-        
 
     }
 }
