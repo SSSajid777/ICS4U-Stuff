@@ -84,7 +84,7 @@ public class homework_2 {
 
         System.out.println(RED + "What is your name?"+ RESET + GREEN);
         String user_name_2 = scan.next();
-        System.out.println(RESET + BLUE + "Welcome to the Password Adviser, " + user_name + RESET);
+        System.out.println(RESET + BLUE + "Welcome to the Password Adviser, " + user_name_2 + RESET);
         
         System.out.println(PURPLE + "Please enter your password" + RESET);
         String password= scan.next();
