@@ -39,7 +39,7 @@ public class homework_2 {
         System.out.println(PURPLE + "Please enter your test percentage (without percentage sign)" + RESET);
         int grade = scan.nextInt();
 
-        if (grade >= 90 && grade < 100) {
+        if (grade >= 90 && grade <= 100) {
             System.out.println("Level 4+");
 
         }
