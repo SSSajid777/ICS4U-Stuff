@@ -21,6 +21,7 @@ public class forloops{
             */
         for (int i = 10; i > 0; i--){
             System.out.println(i);
+            //a delay by 1 second so 1000 ms = 1 s
             try{
                 Thread.sleep(1000);
             }
