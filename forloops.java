@@ -28,7 +28,7 @@ public class forloops{
             catch(Exception e){
                 
             }
-            System.out.print("\033[H\033[2J");
+            System.out.print("\033[H\033[2J"); //clear screen
             System.out.flush();
         }
  
