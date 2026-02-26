@@ -21,6 +21,13 @@ public class forloops{
             */
         for (int i = 10; i > 0; i--){
             System.out.println(i);
+            delay();
+            
+        }
+ 
+
+        }
+        public static void delay(){
             //a delay by 1 second so 1000 ms = 1 s
             try{
                 Thread.sleep(1000);
@@ -30,8 +37,6 @@ public class forloops{
             }
             System.out.print("\033[H\033[2J"); //clear screen
             System.out.flush();
-        }
- 
 
         }
     }
