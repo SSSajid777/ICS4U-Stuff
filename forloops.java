@@ -1,45 +1,49 @@
 import java.util.Scanner;
 
-public class forloops{
+public class forloops {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-        /* 
-        //i=i+1 or i++ or i+=1
-        for(int i = 1; i<6; i++){
-            System.out.println(i+" ");
-            */
+        /*
+         * //i=i+1 or i++ or i+=1
+         * for(int i = 1; i<6; i++){
+         * System.out.println(i+" ");
+         */
 
+        /*
+         * for(int i = 1; i<6; i++){
+         * System.out.print(i +" * 6 = " + (i*6) +"      ");
+         * 
+         * System.out.println("Enter the number you want the times table for.");
+         * int multiplier = scan.nextInt();
+         * for(int i = 1; i<6; i++){
+         * System.out.println(i +" * " + multiplier + " = " + (i*multiplier));
+         * 
+         * for (int i = 10; i > 0; i--){
+         * System.out.println(i);
+         * delayclear();
+         */
 
-            /*
-        for(int i = 1; i<6; i++){
-            System.out.print(i +" * 6 = " + (i*6) +"      ");
-            
-        System.out.println("Enter the number you want the times table for.");
-        int multiplier = scan.nextInt();
-        for(int i = 1; i<6; i++){
-            System.out.println(i +" * " + multiplier + " = " + (i*multiplier));
-            
-        for (int i = 10; i > 0; i--){
-            System.out.println(i);
-            delayclear();
-            
+        int total = 0;
+        System.out.println("Enter how many grades you want to average");
+        int get_amount = scan.nextInt();
+        for (int i = 1; i <= get_amount; i++) {
+            System.out.println("Enter grade " + i + ": ");         
+            double grade = scan.nextDouble();
+            total += grade;
         }
- 
+        System.out.println("The average of " + get_amount + " numbers is " + (total / get_amount));
 
-        }
-        public static void delayclear(){
-            //a delay by 1 second so 1000 ms = 1 s
-            try{
-                Thread.sleep(1000);
-            }
-            catch(Exception e){
-                
-            }
-            System.out.print("\033[H\033[2J"); //clear screen
-            System.out.flush();
-            */
-
-        
-
-        }
     }
+
+    public static void delayclear() {
+        // a delay by 1 second so 1000 ms = 1 s
+        try {
+            Thread.sleep(1000);
+        } catch (Exception e) {
+
+        }
+        System.out.print("\033[H\033[2J"); // clear screen
+        System.out.flush();
+
+    }
+}
