@@ -22,7 +22,7 @@ public class forloops {
          * System.out.println(i);
          * delayclear();
          */
-
+        /*
         int total = 0;
         System.out.println("Enter how many grades you want to average");
         int get_amount = scan.nextInt();
@@ -32,6 +32,16 @@ public class forloops {
             total += grade;
         }
         System.out.println("The average of " + get_amount + " numbers is " + (total / get_amount));
+        */
+        int counter=0;
+        System.out.println("Enter a word");
+        String word = scan.next();
+        for (int i=0; i <word.length(); i++){
+            if(word.charAt(i)=='a'){
+                counter+=1;
+            }
+        }
+        System.out.println(word + " has the letter a "+ counter +" times");
 
     }
 
