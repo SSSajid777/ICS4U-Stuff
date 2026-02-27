@@ -45,7 +45,7 @@ public class forloops {
         System.out.println(word + " has the letter a and s"+ counter +" times");
         */
         for (int i=1; i <4; i++){
-            System.out.println(i+ " ");//prints the row number
+            System.out.print(i+ " ");//prints the row number
             for(int j=1; j<5; i++){
                 System.out.print(j);//prints the column number
             }
