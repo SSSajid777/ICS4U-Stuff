@@ -37,11 +37,11 @@ public class forloops {
         System.out.println("Enter a word");
         String word = scan.next();
         for (int i=0; i <word.length(); i++){
-            if(word.charAt(i)=='a'){
+            if(word.charAt(i)=='a'||word.charAt(i)=='s'){
                 counter+=1;
             }
         }
-        System.out.println(word + " has the letter a "+ counter +" times");
+        System.out.println(word + " has the letter a and s"+ counter +" times");
 
     }
 
