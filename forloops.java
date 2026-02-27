@@ -18,7 +18,7 @@ public class forloops{
         int multiplier = scan.nextInt();
         for(int i = 1; i<6; i++){
             System.out.println(i +" * " + multiplier + " = " + (i*multiplier));
-            */
+            
         for (int i = 10; i > 0; i--){
             System.out.println(i);
             delayclear();
@@ -37,6 +37,9 @@ public class forloops{
             }
             System.out.print("\033[H\033[2J"); //clear screen
             System.out.flush();
+            */
+
+        
 
         }
     }
