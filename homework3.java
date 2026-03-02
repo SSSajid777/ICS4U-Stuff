@@ -6,9 +6,9 @@ public class homework3{
         System.out.println("Enter a positive integer"); //1. Asks the user to enter a positive integer n.
         int number=scan.nextInt();
         int sum=0;
-        for(int i=1; i<=n; i++){
+        for(int i=1; i<=number; i++){
             if(i%2==0){
-                sum=sum+i;
+                sum+=i;
             }
         }
         System.out.println("The sum of all even numbers from 1 to "+number+" is "+sum);
