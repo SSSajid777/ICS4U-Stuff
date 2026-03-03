@@ -25,15 +25,28 @@ public class whileloops {
         
             
         }
-        */
+        
 
         //this is an infinite loop
         while (true) { 
             System.out.println("Input any number. Enter -1 to exit");
             int num1 = scan.nextInt();
             if(num1 ==-1){
-                break;
+                break; //breaks the loops it is currently in
             }
         }
+        */
+       boolean decision=true;
+       while (decision) { 
+            System.out.println("Input any number. Enter -1 to exit");
+            int num1 = scan.nextInt();
+            if(num1 ==-1){
+                break; //breaks the loops it is currently in
+
+    
+
+
+
+
     }
 }
