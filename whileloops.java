@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class whileloops {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-
+/* 
         int counter = 1;
 
         while (counter < 11) {
@@ -17,9 +17,9 @@ public class whileloops {
             counter1 -= 1; // or you could write counter-- or counter=counter - 1
 
         }
-
+*/
         int num=1;
-        while(num !=1){
+        while(num !=-1){
             System.out.println("Input any number. Enter -1 to exit");
             num = scan.nextInt();
         
