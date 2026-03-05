@@ -1,20 +1,23 @@
 import java.util.Scanner;
+import java.util.Random;
 /*
 Name: Sajid Abdullah
-Date: March 4, 2026
-Description:
-
+Date: March 4, 2026asy  
+Description:This is a math program that has a menu and a sub menu. The menu prompts user to run the math program  
+or exit the program. The sub menu prompts user to choose either the easy quiz (5 questions) or
+a random quiz (3 questions with random numbers each time)
 
 Resources:
 https://www.asciiart.eu/text-to-ascii-art#google_vignette (ASCII art for titles)
 
-
+prog
 
 */
 //this is a template for assignment 1
 public class assignment1 {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
+        Random rand= new Random();
 
         String RESET = "\u001B[0m"; // Resets the colour back to default
         String BLACK = "\u001B[30m";
@@ -32,7 +35,6 @@ public class assignment1 {
         while (decision1) {
             while (true) {
                 System.out.print("\033[H\033[2J");// clears the screen
-                // add some ASCII art here instead of this statement
                 System.out.println(PURPLE+"""
 .-..-.        _          
 : `' :       :_;         
@@ -75,9 +77,8 @@ public class assignment1 {
                 while (decision2) {
                     while (true) {
                         System.out.print("\033[H\033[2J");// clears the screen
-                        //add some ASCII art here instead of this statement
                         System.out.println(PURPLE + """
-                                .-..-.       .-. .-.      .--.                       
+.-..-.       .-. .-.      .--.                       
 : `' :      .' `.: :     : .--'                      
 : .. : .--. `. .': `-.   : : _  .--.  ,-.,-.,-. .--. 
 : :; :' .; ; : : : .. :  : :; :' .; ; : ,. ,. :' '_.'
@@ -121,9 +122,60 @@ public class assignment1 {
                     }
                     while (decision3) {
                         System.out.print("\033[H\033[2J");// clears the screen
-                        //this is where you will put your math game
-                        System.out.println("This is where you are going to put your math program");
+                        int score=0;
+                        int answer;
+                        if (choice2==choice1){
+                            System.out.println("ADD EASY QUIZ ASCII");
+                            System.out.println("Answer each question. 1 correct answer gives 1 point.");
+                        }
                         delay();// 3s delay
+                        System.out.println(YELLOW+"Q1: What is 3 + 6 * 2?" + RESET);
+                        System.out.println("Your answer: ");
+                        answer=scan.nextInt();
+                        if (answer == 3 + 6 * 2){
+                            System.out.println(GREEN + "Correct! You got 1 point!" + RESET);
+                            score++;
+                        } 
+                        else{
+                            System.out.println(RED + "Incorrect! The answer was" + (3 + 6 * 2) + RESET);
+                        }
+                        delay();
+                        System.out.println(YELLOW+"Q2: What is 10 + 8 /2 ? (Round to nearest whole number" + RESET);
+                        System.out.println("Your answer: ");
+                        answer=scan.nextInt();
+                        if (answer == 10 + 8 / 2){
+                            System.out.println(GREEN + "Correct! You got 1 point!" + RESET);
+                            score++;
+                        } 
+                        else{
+                            System.out.println(RED + "Incorrect! The answer was" + (10 + 8 / 2) + RESET);
+                        }
+                        delay();
+                        System.out.println(YELLOW+"Q3: What is 4 * 7 - 6 / 3? (Round to nearest whole number" + RESET);
+                        System.out.println("Your answer: ");
+                        answer=scan.nextInt();
+                        if (answer == 4 * 7 - 6 / 3){
+                            System.out.println(GREEN + "Correct! You got 1 point!" + RESET);
+                            score++;
+                        } 
+                        else{
+                            System.out.println(RED + "Incorrect! The answer was" + (4 * 7 - 6 / 3) + RESET);
+                        }
+                        delay();
+                        System.out.println(YELLOW+"Q4: What is 2 * ((3 + 11) - 6 * (2 - 8)) ?"+ RESET);
+                        System.out.println("Your answer: ");
+                        answer=scan.nextInt();
+                        if (answer == 2 * ((3 + 11) - 6 * (2 - 8))){
+                            System.out.println(GREEN + "Correct! You got 1 point!" + RESET);
+                            score++;
+                        } 
+                        else{
+                            System.out.println(RED + "Incorrect! The answer was" + (4 * 7 - 6 / 3) + RESET);
+                        }
+                        delay();
+
+
+
                         //runs the math game or returns back to the math sub menu
                         while (true) {
                             System.out.println(YELLOW + "Would you like to run the program again, y or n?" +RESET);
