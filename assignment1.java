@@ -11,6 +11,7 @@ Resources:
 https://www.asciiart.eu/text-to-ascii-art#google_vignette (ASCII art for titles)
 */
 
+//ADD INSTRUCTIONS IN THE MENU
 public class assignment1 {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
@@ -177,7 +178,7 @@ public class assignment1 {
 
                             // Q4: 2 * ((3 + 11) - 6 * (2 - 8)) = 100
                             System.out.println(YELLOW + "Q4: What is 2 * ((3 + 11) - 6 * (2 - 8))?" + RESET);
-                            System.out.print("Your answer: "); // FIX: print not println
+                            System.out.print("Your answer: "); 
                             answer = scan.nextInt();
                             if (answer == 2 * ((3 + 11) - 6 * (2 - 8))) {
                                 System.out.println(GREEN + "Correct! You got 1 point!" + RESET);
@@ -189,7 +190,7 @@ public class assignment1 {
 
                             // Q5: 13 + 23 - 9 / 3 = 33
                             System.out.println(YELLOW + "Q5: What is 13 + 23 - 9 / 3?" + RESET);
-                            System.out.print("Your answer: "); // FIX: print not println
+                            System.out.print("Your answer: "); 
                             answer = scan.nextInt();
                             if (answer == 13 + 23 - 9 / 3) {
                                 System.out.println(GREEN + "Correct! You got 1 point!" + RESET);
@@ -199,8 +200,7 @@ public class assignment1 {
                             }
                             delay();
 
-                            // ADD YOUR SCORE DISPLAY HERE (ex. "Your score: " + score + " / 5")
-
+                            System.out.println("Your score: " + score + " / 5");
                         }
 
                         //add ASCII
