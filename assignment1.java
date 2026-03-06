@@ -208,7 +208,7 @@ public class assignment1 {
                             int x=rand.nextInt(1,10);
                             int y=rand.nextInt(1,10);
                             int z=rand.nextInt(1,10);
-                            System.out.println(YELLOW+"Q1: What is " + x + " * " + y + " + " + "z" +" ?" + RESE );
+                            System.out.println(YELLOW+"Q1: What is " + x + " * " + y + " + " + "z" +" ?" + RESET );
                             System.out.println("Your answers: ");
                             answer=scan.nextInt();
                             if (answer == (x * y + z)){
@@ -236,7 +236,7 @@ public class assignment1 {
 
                             }
                             delay();
-                            int w3=rand.nextInt(1,10)
+                            int w3=rand.nextInt(1,10);
                             int x3=rand.nextInt(1,10);
                             int y3=rand.nextInt(1,10);
                             int z3=rand.nextInt(1,10);
@@ -251,11 +251,11 @@ public class assignment1 {
                                 System.out.println(RED + "Incorrect! The answer was " + (x3*y3+z3*w3) );
                             }
                             delay();
-                            int w4=rand.nextInt(1,10)
+                            int w4=rand.nextInt(1,10);
                             int x4=rand.nextInt(2,10);
                             int y4=rand.nextInt(1,10);
                             int z4=rand.nextInt(1,5);
-                            System.out.println(YELLOW+ "Q4:What is  " + x4 + " * (" + y4 + " + " + z4 + ") - " + w 4+ " ?" + RESET );
+                            System.out.println(YELLOW+ "Q4:What is  " + x4 + " * (" + y4 + " + " + z4 + ") - " + w4+ " ?" + RESET );
                             System.out.println("Your answers: ");
                             answer=scan.nextInt();
                             if (answer == ((x4 * (y4 + z4) - w4))){
@@ -266,7 +266,7 @@ public class assignment1 {
                                 System.out.println(RED + "Incorrect! The answer was " + (x4 * (y4 + z4) - w4) );
                             }
                             delay();
-                            int w5=rand.nextInt(1,8)
+                            int w5=rand.nextInt(1,8);
                             int x5=rand.nextInt(1,8);
                             int y5=rand.nextInt(1,8);
                             int z5=rand.nextInt(1,8);
@@ -301,7 +301,7 @@ public class assignment1 {
                     }
                 }
             }
-        }
+        } }
     }
 
     // function to delay by 3 seconds
