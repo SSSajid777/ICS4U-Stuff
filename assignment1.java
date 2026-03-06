@@ -131,10 +131,8 @@ public class assignment1 {
                         int score = 0;
                         int answer;
 
-                        // =============================================
-                        // EASY QUIZ - choice2 == 1
-                        // =============================================
-                        if (choice2 == 1) { // FIX: was (choice2 == choice1) which was wrong logic
+                        
+                        if (choice2 == 1) { 
 
                             // ADD YOUR EASY QUIZ ASCII ART HERE
                             System.out.println("ADD EASY QUIZ ASCII");
