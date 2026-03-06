@@ -203,13 +203,7 @@ public class assignment1 {
 
                         }
 
-                        // =============================================
-                        // RANDOM QUIZ - ADD YOUR RANDOM QUIZ HERE
-                        // choice2 == 2
-                        // use x, y, z, w variables with rand.nextInt()
-                        // example: x = rand.nextInt(1, 10);
-                        //          System.out.println("What is " + x + " * " + y + "?");
-                        // =============================================
+                        //add ASCII
                         else if (choice2 == 2) {
                             int x=rand.nextInt(1,10);
                             int y=rand.nextInt(1,10);
@@ -276,18 +270,18 @@ public class assignment1 {
                             int x5=rand.nextInt(1,8);
                             int y5=rand.nextInt(1,8);
                             int z5=rand.nextInt(1,8);
-                            System.out.println(YELLOW+ "Q4:What is  " + x4 + " * (" + y4 + " + " + z4 + ") - " + w 4+ " ?" + RESET );
+                            System.out.println(YELLOW+ "Q5:What is  (" + x5 + " + " + y5 + ") * (" + z5 + " + " + w5 + ")?"+ RESET );
                             System.out.println("Your answers: ");
                             answer=scan.nextInt();
-                            if (answer == ((x4 * (y4 + z4) - w4))){
+                            if (answer == ((x5 + y5) * (z5 + w5))){
                                 System.out.println(GREEN+"Correct! +1 point" + RESET);
                                 score++;
                             }
                             else{
-                                System.out.println(RED + "Incorrect! The answer was " + (x4 * (y4 + z4) - w4) );
+                                System.out.println(RED + "Incorrect! The answer was " +  (((x5 + y5) * (z5 + w5))) + RESET);
                             }
                             delay();
-
+                            
                         // runs the quiz again or returns back to the math sub menu
                         while (true) {
                             System.out.println(YELLOW + "Would you like to run the program again, y or n?" + RESET);
