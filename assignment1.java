@@ -59,7 +59,7 @@ public class assignment1 {
                 // if you exit the program
                 else if (choice1 == 2) {
                     System.out.print("\033[H\033[2J"); // clears the screen
-                    System.out.println(YELLOW + "Thank you for using my program!" + RESET);
+                    System.out.println(CYAN + "Thank you for using my program!" + RESET);
                     delay(); // 3s delay
                     decision1 = false;
                     break;
@@ -136,7 +136,7 @@ public class assignment1 {
 
                             // ADD YOUR EASY QUIZ ASCII ART HERE
                             System.out.println("ADD EASY QUIZ ASCII");
-                            System.out.println("Answer each question. 1 correct answer gives 1 point.");
+                            System.out.println(CYAN+ "Answer each question. 1 correct answer gives 1 point." + RESET);
                             delay(); // 3s delay
 
                             // Q1: 3 + 6 * 2 = 15
@@ -208,7 +208,7 @@ public class assignment1 {
                             int x=rand.nextInt(1,10);
                             int y=rand.nextInt(1,10);
                             int z=rand.nextInt(1,10);
-                            System.out.println(YELLOW+"Q1: What is " + x + " * " + y + " + " + "z" +" ?" + RESET );
+                            System.out.println(YELLOW+"Q1: What is " + x + " * " + y + " + " + z +" ?" + RESET );
                             System.out.println("Your answers: ");
                             answer=scan.nextInt();
                             if (answer == (x * y + z)){
