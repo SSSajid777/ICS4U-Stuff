@@ -394,11 +394,11 @@ public class assignment1 {
                             // random quiz score display
                             System.out.println(CYAN + "Your score: " + score + " / 5" + RESET);
                             if (score == 5) {
-                                System.out.println(GREEN + "Perfect! You nailed all 5!" + RESET);
+                                System.out.println(GREEN + "Perfect! You got all 5 correct!" + RESET);
                             } else if (score >= 3) {
-                                System.out.println(YELLOW + "Nice work! Almost there!" + RESET);
+                                System.out.println(YELLOW + "Nice work! Keep practicing and you will get perfect!" + RESET);
                             } else {
-                                System.out.println(RED + "Keep practising, try again!" + RESET);
+                                System.out.println(RED + "Keep practicing, try again!" + RESET);
                             }
                             delay();
                         }
