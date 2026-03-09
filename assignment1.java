@@ -7,7 +7,7 @@ a random quiz (5 questions with random numbers each time), or view the instructi
 
 Resources:
 https://www.asciiart.eu/text-to-ascii-art#google_vignette (ASCII art for titles)
-*/
+ */
 
 import java.io.File;
 import java.util.Random;
@@ -16,6 +16,7 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
 public class assignment1 {
+
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         Random rand = new Random();
@@ -62,8 +63,7 @@ public class assignment1 {
                 // if you choose the math program
                 if (choice1 == 1) {
                     break;
-                }
-                // if you exit the program
+                } // if you exit the program
                 else if (choice1 == 2) {
                     System.out.print("\033[H\033[2J"); // clears the screen
                     System.out.println(CYAN + "Thank you for using my program!" + RESET);
@@ -109,12 +109,10 @@ public class assignment1 {
                         // if you choose easy quiz
                         if (choice2 == 1) {
                             break;
-                        }
-                        // if you choose random quiz
+                        } // if you choose random quiz
                         else if (choice2 == 2) {
                             break;
-                        }
-                        // if you choose instructions
+                        } // if you choose instructions
                         else if (choice2 == 3) {
                             System.out.print("\033[H\033[2J"); // clears the screen
 
@@ -146,8 +144,7 @@ public class assignment1 {
                             System.out.println(CYAN + "A and S have equal priority, solve left to right" + RESET);
                             delay(); // 3s delay
 
-                        }
-                        // if user choose to return to main menu
+                        } // if user choose to return to main menu
                         else if (choice2 == 4) {
                             System.out.print("\033[H\033[2J"); // clears the screen
                             System.out.println(YELLOW + "Returning to main menu" + RESET);
@@ -280,9 +277,7 @@ public class assignment1 {
                                 System.out.println(RED + "Keep studying, you will improve!" + RESET);
                             }
                             delay();
-                        }
-
-                        // random quiz
+                        } // random quiz
                         else if (choice2 == 2) {
 
                             // random quiz ASCII art
