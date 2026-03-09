@@ -419,13 +419,13 @@ public class assignment1 {
                                 System.out.print("\033[H\033[2J"); // clears the screen
                             }
                         }
-                    } // end quiz loop
-                } // end math menu loop
+                    } 
+                } 
             }
         }
     }
 
-    // delay method - pauses for 3 seconds
+    // function to delay by 3 seconds
     public static void delay() {
         try {
             Thread.sleep(3000); // 3000ms = 3 seconds
