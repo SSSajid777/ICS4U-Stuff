@@ -134,17 +134,17 @@ public class assignment1 {
                             System.out.println("- At the end you can play again or go back");
                             System.out.println("");
                             System.out.println(YELLOW + "BEDMAS Rules:" + RESET);
-                            System.out.println("B - Brackets first       ex: (3 + 2) * 4 = 20");
-                            System.out.println("E - Exponents next       ex: 2^3 = 8");
-                            System.out.println("D - Division             ex: 8 / 2 = 4");
-                            System.out.println("M - Multiplication       ex: 3 * 4 = 12");
-                            System.out.println("A - Addition             ex: 5 + 3 = 8");
-                            System.out.println("S - Subtraction last     ex: 9 - 4 = 5");
+                            System.out.println("B - Brackets first");
+                            System.out.println("E - Exponents next");
+                            System.out.println("D - Division");
+                            System.out.println("M - Multiplication");
+                            System.out.println("A - Addition");
+                            System.out.println("S - Subtraction last");
                             System.out.println("");
                             System.out.println(CYAN + "D and M have equal priority, solve left to right" + RESET);
                             System.out.println(CYAN + "A and S have equal priority, solve left to right" + RESET);
                             System.out.println("");
-                            System.out.println(YELLOW + "Enter any number then click enter to go back" + RESET);
+                            System.out.println(YELLOW + "Enter any number, then click enter to go back" + RESET);
                             scan.nextInt();
 
                         } // if user choose to return to main menu
@@ -199,7 +199,7 @@ public class assignment1 {
                             System.out.println(CYAN + "Answer each question. 1 correct answer gives 1 point." + RESET);
                             delay(); // 3s delay
 
-                            // Q1: 3 + 6 * 2 = 15
+                            // Q1: 15
                             System.out.println(YELLOW + "Q1: What is 3 + 6 * 2?" + RESET);
                             System.out.print("Your answer: ");
                             answer = scan.nextInt();
@@ -213,7 +213,7 @@ public class assignment1 {
                             }
                             delay();
 
-                            // Q2: 10 + 8 / 2 = 14
+                            // Q2: 14
                             System.out.println(YELLOW + "Q2: What is 10 + 8 / 2?" + RESET);
                             System.out.print("Your answer: ");
                             answer = scan.nextInt();
@@ -227,7 +227,7 @@ public class assignment1 {
                             }
                             delay();
 
-                            // Q3: 4 * 7 - 6 / 3 = 26
+                            // Q3: 26
                             System.out.println(YELLOW + "Q3: What is 4 * 7 - 6 / 3?" + RESET);
                             System.out.print("Your answer: ");
                             answer = scan.nextInt();
@@ -241,7 +241,7 @@ public class assignment1 {
                             }
                             delay();
 
-                            // Q4: 2 * ((3 + 11) - 6 * (2 - 8)) = 100
+                            // Q4: 100
                             System.out.println(YELLOW + "Q4: What is 2 * ((3 + 11) - 6 * (2 - 8))?" + RESET);
                             System.out.print("Your answer: ");
                             answer = scan.nextInt();
@@ -256,7 +256,7 @@ public class assignment1 {
                             }
                             delay();
 
-                            // Q5: 13 + 23 - 9 / 3 = 33
+                            // Q5: 33
                             System.out.println(YELLOW + "Q5: What is 13 + 23 - 9 / 3?" + RESET);
                             System.out.print("Your answer: ");
                             answer = scan.nextInt();
