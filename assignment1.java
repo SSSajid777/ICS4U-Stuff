@@ -16,7 +16,7 @@ import java.util.Scanner;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
-public class assignment1 {
+public class Assignment1 {
 
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
