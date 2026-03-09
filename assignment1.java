@@ -1,17 +1,20 @@
-import java.util.Scanner;
+import java.io.File;
 import java.util.Random;
+import java.util.Scanner;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+
 /*
 Name: Sajid Abdullah
 Date: March 4, 2026
 Description: This is a math program that has a menu and a sub menu. The menu prompts user to run the math program
-or exit the program. The sub menu prompts user to choose either the easy quiz (5 questions) or
-a random quiz (5 questions with random numbers each time)
+or exit the program. The sub menu prompts user to choose either the easy quiz (5 questions),
+a random quiz (5 questions with random numbers each time), or view the instructions.
 
 Resources:
 https://www.asciiart.eu/text-to-ascii-art#google_vignette (ASCII art for titles)
 */
 
-//ADD INSTRUCTIONS IN THE MENU
 public class assignment1 {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
@@ -31,9 +34,12 @@ public class assignment1 {
         boolean decision1, decision2, decision3;
         decision1 = true;
 
+        // main menu loop
         while (decision1) {
             while (true) {
                 System.out.print("\033[H\033[2J"); // clears the screen
+
+                // main menu ASCII art
                 System.out.println(PURPLE + """
 .-..-.        _          
 : `' :       :_;         
@@ -53,7 +59,7 @@ public class assignment1 {
                                 """ + RESET);
                 choice1 = scan.nextInt(); // main menu input
 
-                // if you choose the math game
+                // if you choose the math program
                 if (choice1 == 1) {
                     break;
                 }
@@ -64,20 +70,23 @@ public class assignment1 {
                     delay(); // 3s delay
                     decision1 = false;
                     break;
-                } else {
+                }
+                else {
                     System.out.print("\033[H\033[2J"); // clears the screen
-                    System.out.println("Input choice 1 or 2: "); // prints if not 1 or 2
+                    System.out.println(RED + "Input choice 1 or 2!" + RESET); // prints if not 1 or 2
                     delay(); // 3s delay
                     System.out.print("\033[H\033[2J"); // clears the screen
                 }
             }
 
-            // this goes to the math game sub menu
+            // goes to the math game sub menu
             if (choice1 == 1) {
                 decision2 = true;
                 while (decision2) {
                     while (true) {
                         System.out.print("\033[H\033[2J"); // clears the screen
+
+                        // math menu ASCII art
                         System.out.println(PURPLE + """
 .-..-.       .-. .-.      .--.                       
 : `' :      .' `.: :     : .--'                      
@@ -92,8 +101,9 @@ public class assignment1 {
 :_;:_;`.__.':_;:_;`.__.'                             
 
 1.) Easy Quiz
-2.) Random Quiz        <-- ADD RANDOM QUIZ LOGIC IN THE QUIZ LOOP BELOW
-3.) Return to Main Menu
+2.) Random Quiz
+3.) Instructions
+4.) Return to Main Menu
                                                 """ + RESET);
                         choice2 = scan.nextInt();
 
@@ -101,210 +111,336 @@ public class assignment1 {
                         if (choice2 == 1) {
                             break;
                         }
-                        // ADD: if you choose random quiz
+                        // if you choose random quiz
                         else if (choice2 == 2) {
-                            break; // <-- ADD RANDOM QUIZ CODE INSIDE THE while(decision3) LOOP BELOW
+                            break;
                         }
-                        // if you choose to go back to the main menu
+                        // if you choose instructions
                         else if (choice2 == 3) {
+                            System.out.print("\033[H\033[2J"); // clears the screen
+
+                            // instructions ASCII art
+                            System.out.println(CYAN + """
+ .--.         .               .-.   .          
+: .--'        |              .' `.  |           
+: `;  .--. .--.  .--.  .--.  `. .'.-+- .--. .-.
+: :  ' .; :: ..'' .; ;' '_.'  : : : : ' .; :: :
+`.__'`.__.':_; `.__.;`.__.'   :_; `-'-'`.__.'`-'
+""" + RESET);
+
+                            System.out.println(YELLOW + "How to play:" + RESET);
+                            System.out.println("- Choose Easy Quiz for 5 set questions");
+                            System.out.println("- Choose Random Quiz for 5 random questions");
+                            System.out.println("- Type your answer and press enter");
+                            System.out.println("- You get 1 point for each correct answer");
+                            System.out.println("- At the end you can play again or go back");
+                            System.out.println("");
+                            System.out.println(YELLOW + "BEDMAS Rules:" + RESET);
+                            System.out.println("B - Brackets first       ex: (3 + 2) * 4 = 20");
+                            System.out.println("E - Exponents next       ex: 2^3 = 8");
+                            System.out.println("D - Division             ex: 8 / 2 = 4");
+                            System.out.println("M - Multiplication       ex: 3 * 4 = 12");
+                            System.out.println("A - Addition             ex: 5 + 3 = 8");
+                            System.out.println("S - Subtraction last     ex: 9 - 4 = 5");
+                            System.out.println("");
+                            System.out.println(CYAN + "D and M have equal priority, solve left to right" + RESET);
+                            System.out.println(CYAN + "A and S have equal priority, solve left to right" + RESET);
+                            delay(); // 3s delay
+                            // does not break so loops back to math menu
+                        }
+                        // if you choose to return to main menu
+                        else if (choice2 == 4) {
                             System.out.print("\033[H\033[2J"); // clears the screen
                             System.out.println(YELLOW + "Returning to main menu" + RESET);
                             delay(); // 3s delay
                             decision2 = false;
                             break;
-                        } else {
+                        }
+                        else {
                             System.out.print("\033[H\033[2J"); // clears the screen
-                            System.out.println("Input choice 1, 2, or 3: "); // prints if not valid
+                            System.out.println(RED + "Input choice 1, 2, 3, or 4!" + RESET);
                             delay(); // 3s delay
                             System.out.print("\033[H\033[2J"); // clears the screen
                         }
                     }
 
+                    // if user picked return to main menu skip the quiz, otherwise run it
                     if (decision2 == false) {
                         decision3 = false;
-                    } else {
+                    }
+                    else {
                         decision3 = true;
                     }
 
+                    // quiz loop
                     while (decision3) {
                         System.out.print("\033[H\033[2J"); // clears the screen
 
                         int score = 0;
                         int answer;
+                        int x, y, z, w; // variables reused for all random questions
 
-                        
-                        if (choice2 == 1) { 
+                        // easy quiz
+                        if (choice2 == 1) {
 
-                            // ADD YOUR EASY QUIZ ASCII ART HERE
-                            System.out.println("ADD EASY QUIZ ASCII");
-                            System.out.println(CYAN+ "Answer each question. 1 correct answer gives 1 point." + RESET);
+                            // easy quiz ASCII art
+                            System.out.println(CYAN + """
+.----.                  .----.   .        
+: .-' .--. .-..-. .--. : .-' .-+- .-.  
+: `-. : ..': `; `.' .; ;: `-. : : :' ._.'
+`----'`._.' `.__.`.__,_;`----'`-'-'`.__.
+""" + RESET);
+
+                            System.out.println(CYAN + "Answer each question. 1 correct answer gives 1 point." + RESET);
                             delay(); // 3s delay
 
                             // Q1: 3 + 6 * 2 = 15
+                            // multiply first: 6*2=12, then add: 3+12=15
                             System.out.println(YELLOW + "Q1: What is 3 + 6 * 2?" + RESET);
-                            System.out.print("Your answer: "); // FIX: print not println so input is on same line
+                            System.out.print("Your answer: ");
                             answer = scan.nextInt();
                             if (answer == 3 + 6 * 2) {
                                 System.out.println(GREEN + "Correct! You got 1 point!" + RESET);
                                 score++;
-                            } else {
-                                System.out.println(RED + "Incorrect! The answer was " + (3 + 6 * 2) + RESET); // FIX: added space before answer
+                                playSound("correct_sound.wav"); // play correct sound
+                            }
+                            else {
+                                System.out.println(RED + "Incorrect! The answer was " + (3 + 6 * 2) + RESET);
+                                playSound("incorrect_sound.wav"); // play incorrect sound
                             }
                             delay();
 
                             // Q2: 10 + 8 / 2 = 14
+                            // divide first: 8/2=4, then add: 10+4=14
                             System.out.println(YELLOW + "Q2: What is 10 + 8 / 2?" + RESET);
-                            System.out.print("Your answer: "); // FIX: print not println
+                            System.out.print("Your answer: ");
                             answer = scan.nextInt();
                             if (answer == 10 + 8 / 2) {
                                 System.out.println(GREEN + "Correct! You got 1 point!" + RESET);
                                 score++;
-                            } else {
-                                System.out.println(RED + "Incorrect! The answer was " + (10 + 8 / 2) + RESET); // FIX: added space before answer
+                                playSound("correct_sound.wav");
+                            }
+                            else {
+                                System.out.println(RED + "Incorrect! The answer was " + (10 + 8 / 2) + RESET);
+                                playSound("incorrect_sound.wav");
                             }
                             delay();
 
                             // Q3: 4 * 7 - 6 / 3 = 26
+                            // divide first: 6/3=2, multiply: 4*7=28, then subtract: 28-2=26
                             System.out.println(YELLOW + "Q3: What is 4 * 7 - 6 / 3?" + RESET);
-                            System.out.print("Your answer: "); // FIX: print not println
+                            System.out.print("Your answer: ");
                             answer = scan.nextInt();
                             if (answer == 4 * 7 - 6 / 3) {
                                 System.out.println(GREEN + "Correct! You got 1 point!" + RESET);
                                 score++;
-                            } else {
-                                System.out.println(RED + "Incorrect! The answer was " + (4 * 7 - 6 / 3) + RESET); // FIX: added space before answer
+                                playSound("correct_sound.wav");
+                            }
+                            else {
+                                System.out.println(RED + "Incorrect! The answer was " + (4 * 7 - 6 / 3) + RESET);
+                                playSound("incorrect_sound.wav");
                             }
                             delay();
 
                             // Q4: 2 * ((3 + 11) - 6 * (2 - 8)) = 100
+                            // inner brackets: (3+11)=14, (2-8)=-6
+                            // then: 6*(-6)=-36, 14-(-36)=50, 2*50=100
                             System.out.println(YELLOW + "Q4: What is 2 * ((3 + 11) - 6 * (2 - 8))?" + RESET);
-                            System.out.print("Your answer: "); 
+                            System.out.print("Your answer: ");
                             answer = scan.nextInt();
                             if (answer == 2 * ((3 + 11) - 6 * (2 - 8))) {
                                 System.out.println(GREEN + "Correct! You got 1 point!" + RESET);
                                 score++;
-                            } else {
-                                System.out.println(RED + "Incorrect! The answer was " + (2 * ((3 + 11) - 6 * (2 - 8))) + RESET); // FIX: was showing wrong answer (Q3's answer)
+                                playSound("correct_sound.wav");
+                            }
+                            else {
+                                System.out.println(RED + "Incorrect! The answer was " + (2 * ((3 + 11) - 6 * (2 - 8))) + RESET);
+                                playSound("incorrect_sound.wav");
                             }
                             delay();
 
                             // Q5: 13 + 23 - 9 / 3 = 33
+                            // divide first: 9/3=3, then left to right: 13+23=36, 36-3=33
                             System.out.println(YELLOW + "Q5: What is 13 + 23 - 9 / 3?" + RESET);
-                            System.out.print("Your answer: "); 
+                            System.out.print("Your answer: ");
                             answer = scan.nextInt();
                             if (answer == 13 + 23 - 9 / 3) {
                                 System.out.println(GREEN + "Correct! You got 1 point!" + RESET);
                                 score++;
-                            } else {
-                                System.out.println(RED + "Incorrect! The answer was " + (13 + 23 - 9 / 3) + RESET); // FIX: added space before answer
+                                playSound("correct_sound.wav");
+                            }
+                            else {
+                                System.out.println(RED + "Incorrect! The answer was " + (13 + 23 - 9 / 3) + RESET);
+                                playSound("incorrect_sound.wav");
                             }
                             delay();
 
-                            System.out.println("Your score: " + score + " / 5");
+                            // easy quiz score display
+                            System.out.println(CYAN + "Your score: " + score + " / 5" + RESET);
+                            if (score == 5) {
+                                System.out.println(GREEN + "Perfect score! Amazing job!" + RESET);
+                            }
+                            else if (score >= 3) {
+                                System.out.println(YELLOW + "Good work! Keep practising!" + RESET);
+                            }
+                            else {
+                                System.out.println(RED + "Keep studying, you will get it!" + RESET);
+                            }
+                            delay();
                         }
 
-                        //add ASCII
+                        // random quiz
                         else if (choice2 == 2) {
-                            int x=rand.nextInt(1,10);
-                            int y=rand.nextInt(1,10);
-                            int z=rand.nextInt(1,10);
-                            System.out.println(YELLOW+"Q1: What is " + x + " * " + y + " + " + z +" ?" + RESET );
-                            System.out.println("Your answers: ");
-                            answer=scan.nextInt();
-                            if (answer == (x * y + z)){
-                                System.out.println(GREEN+"Correct! +1 point" + RESET);
+
+                            // random quiz ASCII art
+                            System.out.println(PURPLE + """
+.-.              .---.   .        
+: :              : .--'  .-+- .-.  
+: `-.  .--.  .--.: `--.  : :':._.'
+: .. :' .; ;' ._.': ..'  : : `.__.;
+:_;:_;`.__,_;`.__.`---'  `-'-'`.__.
+""" + RESET);
+
+                            System.out.println(PURPLE + "5 random questions - different every time! 1 point each." + RESET);
+                            delay(); // 3s delay
+
+                            // Q1: x * y + z
+                            // multiply first then add, always a whole number
+                            x = rand.nextInt(1, 10);
+                            y = rand.nextInt(1, 10);
+                            z = rand.nextInt(1, 10);
+                            System.out.println(YELLOW + "Q1: What is " + x + " * " + y + " + " + z + " ?" + RESET);
+                            System.out.print("Your answer: ");
+                            answer = scan.nextInt();
+                            if (answer == (x * y + z)) {
+                                System.out.println(GREEN + "Correct! +1 point" + RESET);
                                 score++;
+                                playSound("correct_sound.wav");
                             }
-                            else{
-                                System.out.println(RED + "Incorrect! The answer was " + (x*y+z) );
+                            else {
+                                System.out.println(RED + "Incorrect! The answer was " + (x * y + z) + RESET);
+                                playSound("incorrect_sound.wav");
                             }
                             delay();
-                            int x2=rand.nextInt(1,10);
-                            int y2=rand.nextInt(1,10);
-                            int z2=rand.nextInt(1,10);
-                            System.out.println(YELLOW+"Q2: What is (" + x2 + " + " + y2 + ") * " + z2 +" ?" + RESET );
-                            System.out.println("Your answers: ");
-                            answer=scan.nextInt();
-                            if (answer == ((x2+y2)*z2)){
-                                System.out.println(GREEN+"Correct! +1 point" + RESET);
+
+                            // Q2: (x + y) * z
+                            // brackets first then multiply, always a whole number
+                            x = rand.nextInt(1, 10);
+                            y = rand.nextInt(1, 10);
+                            z = rand.nextInt(1, 10);
+                            System.out.println(YELLOW + "Q2: What is (" + x + " + " + y + ") * " + z + " ?" + RESET);
+                            System.out.print("Your answer: ");
+                            answer = scan.nextInt();
+                            if (answer == ((x + y) * z)) {
+                                System.out.println(GREEN + "Correct! +1 point" + RESET);
                                 score++;
+                                playSound("correct_sound.wav");
                             }
-                            else{
+                            else {
                                 System.out.println(RED + "Incorrect! The answer was " + ((x + y) * z) + RESET);
+                                playSound("incorrect_sound.wav");
+                            }
+                            delay();
 
+                            // Q3: x * y + z * w
+                            // both multiplications done first then added
+                            x = rand.nextInt(1, 10);
+                            y = rand.nextInt(1, 10);
+                            z = rand.nextInt(1, 10);
+                            w = rand.nextInt(1, 10);
+                            System.out.println(YELLOW + "Q3: What is " + x + " * " + y + " + " + z + " * " + w + " ?" + RESET);
+                            System.out.print("Your answer: ");
+                            answer = scan.nextInt();
+                            if (answer == (x * y + z * w)) {
+                                System.out.println(GREEN + "Correct! +1 point" + RESET);
+                                score++;
+                                playSound("correct_sound.wav");
+                            }
+                            else {
+                                System.out.println(RED + "Incorrect! The answer was " + (x * y + z * w) + RESET);
+                                playSound("incorrect_sound.wav");
+                            }
+                            delay();
 
+                            // Q4: x * (y + z) - w
+                            // brackets first then multiply then subtract
+                            x = rand.nextInt(2, 10);
+                            y = rand.nextInt(2, 10);
+                            z = rand.nextInt(1, 10);
+                            w = rand.nextInt(1, 5);
+                            System.out.println(YELLOW + "Q4: What is " + x + " * (" + y + " + " + z + ") - " + w + " ?" + RESET);
+                            System.out.print("Your answer: ");
+                            answer = scan.nextInt();
+                            if (answer == (x * (y + z) - w)) {
+                                System.out.println(GREEN + "Correct! +1 point" + RESET);
+                                score++;
+                                playSound("correct_sound.wav");
+                            }
+                            else {
+                                System.out.println(RED + "Incorrect! The answer was " + (x * (y + z) - w) + RESET);
+                                playSound("incorrect_sound.wav");
+                            }
+                            delay();
 
-                            }
-                            delay();
-                            int w3=rand.nextInt(1,10);
-                            int x3=rand.nextInt(1,10);
-                            int y3=rand.nextInt(1,10);
-                            int z3=rand.nextInt(1,10);
-                            System.out.println(YELLOW+"Q3: What is  " + x3 + " * " + y3 + " + " + z3 + " * " + w3 + " ?" + RESET );
-                            System.out.println("Your answers: ");
-                            answer=scan.nextInt();
-                            if (answer == (x3*y3+z3*w3)){
-                                System.out.println(GREEN+"Correct! +1 point" + RESET);
+                            // Q5: (x + y) * (z + w)
+                            // both brackets solved first then multiplied
+                            x = rand.nextInt(1, 8);
+                            y = rand.nextInt(1, 8);
+                            z = rand.nextInt(1, 8);
+                            w = rand.nextInt(1, 8);
+                            System.out.println(YELLOW + "Q5: What is (" + x + " + " + y + ") * (" + z + " + " + w + ") ?" + RESET);
+                            System.out.print("Your answer: ");
+                            answer = scan.nextInt();
+                            if (answer == ((x + y) * (z + w))) {
+                                System.out.println(GREEN + "Correct! +1 point" + RESET);
                                 score++;
+                                playSound("correct_sound.wav");
                             }
-                            else{
-                                System.out.println(RED + "Incorrect! The answer was " + (x3*y3+z3*w3) );
-                            }
-                            delay();
-                            int w4=rand.nextInt(1,10);
-                            int x4=rand.nextInt(2,10);
-                            int y4=rand.nextInt(1,10);
-                            int z4=rand.nextInt(1,5);
-                            System.out.println(YELLOW+ "Q4:What is  " + x4 + " * (" + y4 + " + " + z4 + ") - " + w4+ " ?" + RESET );
-                            System.out.println("Your answers: ");
-                            answer=scan.nextInt();
-                            if (answer == ((x4 * (y4 + z4) - w4))){
-                                System.out.println(GREEN+"Correct! +1 point" + RESET);
-                                score++;
-                            }
-                            else{
-                                System.out.println(RED + "Incorrect! The answer was " + (x4 * (y4 + z4) - w4) );
+                            else {
+                                System.out.println(RED + "Incorrect! The answer was " + ((x + y) * (z + w)) + RESET);
+                                playSound("incorrect_sound.wav");
                             }
                             delay();
-                            int w5=rand.nextInt(1,8);
-                            int x5=rand.nextInt(1,8);
-                            int y5=rand.nextInt(1,8);
-                            int z5=rand.nextInt(1,8);
-                            System.out.println(YELLOW+ "Q5:What is  (" + x5 + " + " + y5 + ") * (" + z5 + " + " + w5 + ")?"+ RESET );
-                            System.out.println("Your answers: ");
-                            answer=scan.nextInt();
-                            if (answer == ((x5 + y5) * (z5 + w5))){
-                                System.out.println(GREEN+"Correct! +1 point" + RESET);
-                                score++;
+
+                            // random quiz score display
+                            System.out.println(CYAN + "Your score: " + score + " / 5" + RESET);
+                            if (score == 5) {
+                                System.out.println(GREEN + "Perfect! You nailed all 5!" + RESET);
                             }
-                            else{
-                                System.out.println(RED + "Incorrect! The answer was " +  (((x5 + y5) * (z5 + w5))) + RESET);
+                            else if (score >= 3) {
+                                System.out.println(YELLOW + "Nice work! Almost there!" + RESET);
+                            }
+                            else {
+                                System.out.println(RED + "Keep practising, try again!" + RESET);
                             }
                             delay();
-                            
-                        // runs the quiz again or returns back to the math sub menu
+                        }
+
+                        // ask user to run quiz again or go back to math menu
                         while (true) {
                             System.out.println(YELLOW + "Would you like to run the program again, y or n?" + RESET);
-                            String playAgain = scan.next().toLowerCase(); // FIX: renamed from "answer" to "playAgain" - cant have two variables with same name
+                            String playAgain = scan.next().toLowerCase();
                             if (playAgain.equals("y")) {
+                                break; // loops back to run quiz again
+                            }
+                            else if (playAgain.equals("n")) {
+                                decision3 = false; // exits quiz loop, goes back to math menu
                                 break;
-                            } else if (playAgain.equals("n")) {
-                                decision3 = false;
-                                break;
-                            } else {
+                            }
+                            else {
                                 System.out.print("\033[H\033[2J"); // clears the screen
-                                System.out.println("Only input y or n!");
+                                System.out.println(RED + "Only input y or n!" + RESET);
                                 delay(); // 3s delay
                                 System.out.print("\033[H\033[2J"); // clears the screen
                             }
                         }
-                    }
-                }
-            }
-        } }
-    }
+                    } // end quiz loop
+                } // end math menu loop
+            } // end if choice1 == 1
+        } // end main menu loop
+    } // end main
 
-    // function to delay by 3 seconds
+    // delay method - pauses for 3 seconds
     public static void delay() {
         try {
             Thread.sleep(3000); // 3000ms = 3 seconds
@@ -312,4 +448,19 @@ public class assignment1 {
         }
         System.out.flush();
     }
+
+    public static void playSound(String filename) {
+    File soundFile = new File(filename);
+    System.out.println(soundFile.getAbsolutePath()); // shows you where Java is looking
+    try {
+        Clip clip = AudioSystem.getClip();
+        clip.open(AudioSystem.getAudioInputStream(soundFile));
+        clip.start();
+        Thread.sleep(clip.getMicrosecondLength() / 1000);
+    }
+    catch (Exception e) {
+        e.printStackTrace();
+    }
 }
+
+} 
