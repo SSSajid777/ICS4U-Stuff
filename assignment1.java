@@ -300,7 +300,7 @@ public class assignment1 {
                                     """ + RESET);
 
                             System.out.println(
-                                    PURPLE + "5 random questions - different every time! 1 point each." + RESET);
+                                    PURPLE + "5 questions with random numbers every time! 1 point each." + RESET);
                             delay(); // 3s delay
 
                             // Q1: x * y + z
