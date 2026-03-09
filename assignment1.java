@@ -143,7 +143,7 @@ public class assignment1 {
                             System.out.println(CYAN + "D and M have equal priority, solve left to right" + RESET);
                             System.out.println(CYAN + "A and S have equal priority, solve left to right" + RESET);
                             System.out.println("");
-                            System.out.println(YELLOW + "Enter any number to go back" + RESET);
+                            System.out.println(YELLOW + "Enter any number then click enter to go back" + RESET);
                             scan.nextInt();
 
                         } // if user choose to return to main menu
