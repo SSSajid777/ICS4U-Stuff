@@ -275,9 +275,9 @@ public class assignment1 {
                             if (score == 5) {
                                 System.out.println(GREEN + "Perfect score! Amazing job!" + RESET);
                             } else if (score >= 3) {
-                                System.out.println(YELLOW + "Good work! Keep practicing!" + RESET);
+                                System.out.println(YELLOW + "Good work! Keep practicing and you will get perfect!" + RESET);
                             } else {
-                                System.out.println(RED + "Keep studying, you will improve!" + RESET);
+                                System.out.println(RED + "Keep practicing , you will improve!" + RESET);
                             }
                             delay();
                         } // random quiz
