@@ -7,6 +7,7 @@ a random quiz (5 questions with random numbers each time), or view the instructi
 
 Resources:
 https://www.asciiart.eu/text-to-ascii-art#google_vignette (ASCII art for titles)
+https://www.w3schools.com/java/java_variables.asp (seeing the menu template also, I learned that I can intialize a variable without giving it a value, assuming I assign the value later)
  */
 
 import java.io.File;
