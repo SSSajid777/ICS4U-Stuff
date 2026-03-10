@@ -3,7 +3,8 @@ Name: Sajid Abdullah
 Date: March 4, 2026
 Description: This is a math program that has a menu and a sub menu. The menu tells user to run the math program
 or exit the program. The sub menu prompts user to choose either the easy quiz (5 questions),
-a random quiz (5 questions with random numbers each time), or view the instructions.
+a random quiz (5 questions with random numbers each time), or view the instructions. 
+After finishing the easy quiz or random quiz, it displays your score at the end.
 
 Resources:
 https://www.asciiart.eu/text-to-ascii-art#google_vignette (ASCII art for titles)
@@ -128,7 +129,7 @@ public class Assignment1 {
 
                             System.out.println(YELLOW + "How to play:" + RESET);
                             System.out.println("- Choose Easy Quiz for 5 set of questions");
-                            System.out.println("- Choose Random Quiz for 5 random questions");
+                            System.out.println("- Choose Random Quiz for 5 questions, with random numbers each time");
                             System.out.println("- Type your answer and press enter");
                             System.out.println("- You get 1 point for each correct answer");
                             System.out.println("- At the end you can play again or go back");
