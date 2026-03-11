@@ -10,6 +10,7 @@ public class errorfunction{
         System.out.println("Enter a choice");
         String choice = scan.next();
         error1(choice, min, max);
+        System.out.println("You chose " + word1 + ", yay!");
 
     }
     public static void menu(){
