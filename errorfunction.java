@@ -1,5 +1,8 @@
+import java.util.Scanner;
 public class errorfunction{
+    public int word1; //this is a global variable that can be used in any function
     public static void main(String[] args){
+        Scanner scan = new Scanner(System.in);
 
     }
     public static void menu(){
