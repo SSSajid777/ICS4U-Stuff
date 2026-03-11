@@ -43,6 +43,11 @@ public class errorfunction{
                     break;
                 }
             } catch (Exception e) {
+                System.out.println("Enter an integer only!");
+                timer();
+                System.out.println("\003[H\033[2J");
+                menu();
+                word = scan.next();
 
             }
         }
