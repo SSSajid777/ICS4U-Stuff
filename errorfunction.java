@@ -1,8 +1,15 @@
 import java.util.Scanner;
 public class errorfunction{
-    public int word1; //this is a global variable that can be used in any function
+    public static int word1; //this is a global variable that can be used in any function
+    
     public static void main(String[] args){
         Scanner scan = new Scanner(System.in);
+        int min = 1;
+        int max = 3;
+        menu();
+        System.out.println("Enter a choice");
+        String choice = scan.next();
+        error1(choice, min, max);
 
     }
     public static void menu(){
@@ -13,5 +20,32 @@ public class errorfunction{
             3) item 3
         
                 """);
+    }
+    public static void timer(){
+        try {
+            Thread.sleep(2000);
+        } catch (Exception e) {
+        }
+    }
+    public static void error1(String word, int min1, int max1){
+        Scanner scan = new Scanner(System.in);
+        while (true) { 
+            try {
+                word1 = Integer.parseInt(word);
+                if (word1 < min1 || word1 > max1){
+                    System.out.println("Enter between " + min1 + " and " + max1);
+                    timer();
+                    System.out.println("\003[H\033[2J");
+                    menu();
+                    word = scan.next();
+                }
+                else{
+                    break;
+                }
+            } catch (Exception e) {
+
+            }
+        }
+
     }
 }
