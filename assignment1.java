@@ -1,27 +1,24 @@
 /*
-Name: Sajid Abdulllah
-Date: March 09, 2026
-Description: This program has a 
+Name: Sajid Abdullah
+Date: March 4, 2026
+Description: This is a math program that has a menu and a sub menu. The menu tells user to run the math program
+or exit the program. The sub menu prompts user to choose either the easy quiz (5 questions),
+a random quiz (5 questions with random numbers each time), or view the instructions. 
+After finishing the easy quiz or random quiz, it displays your score at the end.
 
+Resources:
+https://www.asciiart.eu/text-to-ascii-art#google_vignette (ASCII art for titles)
+https://www.w3schools.com/java/java_variables.asp (seeing the menu template also, I learned that I can intialize a variable without giving it a value, assuming I assign the value later)
+ */
 
+import java.io.File;
+import java.util.Random;
+import java.util.Scanner;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 
-Resources:https://www.asciiart.eu/text-to-ascii-art#google_vignette
+public class Assignment1 {
 
-
-
-
-
-
-
-
-
-*/
-
-
-
-
-
-public class assignment1 {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         Random rand = new Random();
