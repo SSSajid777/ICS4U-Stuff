@@ -8,5 +8,6 @@ public class arrays1D {
         int[] nums1={4,6,10};
         System.out.println(nums1[0]); //outputs 4 from the list nums1
 
+    scan.close();
     }
 }
