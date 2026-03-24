@@ -79,9 +79,9 @@ public class arrays1D {
         System.out.println(questions1[rannum]);
         int x1 = scan.nextInt();
         if (x1 == answers1[rannum1]) {
-            System.out.println("You got it right");
+            System.out.println("You got it right!");
         } else {
-            System.out.println("You got it wrong");
+            System.out.println("You got it wrong!");
         }
 
 
