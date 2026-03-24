@@ -18,7 +18,7 @@ public class arrays1D {
         // sample program that shows how to create random questions with answers
         String[] questions = { "2 + 3 =", "4 - 7 =", "12 * 3 =" };
         int[] answers = { 2 + 3, 4 - 7, 12 * 3 };
-        int rannum = rand.nextInt(0, 2);
+        int rannum = rand.nextInt(0, 3);
         System.out.println(questions[rannum]);
         int x = scan.nextInt();
         if (x == answers[rannum]) {

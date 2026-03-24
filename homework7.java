@@ -9,6 +9,6 @@ public class homework7 {
         Scanner scan = new Scanner(System.in);
         Random rand = new Random();
 
-        
+        <ArrayList>
     }
 }
