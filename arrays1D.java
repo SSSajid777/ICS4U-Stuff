@@ -2,6 +2,7 @@ import java.util.Scanner;
 import java.util.Random;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 
 
 public class arrays1D {
@@ -68,6 +69,38 @@ public class arrays1D {
         for (int i = 0; i < howmany; i++){
             System.out.print(numbers1.get(i) + " ");
         }
+
+
+        
+        //sample program 1 using a 1D arrays
+        String[] questions1 = { "2 + 3 =", "4 - 7 =", "12 * 3 =" };
+        int[] answers1 = { 2 + 3, 4 - 7, 12 * 3 };
+        int rannum1 = rand.nextInt(0, 2);
+        System.out.println(questions1[rannum]);
+        int x1 = scan.nextInt();
+        if (x1 == answers1[rannum1]) {
+            System.out.println("You got it right");
+        } else {
+            System.out.println("You got it wrong");
+        }
+
+
+        //sample program 2 using a HashMap (key:value)
+        HashMap<String, Integer> questAns = new HashMap<>();
+        questAns.put("2 + 3 =", 5);
+        questAns.put("4 - 7 =", -3);
+        questAns.put("12 * 3 =", 36);
+        ArrayList<String> questions2 = new ArrayList<>(questAns.keySet());
+        // Pick a random question from the hashmap
+        String randomQuestion = questions2.get(rand.nextInt(questions2.size()));
+        System.out.println(randomQuestion);
+        int userAnswer = scan.nextInt();
+        if (userAnswer == questAns.get(randomQuestion)) {
+            System.out.println("You got it right");
+        } else {
+            System.out.println("You got it wrong");
+        }
+
         scan.close();
     }
 }
