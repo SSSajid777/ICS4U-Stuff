@@ -14,10 +14,13 @@ public class homework8 {
         int [][] nums2= new int[][] {{1,2,3}, {4,5,6}, {7,8,9}, {10, 11, 12}};
         for(int i=0; i<4; i++){
             int rowSum = 0;
+            
             for(int j=0; j<3; j++){
                 System.out.print(nums2[i][j]+" ");
+                int columnSum=0;
                 rowSum+= nums2[i][j];
-
+                columnSum+=nums2[i][j];
+                System.out.print("Column Sum " + columnSum);
             }
             System.out.println("Row Sum " + rowSum);
         }
