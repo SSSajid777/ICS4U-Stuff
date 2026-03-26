@@ -1,18 +1,19 @@
-import java.util.Scanner;
 /*
-Name: Mr. Bawa
-Date: Feb 17, 2026
+Name: Sajid Abdullah
+Date: March 26, 2026
 Description:
 Welcomes the user after asking for their name.  The asks them for
 the length and width of a rectangle.  Then it calculates and outputs the area
 and perimeter for the rectangle.  
 Resources:
 https://www.asciiart.eu/text-to-ascii-art#google_vignette (ASCII art for titles)
-https://emojicombos.com/falling-boulder-ascii-art (ASCII art for images)
+In-Class Examples and Template
 
 
 */
-//this is a template for assignment 1
+import java.util.Scanner;
+import java.util.Random;
+
 public class Assignment2 {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
@@ -27,7 +28,7 @@ public class Assignment2 {
                         Main Menu
 
 
-                        1.) Math Program
+                        1.) Hi Lo Guessing Game
                         2.) Exit Proram
                                 """);
                 choice1 = scan.nextInt();//main menu input
