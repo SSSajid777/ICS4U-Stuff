@@ -5,7 +5,7 @@ Description: This is a Hi-Lo guessing game program with a main menu and sub menu
 The user picks a difficulty (Easy, Medium, Hard, or Custom) and tries to guess a random number.
 Easy has unlimited guesses (1-20), Medium has 10 guesses (1-100), Hard has 3 guesses (1-1000),
 Custom lets the user pick their own number range and number of guesses.
-The program tracks and displays all guesses at the end.
+The program tracks and displays all guesses at the end using array.
 
 Resources:
 https://www.asciiart.eu/text-to-ascii-art#google_vignette (ASCII art for titles)
@@ -97,7 +97,7 @@ public class Assignment2 {
 
                         // sub menu ASCII art
                         System.out.println(PURPLE + """
-                                .-..-. _            .-.                                                    
+.-..-. _            .-.                                                    
 : :; ::_;           : :                                                    
 :    :.-.   _____   : :    .--.                                            
 : :: :: :  :_____:  : :__ ' .; :                                           
@@ -212,7 +212,7 @@ public class Assignment2 {
                 break;
             } catch (Exception e) {
                 // if it is not a number it goes here
-                System.out.println(|"Numbers only please!");
+                System.out.println("Numbers only please!");
                 System.out.print("Try again: ");
                 x = scan.next();
             }
