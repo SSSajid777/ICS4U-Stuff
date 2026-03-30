@@ -190,6 +190,12 @@ public class Assignment2 {
                             errorCheck(test); // call to method
                             int guess = Integer.parseInt(validInput);
 
+                            // check if guess is within range, does not count as a guess
+                            if (guess < minNumber || guess > maxNumber) {
+                                ghostwriter(RED + "Enter a number between " + minNumber + " and " + maxNumber + "!" + RESET);
+                                continue; // skips the rest and asks again
+                            }
+
                             guesses[guessCount] = guess; // store guess in array
                             guessCount++;
 
@@ -245,34 +251,35 @@ public class Assignment2 {
         }
     }
 
-    // method that writes a string one letter at a time
-    public static void ghostwriter(String sentence) {
-        for (int i = 0; i < sentence.length(); i++) {
+    //this function allows a string to pass through it and
+    //then writes it 1 letter at a time
+    public static void ghostwriter(String sentence){
+        for (int i = 0; i < sentence.length(); i++){
             System.out.print(sentence.charAt(i) + "");
-            timer(); // small delay between each letter
+            timer();
         }
-        System.out.println(); // goes to next line
+        System.out.println();//goes to the next line
     }
 
-    // method that prints the loading screen animation
-    public static void loading() {
+    //this function prints the loading screen animation
+    public static void loading(){
         String dots = "....";
-        for (int i = 0; i < 4; i++) {
-            System.out.print("\033[H\033[2J"); // clears the screen
+        for (int i = 0; i < 4; i++){
+            System.out.print("\033[H\033[2J");
             System.out.flush();
-            System.out.print("Loading");
-            for (int j = 0; j < dots.length(); j++) {
+            System.out.print("Loading" + "");
+            for (int j = 0; j < dots.length(); j++){
                 System.out.print(dots.charAt(j));
-                timer(); // small delay between each dot
+                timer();
             }
-            System.out.println(); // goes to next line
+        System.out.println();//goes to the next line
         }
     }
 
     // method for error handling input
-    public static void errorCheck(String x) {
+    public static void errorCheck(String x){
         Scanner scan = new Scanner(System.in);
-        while (true) {
+        while (true){
             try {
                 Integer.parseInt(x); // tries to convert string to int
                 validInput = x;
@@ -287,7 +294,7 @@ public class Assignment2 {
     }
 
     // method to delay by 3 seconds
-    public static void delay() {
+    public static void delay(){
         try {
             Thread.sleep(3000); // 3000ms = 3 seconds
         } catch (Exception e) {
@@ -295,16 +302,15 @@ public class Assignment2 {
         System.out.flush();
     }
 
-    // method for timer which is 1/10 of a second
-    public static void timer() {
-        try {
-            Thread.sleep(100); // 100ms = 1/10 of a second
-        } catch (Exception e) {
-        }
+    //function for timer which is for 1/10 of a second
+    public static void timer(){
+        try{
+            Thread.sleep(100);
+        } catch (Exception e) {}
     }
 
     // method to play a sound file
-    public static void playSound(String filename) {
+    public static void playSound(String filename){
         File lol = new File(filename);
         try {
             Clip clip = AudioSystem.getClip();
