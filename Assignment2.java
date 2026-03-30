@@ -38,7 +38,7 @@ public class Assignment2 {
 
         // show loading screen when program starts
         loading();
-        System.out.print( "Press enter to continue: ");
+        System.out.print("Press enter to continue: ");
         scan.nextLine();
 
         // main menu loop
@@ -62,7 +62,7 @@ public class Assignment2 {
                         """ + RESET);
 
                 // ghostwriter types out the menu options
-                ghostwriter(BLUE+"        1.) Hi-Lo Guessing Game" + RESET);
+                ghostwriter(BLUE + "        1.) Hi-Lo Guessing Game" + RESET);
                 ghostwriter(BLUE + "        2.) Exit Program" + RESET);
                 System.out.println("");
 
@@ -115,7 +115,7 @@ public class Assignment2 {
 
                         // ghostwriter types out the sub menu options
                         ghostwriter(BLUE + "        1.) Easy   (1 - 20,   unlimited guesses)" + RESET);
-                        ghostwriter(BLUE+ "        2.) Medium (1 - 100,  10 guesses)" + RESET);
+                        ghostwriter(BLUE + "        2.) Medium (1 - 100,  10 guesses)" + RESET);
                         ghostwriter(BLUE + "        3.) Hard   (1 - 1000, 3 guesses)" + RESET);
                         ghostwriter(BLUE + "        4.) Custom (you choose range and guesses)" + RESET);
                         ghostwriter(BLUE + "        5.) Return to Main Menu" + RESET);
@@ -150,11 +150,78 @@ public class Assignment2 {
                         decision3 = true;
                     }
 
-                    // game loop - in progress
+                    // game loop
                     while (decision3) {
                         System.out.print("\033[H\033[2J"); // clears the screen
 
-                        // TODO: game goes here
+                        int maxNumber, maxGuesses, minNumber;
+                        String difficultyName;
+
+                        // easy mode settings
+                        if (choice2 == 1) {
+                            minNumber = 1;
+                            maxNumber = 20;
+                            maxGuesses = 100; // effectively unlimited
+                            difficultyName = "Easy";
+                        } else {
+                            // placeholder for medium, hard, custom coming soon
+                            minNumber = 1;
+                            maxNumber = 20;
+                            maxGuesses = 100;
+                            difficultyName = "Easy";
+                        }
+
+                        int secretNumber = rand.nextInt(minNumber, maxNumber + 1); // random number to guess
+                        int guessCount = 0;
+                        int[] guesses = new int[maxGuesses]; // array to store guesses
+                        boolean won = false;
+
+                        // show difficulty info
+                        ghostwriter(PURPLE + "Difficulty: " + difficultyName + RESET);
+                        ghostwriter("Guess a number between " + minNumber + " and " + maxNumber);
+                        ghostwriter("You have unlimited guesses!");
+                        System.out.println("");
+                        delay(); // 3s delay
+
+                        // guessing loop
+                        while (guessCount < maxGuesses) {
+                            System.out.print(YELLOW + "Enter your guess: " + RESET);
+                            String test = scan.next();
+                            errorCheck(test); // call to method
+                            int guess = Integer.parseInt(validInput);
+
+                            guesses[guessCount] = guess; // store guess in array
+                            guessCount++;
+
+                            // check if guess is correct, higher, or lower
+                            if (guess == secretNumber) {
+                                ghostwriter(GREEN + "Correct!" + RESET);
+                                playSound("correct_sound.wav"); // play correct sound
+                                won = true;
+                                break;
+                            } else if (guess < secretNumber) {
+                                ghostwriter(BLUE + "Higher!" + RESET);
+                            } else {
+                                ghostwriter(RED + "Lower!" + RESET);
+                            }
+                        }
+
+                        // if player ran out of guesses
+                        if (!won) {
+                            ghostwriter(RED + "Out of guesses! The answer was " + secretNumber + RESET);
+                            playSound("incorrect_sound.wav"); // play incorrect sound
+                        }
+
+                        // display all guesses from array
+                        System.out.print("Your guesses: ");
+                        for (int i = 0; i < guessCount; i++) {
+                            if (i == guessCount - 1) {
+                                System.out.println(guesses[i]); // last guess, no comma
+                            } else {
+                                System.out.print(guesses[i] + ", "); // comma between guesses
+                            }
+                        }
+                        delay(); // 3s delay
 
                         // ask user to play again or go back to sub menu
                         while (true) {
