@@ -3,7 +3,7 @@ Name: Sajid Abdullah
 Date: March 26, 2026
 Description: This is a Hi-Lo guessing game program with a main menu and sub menu.
 The user picks a difficulty (Easy, Medium, Hard, or Custom) and tries to guess a random number.
-Easy has unlimited guesses (1-20), Medium has 10 guesses (1-100), Hard has 3 guesses (1-1000),
+Easy has unlimited guesses (1-20), Medium has 10 guesses (1-100), Hard has 3 guesses (1-100),
 Custom lets the user pick their own number range and number of guesses.
 The program tracks and displays all guesses at the end using array.
 
@@ -19,7 +19,7 @@ import javax.sound.sampled.Clip;
 
 public class Assignment2 {
 
-    public static String validInput; // global variable for error handling
+    public static int validInput; // global variable for error handling
 
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
@@ -61,14 +61,15 @@ public class Assignment2 {
                         :_;:_;`.__.':_;:_;`.__.'
                         """ + RESET);
 
-                // ghostwriter types out the menu options
-                ghostwriter(BLUE + "        1.) Hi-Lo Guessing Game" + RESET);
-                ghostwriter(BLUE + "        2.) Exit Program" + RESET);
+                // menu options stay on screen so user can read and pick
+                System.out.println(BLUE + "        1.) Hi-Lo Guessing Game" + RESET);
+                System.out.println(BLUE + "        2.) Exit Program" + RESET);
                 System.out.println("");
 
+                System.out.print("Enter a choice: ");
                 String test = scan.next();
-                errorCheck(test); // call to method
-                choice1 = Integer.parseInt(validInput);
+                errorCheck(test, 1, 2, "Enter a choice: "); // call to method
+                choice1 = validInput;
 
                 // if you choose the game
                 if (choice1 == 1) {
@@ -76,15 +77,9 @@ public class Assignment2 {
                 } // if you exit the program
                 else if (choice1 == 2) {
                     System.out.print("\033[H\033[2J"); // clears the screen
-                    ghostwriter("Thank you for using my program!");
-                    delay(); // 3s delay
+                    ghostwriter("Thank you for using my program!"); // types then deletes
                     decision1 = false;
                     break;
-                } else {
-                    System.out.print("\033[H\033[2J"); // clears the screen
-                    ghostwriter("Input choice 1 or 2!"); // prints if not 1 or 2
-                    delay(); // 3s delay
-                    System.out.print("\033[H\033[2J"); // clears the screen
                 }
             }
 
@@ -113,17 +108,18 @@ public class Assignment2 {
                                         `._.'                              
                                 """ + RESET);
 
-                        // ghostwriter types out the sub menu options
-                        ghostwriter(BLUE + "        1.) Easy   (1 - 20,   unlimited guesses)" + RESET);
-                        ghostwriter(BLUE + "        2.) Medium (1 - 100,  10 guesses)" + RESET);
-                        ghostwriter(BLUE + "        3.) Hard   (1 - 1000, 3 guesses)" + RESET);
-                        ghostwriter(BLUE + "        4.) Custom (you choose range and guesses)" + RESET);
-                        ghostwriter(BLUE + "        5.) Return to Main Menu" + RESET);
+                        // menu options stay on screen so user can read and pick
+                        System.out.println(BLUE + "        1.) Easy   (1 - 20,   unlimited guesses)" + RESET);
+                        System.out.println(BLUE + "        2.) Medium (1 - 100,  10 guesses)" + RESET);
+                        System.out.println(BLUE + "        3.) Hard   (1 - 100,  3 guesses)" + RESET);
+                        System.out.println(BLUE + "        4.) Custom (you choose range and guesses)" + RESET);
+                        System.out.println(BLUE + "        5.) Return to Main Menu" + RESET);
                         System.out.println("");
 
+                        System.out.print("Enter a choice: ");
                         String test = scan.next();
-                        errorCheck(test); // call to method
-                        choice2 = Integer.parseInt(validInput);
+                        errorCheck(test, 1, 5, "Enter a choice: "); // call to method
+                        choice2 = validInput;
 
                         // if you choose easy, medium, hard, or custom
                         if (choice2 == 1 || choice2 == 2 || choice2 == 3 || choice2 == 4) {
@@ -131,15 +127,9 @@ public class Assignment2 {
                         } // if you return to main menu
                         else if (choice2 == 5) {
                             System.out.print("\033[H\033[2J"); // clears the screen
-                            ghostwriter("Returning to main menu");
-                            delay(); // 3s delay
+                            ghostwriter("Returning to main menu"); // types then deletes
                             decision2 = false;
                             break;
-                        } else {
-                            System.out.print("\033[H\033[2J"); // clears the screen
-                            ghostwriter("Input choice 1, 2, 3, 4, or 5!"); // prints if not 1-5
-                            delay(); // 3s delay
-                            System.out.print("\033[H\033[2J"); // clears the screen
                         }
                     }
 
@@ -157,14 +147,19 @@ public class Assignment2 {
                         int maxNumber, maxGuesses, minNumber;
                         String difficultyName;
 
-                        // easy mode settings
+                        // set difficulty settings
                         if (choice2 == 1) {
                             minNumber = 1;
                             maxNumber = 20;
                             maxGuesses = 100; // effectively unlimited
                             difficultyName = "Easy";
+                        } else if (choice2 == 2) {
+                            minNumber = 1;
+                            maxNumber = 100;
+                            maxGuesses = 10;
+                            difficultyName = "Medium";
                         } else {
-                            // placeholder for medium, hard, custom coming soon
+                            // placeholder for hard and custom coming soon
                             minNumber = 1;
                             maxNumber = 20;
                             maxGuesses = 100;
@@ -176,10 +171,14 @@ public class Assignment2 {
                         int[] guesses = new int[maxGuesses]; // array to store guesses
                         boolean won = false;
 
-                        // show difficulty info
-                        ghostwriter(PURPLE + "Difficulty: " + difficultyName + RESET);
-                        ghostwriter("Guess a number between " + minNumber + " and " + maxNumber);
-                        ghostwriter("You have unlimited guesses!");
+                        // show difficulty info, stays on screen
+                        System.out.println(PURPLE + "Difficulty: " + difficultyName + RESET);
+                        System.out.println("Guess a number between " + minNumber + " and " + maxNumber);
+                        if (choice2 == 1) {
+                            System.out.println("You have unlimited guesses!");
+                        } else {
+                            System.out.println("You have " + maxGuesses + " guesses!");
+                        }
                         System.out.println("");
                         delay(); // 3s delay
 
@@ -187,28 +186,27 @@ public class Assignment2 {
                         while (guessCount < maxGuesses) {
                             System.out.print(YELLOW + "Enter your guess: " + RESET);
                             String test = scan.next();
-                            errorCheck(test); // call to method
-                            int guess = Integer.parseInt(validInput);
-
-                            // check if guess is within range, does not count as a guess
-                            if (guess < minNumber || guess > maxNumber) {
-                                ghostwriter(RED + "Enter a number between " + minNumber + " and " + maxNumber + "!" + RESET);
-                                continue; // skips the rest and asks again
-                            }
+                            errorCheck(test, minNumber, maxNumber, "Enter your guess: "); // call to method
+                            int guess = validInput;
 
                             guesses[guessCount] = guess; // store guess in array
                             guessCount++;
 
                             // check if guess is correct, higher, or lower
                             if (guess == secretNumber) {
-                                ghostwriter(GREEN + "Correct!" + RESET);
+                                ghostwriter(GREEN + "Correct!" + RESET); // types then deletes
                                 playSound("correct_sound.wav"); // play correct sound
                                 won = true;
                                 break;
                             } else if (guess < secretNumber) {
-                                ghostwriter(BLUE + "Higher!" + RESET);
+                                ghostwriter(BLUE + "Higher!" + RESET); // types then deletes
                             } else {
-                                ghostwriter(RED + "Lower!" + RESET);
+                                ghostwriter(RED + "Lower!" + RESET); // types then deletes
+                            }
+
+                            // show remaining guesses for medium mode
+                            if (choice2 == 2) {
+                                System.out.println(YELLOW + "Guesses remaining: " + (maxGuesses - guessCount) + RESET);
                             }
                         }
 
@@ -218,7 +216,7 @@ public class Assignment2 {
                             playSound("incorrect_sound.wav"); // play incorrect sound
                         }
 
-                        // display all guesses from array
+                        // display all guesses from array, stays on screen
                         System.out.print("Your guesses: ");
                         for (int i = 0; i < guessCount; i++) {
                             if (i == guessCount - 1) {
@@ -231,7 +229,7 @@ public class Assignment2 {
 
                         // ask user to play again or go back to sub menu
                         while (true) {
-                            ghostwriter("Would you like to play again, y or n?");
+                            System.out.println(YELLOW + "Would you like to play again, y or n?" + RESET);
                             String playAgain = scan.next().toLowerCase();
                             if (playAgain.equals("y")) {
                                 break; // loops back to play again
@@ -240,9 +238,7 @@ public class Assignment2 {
                                 break;
                             } else {
                                 System.out.print("\033[H\033[2J"); // clears the screen
-                                ghostwriter("Only input y or n!");
-                                delay(); // 3s delay
-                                System.out.print("\033[H\033[2J"); // clears the screen
+                                ghostwriter("Only input y or n!"); // types then deletes
                             }
                         }
                     }
@@ -256,9 +252,14 @@ public class Assignment2 {
     public static void ghostwriter(String sentence){
         for (int i = 0; i < sentence.length(); i++){
             System.out.print(sentence.charAt(i) + "");
-            timer();
+            timer1();
         }
-        System.out.println();//goes to the next line
+        timer2();
+        //deletes 1 letter at a time using \b for backspace
+        for (int j = sentence.length() - 1; j > -1; j--){
+            System.out.print("\b \b");
+            timer1();
+        }
     }
 
     //this function prints the loading screen animation
@@ -270,25 +271,39 @@ public class Assignment2 {
             System.out.print("Loading" + "");
             for (int j = 0; j < dots.length(); j++){
                 System.out.print(dots.charAt(j));
-                timer();
+                timer1();
             }
         System.out.println();//goes to the next line
         }
     }
 
-    // method for error handling input
-    public static void errorCheck(String x){
+    //error handling method that takes in 4 parameters
+    public static void errorCheck(String word, int min1, int max1, String prompt){
         Scanner scan = new Scanner(System.in);
         while (true){
             try {
-                Integer.parseInt(x); // tries to convert string to int
-                validInput = x;
-                break;
-            } catch (Exception e) {
-                // if it is not a number it goes here
-                System.out.println("Numbers only please!");
-                System.out.print("Try again: ");
-                x = scan.next();
+                // tries to convert the string to an integer
+                validInput = Integer.parseInt(word);
+                // prints if outside the max and min values
+                if (validInput < min1 || validInput > max1){
+                    System.out.println("Enter between " + min1 + " and " + max1);
+                    timer1();
+                    System.out.print("\033[H\033[2J");
+                    System.out.print(prompt);
+                    word = scan.next();
+                }
+                // breaks if between the max and min values
+                else {
+                    break;
+                }
+            }
+            // goes here if an integer is not input
+            catch (Exception e) {
+                System.out.println("Enter an integer only!");
+                timer1();
+                System.out.print("\033[H\033[2J");
+                System.out.print(prompt);
+                word = scan.next();
             }
         }
     }
@@ -303,9 +318,16 @@ public class Assignment2 {
     }
 
     //function for timer which is for 1/10 of a second
-    public static void timer(){
+    public static void timer1(){
         try{
             Thread.sleep(100);
+        } catch (Exception e) {}
+    }
+
+    //function for timer which is for 2 seconds
+    public static void timer2(){
+        try{
+            Thread.sleep(2000);
         } catch (Exception e) {}
     }
 
