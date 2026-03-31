@@ -3,7 +3,7 @@ Name: Sajid Abdullah
 Date: March 26, 2026
 Description: This is a Hi-Lo guessing game program with a main menu and sub menu.
 The user picks a difficulty (Easy, Medium, Hard, or Custom) and tries to guess a random number.
-Easy has unlimited guesses (1-20), Medium has 10 guesses (1-100), Hard has 3 guesses (1-100),
+Easy has 100 guesses (1-20), Medium has 10 guesses (1-100), Hard has 3 guesses (1-100),
 Custom lets the user pick their own number range and number of guesses.
 The program tracks and displays all guesses at the end using array.
 
@@ -20,17 +20,19 @@ import javax.sound.sampled.Clip;
 public class Assignment2 {
 
     public static int validInput; // global variable for error handling
+    public static Random rand = new Random(); // global random for hiLo method
+
+    // colour codes global so hiLo method can use them
+    public static String RESET  = "\u001B[0m";
+    public static String RED    = "\u001B[31m";
+    public static String GREEN  = "\u001B[32m";
+    public static String YELLOW = "\u001B[33m";
+    public static String BLUE   = "\u001B[34m";
+    public static String PURPLE = "\u001B[35m";
+    public static String CYAN   = "\u001B[36m";
 
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-        Random rand = new Random();
-
-        String RESET  = "\u001B[0m";
-        String RED    = "\u001B[31m";
-        String GREEN  = "\u001B[32m";
-        String YELLOW = "\u001B[33m";
-        String BLUE   = "\u001B[34m";
-        String PURPLE = "\u001B[35m";
 
         int choice1, choice2;
         boolean decision1, decision2, decision3;
@@ -98,7 +100,6 @@ public class Assignment2 {
 : :: :: :  :_____:  : :__ ' .; :                                           
 :_;:_;:_;           :___.'`.__.'                                           
                                                                            
-                                                                           
  .--.                          _                .--.                       
 : .--'                        :_;              : .--'                      
 : : _ .-..-. .--.  .--.  .--. .-.,-.,-. .--.   : : _  .--.  ,-.,-.,-. .--. 
@@ -158,74 +159,33 @@ public class Assignment2 {
                             maxNumber = 100;
                             maxGuesses = 10;
                             difficultyName = "Medium";
-                        } else {
-                            
+                        } else if (choice2 == 3) {
                             minNumber = 1;
-                            maxNumber = 20;
-                            maxGuesses = 100;
-                            difficultyName = "Easy";
-                        }
-
-                        int secretNumber = rand.nextInt(minNumber, maxNumber + 1); // random number to guess
-                        int guessCount = 0;
-                        int[] guesses = new int[maxGuesses]; // array to store guesses
-                        boolean won = false;
-
-                        // show difficulty info, stays on screen
-                        System.out.println(PURPLE + "Difficulty: " + difficultyName + RESET);
-                        System.out.println("Guess a number between " + minNumber + " and " + maxNumber);
-                        if (choice2 == 1) {
-                            System.out.println("You have unlimited guesses!");
+                            maxNumber = 100;
+                            maxGuesses = 3;
+                            difficultyName = "Hard";
                         } else {
-                            System.out.println("You have " + maxGuesses + " guesses!");
-                        }
-                        System.out.println("");
-                        delay(); // 3s delay
+                            // custom mode - ask user for their settings
+                            System.out.print(YELLOW + "Enter minimum number: " + RESET);
+                            String t1 = scan.next();
+                            errorCheck(t1, 1, 9999, "Enter minimum number: ");
+                            minNumber = validInput;
 
-                        // guessing loop
-                        while (guessCount < maxGuesses) {
-                            System.out.print(YELLOW + "Enter your guess: " + RESET);
-                            String test = scan.next();
-                            errorCheck(test, minNumber, maxNumber, "Enter your guess: "); // call to method
-                            int guess = validInput;
+                            System.out.print(YELLOW + "Enter maximum number: " + RESET);
+                            String t2 = scan.next();
+                            errorCheck(t2, minNumber + 1, 9999, "Enter maximum number: ");
+                            maxNumber = validInput;
 
-                            guesses[guessCount] = guess; // store guess in array
-                            guessCount++;
+                            System.out.print(YELLOW + "Enter number of guesses: " + RESET);
+                            String t3 = scan.next();
+                            errorCheck(t3, 1, 9999, "Enter number of guesses: ");
+                            maxGuesses = validInput;
 
-                            // check if guess is correct, higher, or lower
-                            if (guess == secretNumber) {
-                                ghostwriter(GREEN + "Correct!" + RESET); // types then deletes
-                                playSound("correct_sound.wav"); // play correct sound
-                                won = true;
-                                break;
-                            } else if (guess < secretNumber) {
-                                ghostwriter(BLUE + "Higher!" + RESET); // types then deletes
-                            } else {
-                                ghostwriter(RED + "Lower!" + RESET); // types then deletes
-                            }
-
-                            // show remaining guesses for medium mode
-                            if (choice2 == 2) {
-                                System.out.println(YELLOW + "Guesses remaining: " + (maxGuesses - guessCount) + RESET);
-                            }
+                            difficultyName = "Custom";
                         }
 
-                        // if player ran out of guesses
-                        if (!won) {
-                            ghostwriter(RED + "Out of guesses! The answer was " + secretNumber + RESET);
-                            playSound("incorrect_sound.wav"); // play incorrect sound
-                        }
-
-                        // display all guesses from array, stays on screen
-                        System.out.print("Your guesses: ");
-                        for (int i = 0; i < guessCount; i++) {
-                            if (i == guessCount - 1) {
-                                System.out.println(guesses[i]); // last guess, no comma
-                            } else {
-                                System.out.print(guesses[i] + ", "); // comma between guesses
-                            }
-                        }
-                        delay(); // 3s delay
+                        // call the hiLo function with difficulty settings
+                        hiLo(minNumber, maxNumber, maxGuesses, difficultyName);
 
                         // ask user to play again or go back to sub menu
                         while (true) {
@@ -247,6 +207,77 @@ public class Assignment2 {
         }
     }
 
+    // hi lo guessing game function that takes min, max, counter, and difficulty name
+    public static void hiLo(int min, int max, int counter, String difficultyName) {
+        Scanner scan = new Scanner(System.in);
+
+        int secretNumber = rand.nextInt(min, max + 1); // random number to guess
+        int guessCount = 0;
+        int[] guesses = new int[counter]; // array to store guesses
+        boolean won = false;
+
+        // show difficulty info
+        System.out.println(PURPLE + "Difficulty: " + difficultyName + RESET);
+        System.out.println("Guess a number between " + min + " and " + max);
+        System.out.println("You have " + counter + " guesses!");
+        System.out.println("");
+        delay(); // 3s delay
+
+        // guessing loop
+        while (guessCount < counter) {
+            System.out.print(YELLOW + "Enter your guess: " + RESET);
+            String test = scan.next();
+            errorCheck(test, min, max, "Enter your guess: "); // call to method
+            int guess = validInput;
+
+            guesses[guessCount] = guess; // store guess in array
+            guessCount++;
+
+            // check if guess is correct, higher, or lower
+            if (guess == secretNumber) {
+                ghostwriter(GREEN + "Correct!" + RESET); // types then deletes
+                playSound("win.wav"); // play win sound
+                won = true;
+                break;
+            } else if (guess < secretNumber) {
+                ghostwriter(BLUE + "Higher!" + RESET); // types then deletes
+                playSound("incorrect_sound.wav"); // play incorrect sound
+            } else {
+                ghostwriter(RED + "Lower!" + RESET); // types then deletes
+                playSound("incorrect_sound.wav"); // play incorrect sound
+            }
+
+            // show all guesses so far after every guess
+            System.out.print(CYAN + "Your guesses so far: " + RESET);
+            for (int i = 0; i < guessCount; i++) {
+                if (i == guessCount - 1) {
+                    System.out.println(guesses[i]); // last guess, no comma
+                } else {
+                    System.out.print(guesses[i] + ", "); // comma between guesses
+                }
+            }
+            System.out.println(YELLOW + "Guesses remaining: " + (counter - guessCount) + RESET);
+            System.out.println("");
+        }
+
+        // if player ran out of guesses
+        if (!won) {
+            ghostwriter(RED + "Out of guesses! The answer was " + secretNumber + RESET);
+            playSound("lose.wav"); // play lose sound
+        }
+
+        // display final list of all guesses
+        System.out.print(CYAN + "Your guesses: " + RESET);
+        for (int i = 0; i < guessCount; i++) {
+            if (i == guessCount - 1) {
+                System.out.println(guesses[i]); // last guess, no comma
+            } else {
+                System.out.print(guesses[i] + ", "); // comma between guesses
+            }
+        }
+        delay(); // 3s delay
+    }
+
     //this function allows a string to pass through it and
     //then writes it 1 letter at a time
     public static void ghostwriter(String sentence){
@@ -264,6 +295,7 @@ public class Assignment2 {
 
     //this function prints the loading screen animation
     public static void loading(){
+        playSound("load.wav"); // play loading sound
         String dots = "....";
         for (int i = 0; i < 4; i++){
             System.out.print("\033[H\033[2J");
