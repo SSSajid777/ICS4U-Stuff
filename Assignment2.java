@@ -109,7 +109,7 @@ public class Assignment2 {
                                 """ + RESET);
 
                         // menu options stay on screen so user can read and pick
-                        System.out.println(BLUE + "        1.) Easy   (1 - 20,   unlimited guesses)" + RESET);
+                        System.out.println(BLUE + "        1.) Easy   (1 - 20,   100 guesses)" + RESET);
                         System.out.println(BLUE + "        2.) Medium (1 - 100,  10 guesses)" + RESET);
                         System.out.println(BLUE + "        3.) Hard   (1 - 100,  3 guesses)" + RESET);
                         System.out.println(BLUE + "        4.) Custom (you choose range and guesses)" + RESET);
@@ -151,7 +151,7 @@ public class Assignment2 {
                         if (choice2 == 1) {
                             minNumber = 1;
                             maxNumber = 20;
-                            maxGuesses = 100; // effectively unlimited
+                            maxGuesses = 100;
                             difficultyName = "Easy";
                         } else if (choice2 == 2) {
                             minNumber = 1;
@@ -159,7 +159,7 @@ public class Assignment2 {
                             maxGuesses = 10;
                             difficultyName = "Medium";
                         } else {
-                            // placeholder for hard and custom coming soon
+                            
                             minNumber = 1;
                             maxNumber = 20;
                             maxGuesses = 100;
