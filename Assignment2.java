@@ -287,7 +287,7 @@ public class Assignment2 {
                 // prints if outside the max and min values
                 if (validInput < min1 || validInput > max1){
                     System.out.println("Enter between " + min1 + " and " + max1);
-                    timer1();
+                    timer2();
                     System.out.print("\033[H\033[2J");
                     System.out.print(prompt);
                     word = scan.next();
@@ -300,7 +300,7 @@ public class Assignment2 {
             // goes here if an integer is not input
             catch (Exception e) {
                 System.out.println("Enter an integer only!");
-                timer1();
+                timer2();
                 System.out.print("\033[H\033[2J");
                 System.out.print(prompt);
                 word = scan.next();
