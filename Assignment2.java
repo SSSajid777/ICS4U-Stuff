@@ -5,13 +5,15 @@ Description: This is a Hi-Lo guessing game program with a main menu and sub menu
 The user picks a difficulty (Easy, Medium, Hard, or Custom) and tries to guess a random number.
 Easy has 100 guesses (1-20), Medium has 10 guesses (1-100), Hard has 3 guesses (1-100),
 Custom lets the user pick their own number range and number of guesses.
-The program tracks and displays all guesses at the end using array.
+The program tracks and displays all guesses using an ArrayList.
 
 Resources:
 https://www.asciiart.eu/text-to-ascii-art#google_vignette (ASCII art for titles)
+https://www.w3schools.com/java/java_arraylist.asp (I used this to the arraylist equivalent of .length and [i])(which is .size() and .get(i))
 */
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 import javax.sound.sampled.AudioSystem;
@@ -48,8 +50,8 @@ public class Assignment2 {
             while (true) {
                 System.out.print("\033[H\033[2J"); // clears the screen
 
-                // main menu ASCII art
-                System.out.println(PURPLE + """
+                // main menu ASCII art typed out with ghostwriter
+                String mainArt = (PURPLE + """
                         .-..-.        _
                         : `' :       :_;
                         : .. : .--.  .-.,-.,-.
@@ -62,6 +64,7 @@ public class Assignment2 {
                         : :; :' '_.': ,. :: :; :
                         :_;:_;`.__.':_;:_;`.__.'
                         """ + RESET);
+                ghostwriterArt(mainArt);
 
                 // menu options stay on screen so user can read and pick
                 System.out.println(BLUE + "        1.) Hi-Lo Guessing Game" + RESET);
@@ -92,8 +95,8 @@ public class Assignment2 {
                     while (true) {
                         System.out.print("\033[H\033[2J"); // clears the screen
 
-                        // sub menu ASCII art
-                        System.out.println(PURPLE + """
+                        // sub menu ASCII art typed out with ghostwriter
+                        String subArt = (PURPLE + """
 .-..-. _            .-.                                                    
 : :; ::_;           : :                                                    
 :    :.-.   _____   : :    .--.                                            
@@ -108,6 +111,7 @@ public class Assignment2 {
                                         .-. :                              
                                         `._.'                              
                                 """ + RESET);
+                        ghostwriterArt(subArt);
 
                         // menu options stay on screen so user can read and pick
                         System.out.println(BLUE + "        1.) Easy   (1 - 20,   100 guesses)" + RESET);
@@ -207,75 +211,72 @@ public class Assignment2 {
         }
     }
 
-    // hi lo guessing game function that takes min, max, counter, and difficulty name
-    public static void hiLo(int min, int max, int counter, String difficultyName) {
+    // function for high low guessing game taking in a variable
+    // for the game range and the number of guesses
+    public static void hiLo(int min1, int max1, int counter1, String difficultyName) {
         Scanner scan = new Scanner(System.in);
-
-        int secretNumber = rand.nextInt(min, max + 1); // random number to guess
-        int guessCount = 0;
-        int[] guesses = new int[counter]; // array to store guesses
-        boolean won = false;
+        ArrayList<Integer> guesses = new ArrayList<>(); // arraylist to store guesses
+        int answer = rand.nextInt(min1, max1 + 1); // random number to guess
 
         // show difficulty info
         System.out.println(PURPLE + "Difficulty: " + difficultyName + RESET);
-        System.out.println("Guess a number between " + min + " and " + max);
-        System.out.println("You have " + counter + " guesses!");
+        System.out.println("Enter a value between " + min1 + " and " + max1);
+        System.out.println("You have " + counter1 + " guesses remaining");
         System.out.println("");
         delay(); // 3s delay
 
         // guessing loop
-        while (guessCount < counter) {
-            System.out.print(YELLOW + "Enter your guess: " + RESET);
+        while (counter1 > 0) {
+            System.out.print(YELLOW + "Input a guess: " + RESET);
             String test = scan.next();
-            errorCheck(test, min, max, "Enter your guess: "); // call to method
-            int guess = validInput;
+            errorCheck(test, min1, max1, "Input a guess: "); // call to method
+            int temp = validInput;
 
-            guesses[guessCount] = guess; // store guess in array
-            guessCount++;
+            guesses.add(temp); // add guess to arraylist
 
             // check if guess is correct, higher, or lower
-            if (guess == secretNumber) {
-                ghostwriter(GREEN + "Correct!" + RESET); // types then deletes
-                playSound("win.wav"); // play win sound
-                won = true;
+            if (temp == answer) {
+                playSoundBackground("win.wav"); // start sound first
+                ghostwriter(GREEN + "You got it!" + RESET); // types then deletes
                 break;
-            } else if (guess < secretNumber) {
-                ghostwriter(BLUE + "Higher!" + RESET); // types then deletes
-                playSound("incorrect_sound.wav"); // play incorrect sound
-            } else {
-                ghostwriter(RED + "Lower!" + RESET); // types then deletes
-                playSound("incorrect_sound.wav"); // play incorrect sound
+            } else if (temp > answer) {
+                playSoundBackground("incorrect_sound.wav"); // start sound first
+                ghostwriter(RED + "Too high, guess lower!" + RESET); // types then deletes
+                counter1 -= 1;
+            } else if (temp < answer) {
+                playSoundBackground("incorrect_sound.wav"); // start sound first
+                ghostwriter(BLUE + "Too low, guess higher!" + RESET); // types then deletes
+                counter1 -= 1;
             }
 
-            // show all guesses so far after every guess
-            System.out.print(CYAN + "Your guesses so far: " + RESET);
-            for (int i = 0; i < guessCount; i++) {
-                if (i == guessCount - 1) {
-                    System.out.println(guesses[i]); // last guess, no comma
+            // show remaining guesses and current guesses so far
+            System.out.println(YELLOW + "You have " + counter1 + " guesses remaining" + RESET);
+            System.out.print(CYAN + "Your current guesses: " + RESET);
+            for (int i = 0; i < guesses.size(); i++) {
+                if (i == guesses.size() - 1) {
+                    System.out.println(guesses.get(i)); // last guess, no comma
                 } else {
-                    System.out.print(guesses[i] + ", "); // comma between guesses
+                    System.out.print(guesses.get(i) + ", "); // comma between guesses
                 }
             }
-            System.out.println(YELLOW + "Guesses remaining: " + (counter - guessCount) + RESET);
             System.out.println("");
         }
 
         // if player ran out of guesses
-        if (!won) {
-            ghostwriter(RED + "Out of guesses! The answer was " + secretNumber + RESET);
-            playSound("lose.wav"); // play lose sound
+        if (counter1 == 0) {
+            playSoundBackground("lose.wav"); // start sound first
+            ghostwriter(RED + "You ran out of guesses! The answer was " + answer + RESET);
         }
 
-        // display final list of all guesses
-        System.out.print(CYAN + "Your guesses: " + RESET);
-        for (int i = 0; i < guessCount; i++) {
-            if (i == guessCount - 1) {
-                System.out.println(guesses[i]); // last guess, no comma
-            } else {
-                System.out.print(guesses[i] + ", "); // comma between guesses
-            }
-        }
         delay(); // 3s delay
+    }
+
+    // ghostwriter for ASCII art - types out without deleting
+    public static void ghostwriterArt(String sentence){
+        for (int i = 0; i < sentence.length(); i++){
+            System.out.print(sentence.charAt(i) + "");
+            timerFast(); // fast delay for ASCII art
+        }
     }
 
     //this function allows a string to pass through it and
@@ -295,7 +296,7 @@ public class Assignment2 {
 
     //this function prints the loading screen animation
     public static void loading(){
-        playSound("load.wav"); // play loading sound
+        playSoundBackground("load.wav"); // play loading sound at same time as animation
         String dots = "....";
         for (int i = 0; i < 4; i++){
             System.out.print("\033[H\033[2J");
@@ -352,7 +353,7 @@ public class Assignment2 {
     //function for timer which is for 1/10 of a second
     public static void timer1(){
         try{
-            Thread.sleep(100);
+            Thread.sleep(100); // 100ms
         } catch (Exception e) {}
     }
 
@@ -363,14 +364,33 @@ public class Assignment2 {
         } catch (Exception e) {}
     }
 
-    // method to play a sound file
+    //function for timer for fast ASCII art
+    public static void timerFast(){
+        try{
+            Thread.sleep(10); // 10ms
+        } catch (Exception e) {}
+    }
+
+    // method to play a sound file and wait for it to finish
     public static void playSound(String filename){
         File lol = new File(filename);
         try {
             Clip clip = AudioSystem.getClip();
             clip.open(AudioSystem.getAudioInputStream(lol));
             clip.start();
-            Thread.sleep(clip.getMicrosecondLength() / 10);
+            Thread.sleep(clip.getMicrosecondLength() / 1000); // waits for sound to finish
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    // method to play a sound file without waiting so other things run at same time
+    public static void playSoundBackground(String filename){
+        File lol = new File(filename);
+        try {
+            Clip clip = AudioSystem.getClip();
+            clip.open(AudioSystem.getAudioInputStream(lol));
+            clip.start(); // starts sound and moves on immediately
         } catch (Exception e) {
             e.printStackTrace();
         }
