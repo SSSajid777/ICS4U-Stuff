@@ -370,7 +370,7 @@ public class Assignment2 {
             Clip clip = AudioSystem.getClip();
             clip.open(AudioSystem.getAudioInputStream(lol));
             clip.start();
-            Thread.sleep(clip.getMicrosecondLength() / 1000);
+            Thread.sleep(clip.getMicrosecondLength() / 10);
         } catch (Exception e) {
             e.printStackTrace();
         }
