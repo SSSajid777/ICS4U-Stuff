@@ -65,7 +65,7 @@ public class Assignment2 {
                         : :; :' '_.': ,. :: :; :
                         :_;:_;`.__.':_;:_;`.__.'
                         """ + RESET);
-                ghostwriter(mainArt);
+                ghostwriterArt(mainArt);
 
                 // menu options in blue
                 System.out.println(BLUE + "        1.) Hi-Lo Guessing Game" + RESET);
@@ -112,7 +112,7 @@ public class Assignment2 {
                                         .-. :                              
                                         `._.'                              
                                 """ + RESET);
-                        ghostwriter(subArt);
+                        ghostwriterArt(subArt);
 
                         // menu options in blue
                         System.out.println(BLUE + "        1.) Easy   (1 - 20,   100 guesses)" + RESET);
@@ -272,14 +272,22 @@ public class Assignment2 {
         delay(); // 3s delay
     }
 
-    //this function allows a string to pass through it and
-    //then writes it 1 letter at a time
+    // ghostwriter for ASCII art - types out fast
+    public static void ghostwriterArt(String sentence){
+        for (int i = 0; i < sentence.length(); i++){
+            System.out.print(sentence.charAt(i) + "");
+            timerArt(); // fast delay for ASCII art
+        }
+        System.out.println(); // goes to next line
+    }
+
+    // ghostwriter for messages - types out at medium speed
     public static void ghostwriter(String sentence){
         for (int i = 0; i < sentence.length(); i++){
             System.out.print(sentence.charAt(i) + "");
-            timer1();
+            timerMsg(); // medium delay for messages
         }
-        System.out.println();//goes to the next line
+        System.out.println(); // goes to next line
     }
 
     //this function prints the loading screen animation
@@ -292,7 +300,7 @@ public class Assignment2 {
             System.out.print("Loading" + "");
             for (int j = 0; j < dots.length(); j++){
                 System.out.print(dots.charAt(j));
-                timer1();
+                timer1(); // normal speed for loading dots
             }
         System.out.println();//goes to the next line
         }
@@ -338,17 +346,31 @@ public class Assignment2 {
         System.out.flush();
     }
 
-    //function for timer which is for 1/10 of a second
+    // function for timer at 100ms for loading dots
     public static void timer1(){
         try{
             Thread.sleep(100); // 100ms
         } catch (Exception e) {}
     }
 
-    //function for timer which is for 2 seconds
+    // function for timer at 2 seconds
     public static void timer2(){
         try{
-            Thread.sleep(2000);
+            Thread.sleep(2000); // 2000ms
+        } catch (Exception e) {}
+    }
+
+    // function for timer at 5ms for fast ASCII art
+    public static void timerArt(){
+        try{
+            Thread.sleep(5); // 5ms
+        } catch (Exception e) {}
+    }
+
+    // function for timer at 50ms for messages
+    public static void timerMsg(){
+        try{
+            Thread.sleep(50); // 50ms
         } catch (Exception e) {}
     }
 
