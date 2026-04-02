@@ -51,7 +51,7 @@ public class Assignment2 {
             while (true) {
                 System.out.print("\033[H\033[2J"); // clears the screen
 
-                // main menu ASCII art typed out with ghostwriter
+                // main menu ASCII art typed out with ghostwriterArt
                 String mainArt = (PURPLE + """
                         .-..-.        _
                         : `' :       :_;
@@ -83,7 +83,9 @@ public class Assignment2 {
                 } // if you exit the program
                 else if (choice1 == 2) {
                     System.out.print("\033[H\033[2J"); // clears the screen
-                    ghostwriter(CYAN + "Thank you for using my program!" + RESET);
+                    System.out.print(CYAN);
+                    ghostwriter("Thank you for using my program!");
+                    System.out.print(RESET);
                     decision1 = false;
                     break;
                 }
@@ -96,7 +98,7 @@ public class Assignment2 {
                     while (true) {
                         System.out.print("\033[H\033[2J"); // clears the screen
 
-                        // sub menu ASCII art typed out with ghostwriter
+                        // sub menu ASCII art typed out with ghostwriterArt
                         String subArt = (PURPLE + """
 .-..-. _            .-.                                                    
 : :; ::_;           : :                                                    
@@ -133,7 +135,9 @@ public class Assignment2 {
                         } // if you return to main menu
                         else if (choice2 == 5) {
                             System.out.print("\033[H\033[2J"); // clears the screen
-                            ghostwriter(CYAN + "Returning to main menu" + RESET);
+                            System.out.print(CYAN);
+                            ghostwriter("Returning to main menu");
+                            System.out.print(RESET);
                             decision2 = false;
                             break;
                         }
@@ -203,7 +207,9 @@ public class Assignment2 {
                                 break;
                             } else {
                                 System.out.print("\033[H\033[2J"); // clears the screen
-                                ghostwriter(RED + "Only input y or n!" + RESET);
+                                System.out.print(RED);
+                                ghostwriter("Only input y or n!");
+                                System.out.print(RESET);
                             }
                         }
                     }
@@ -217,10 +223,12 @@ public class Assignment2 {
     public static void hiLo(int min1, int max1, int counter1, String difficultyName) {
         Scanner scan = new Scanner(System.in);
         ArrayList<Integer> guesses = new ArrayList<>(); // arraylist to store guesses
-        int answer = rand.nextInt(min1, max1 + 1); // random number to guess
+        int answer = rand.nextInt(max1 - min1 + 1) + min1; // random number to guess
 
         // show difficulty info in purple
-        ghostwriter(PURPLE + "Difficulty: " + difficultyName + RESET);
+        System.out.print(PURPLE);
+        ghostwriter("Difficulty: " + difficultyName);
+        System.out.print(RESET);
         System.out.println("Enter a value between " + min1 + " and " + max1);
         System.out.println(YELLOW + "You have " + counter1 + " guesses remaining" + RESET);
         System.out.println("");
@@ -235,18 +243,36 @@ public class Assignment2 {
 
             guesses.add(temp); // add guess to arraylist
 
+            System.out.print("\033[H\033[2J"); // clears the screen after each guess
+
             // check if guess is correct, higher, or lower
             if (temp == answer) {
                 playSoundBackground("win.wav"); // start sound first
-                ghostwriter(GREEN + "You got it!" + RESET);
+                System.out.print(GREEN);
+                ghostwriter("You got it!");
+                System.out.print(RESET);
+
+                System.out.print(CYAN + "Your guesses: " + RESET);
+                for (int i = 0; i < guesses.size(); i++) {
+                    if (i == guesses.size() - 1) {
+                        System.out.println(guesses.get(i)); // last guess, no comma
+                    } else {
+                        System.out.print(guesses.get(i) + ", "); // comma between guesses
+                    }
+                }
+                System.out.println("");
                 break;
             } else if (temp > answer) {
                 playSoundBackground("incorrect_sound.wav"); // start sound first
-                ghostwriter(RED + "Too high, guess lower!" + RESET);
+                System.out.print(RED);
+                ghostwriter("Too high, guess lower!");
+                System.out.print(RESET);
                 counter1 -= 1;
             } else if (temp < answer) {
                 playSoundBackground("incorrect_sound.wav"); // start sound first
-                ghostwriter(BLUE + "Too low, guess higher!" + RESET);
+                System.out.print(BLUE);
+                ghostwriter("Too low, guess higher!");
+                System.out.print(RESET);
                 counter1 -= 1;
             }
 
@@ -266,13 +292,25 @@ public class Assignment2 {
         // if player ran out of guesses
         if (counter1 == 0) {
             playSoundBackground("lose.wav"); // start sound first
-            ghostwriter(RED + "You ran out of guesses! The answer was " + answer + RESET);
+            System.out.print(RED);
+            ghostwriter("You ran out of guesses! The answer was " + answer);
+            System.out.print(RESET);
+
+            System.out.print(CYAN + "Your guesses: " + RESET);
+            for (int i = 0; i < guesses.size(); i++) {
+                if (i == guesses.size() - 1) {
+                    System.out.println(guesses.get(i)); // last guess, no comma
+                } else {
+                    System.out.print(guesses.get(i) + ", "); // comma between guesses
+                }
+            }
+            System.out.println("");
         }
 
         delay(); // 3s delay
     }
 
-    // ghostwriter for ASCII art - types out fast
+    // ghostwriter for ASCII art - types out fast without deleting
     public static void ghostwriterArt(String sentence){
         for (int i = 0; i < sentence.length(); i++){
             System.out.print(sentence.charAt(i) + "");
@@ -281,13 +319,18 @@ public class Assignment2 {
         System.out.println(); // goes to next line
     }
 
-    // ghostwriter for messages - types out at medium speed
+    // ghostwriter for messages - types out, waits, then deletes
     public static void ghostwriter(String sentence){
         for (int i = 0; i < sentence.length(); i++){
             System.out.print(sentence.charAt(i) + "");
-            timerMsg(); // medium delay for messages
+            timerMsg(); // medium delay while typing
         }
-        System.out.println(); // goes to next line
+        timer2(); // wait so user can read it
+        //deletes 1 letter at a time using \b for backspace
+        for (int j = sentence.length() - 1; j > -1; j--){
+            System.out.print("\b \b");
+            timerMsg(); // medium delay while deleting
+        }
     }
 
     //this function prints the loading screen animation
