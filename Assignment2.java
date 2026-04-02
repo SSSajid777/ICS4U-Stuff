@@ -49,7 +49,8 @@ public class Assignment2 {
         // main menu loop
         while (decision1) {
             while (true) {
-                System.out.print("\033[H\033[2J"); // clears the screen
+                System.out.print("\033[H\033[2J\033[3J"); // clears the screen
+                System.out.flush();
 
                 // main menu ASCII art typed out with ghostwriterArt
                 String mainArt = (PURPLE + """
@@ -82,7 +83,8 @@ public class Assignment2 {
                     break;
                 } // if you exit the program
                 else if (choice1 == 2) {
-                    System.out.print("\033[H\033[2J"); // clears the screen
+                    System.out.print("\033[H\033[2J\033[3J"); // clears the screen
+                    System.out.flush();
                     System.out.print(CYAN);
                     ghostwriter("Thank you for using my program!");
                     System.out.print(RESET);
@@ -96,17 +98,18 @@ public class Assignment2 {
                 decision2 = true;
                 while (decision2) {
                     while (true) {
-                        System.out.print("\033[H\033[2J"); // clears the screen
+                        System.out.print("\033[H\033[2J\033[3J"); // clears the screen
+                        System.out.flush();
 
                         // sub menu ASCII art typed out with ghostwriterArt
                         String subArt = (PURPLE + """
-.-..-. _            .-.                                                    
-: :; ::_;           : :                                                    
-:    :.-.   _____   : :    .--.                                            
-: :: :: :  :_____:  : :__ ' .; :                                           
-:_;:_;:_;           :___.'`.__.'                                           
-                                                                           
- .--.                          _                .--.                       
+.-..-. _            .-.                                                  
+: :; ::_;           : :                                                  
+:    :.-.   _____   : :  .--.                                            
+: :: :: :  :_____:  : :__ ' .; :                                         
+:_;:_;:_;           :___.'`.__.'                                         
+                                                                         
+ .--.                         _                .--.                      
 : .--'                        :_;              : .--'                      
 : : _ .-..-. .--.  .--.  .--. .-.,-.,-. .--.   : : _  .--.  ,-.,-.,-. .--. 
 : :; :: :; :' '_.'`._-.'`._-.': :: ,. :' .; :  : :; :' .; ; : ,. ,. :' '_.'
@@ -134,7 +137,8 @@ public class Assignment2 {
                             break;
                         } // if you return to main menu
                         else if (choice2 == 5) {
-                            System.out.print("\033[H\033[2J"); // clears the screen
+                            System.out.print("\033[H\033[2J\033[3J"); // clears the screen
+                            System.out.flush();
                             System.out.print(CYAN);
                             ghostwriter("Returning to main menu");
                             System.out.print(RESET);
@@ -152,7 +156,8 @@ public class Assignment2 {
 
                     // game loop
                     while (decision3) {
-                        System.out.print("\033[H\033[2J"); // clears the screen
+                        System.out.print("\033[H\033[2J\033[3J"); // clears the screen
+                        System.out.flush();
 
                         int maxNumber, maxGuesses, minNumber;
                         String difficultyName;
@@ -206,7 +211,8 @@ public class Assignment2 {
                                 decision3 = false; // exits game loop, goes back to sub menu
                                 break;
                             } else {
-                                System.out.print("\033[H\033[2J"); // clears the screen
+                                System.out.print("\033[H\033[2J\033[3J"); // clears the screen
+                                System.out.flush();
                                 System.out.print(RED);
                                 ghostwriter("Only input y or n!");
                                 System.out.print(RESET);
@@ -236,23 +242,16 @@ public class Assignment2 {
 
         // guessing loop
         while (counter1 > 0) {
-            System.out.print(YELLOW + "Input a guess: " + RESET);
-            String test = scan.next();
-            errorCheck(test, min1, max1, "Input a guess: "); // call to method
-            int temp = validInput;
 
-            guesses.add(temp); // add guess to arraylist
+            System.out.print("\033[H\033[2J\033[3J"); // clears the screen after each guess
+            System.out.flush();
 
-            System.out.print("\033[H\033[2J"); // clears the screen after each guess
-
-            // check if guess is correct, higher, or lower
-            if (temp == answer) {
-                playSoundBackground("win.wav"); // start sound first
-                System.out.print(GREEN);
-                ghostwriter("You got it!");
-                System.out.print(RESET);
-
-                System.out.print(CYAN + "Your guesses: " + RESET);
+            // show remaining guesses in yellow and current guesses in cyan
+            System.out.println(YELLOW + "You have " + counter1 + " guesses remaining" + RESET);
+            System.out.print(CYAN + "Your current guesses: " + RESET);
+            if (guesses.size() == 0) {
+                System.out.println("None");
+            } else {
                 for (int i = 0; i < guesses.size(); i++) {
                     if (i == guesses.size() - 1) {
                         System.out.println(guesses.get(i)); // last guess, no comma
@@ -260,7 +259,22 @@ public class Assignment2 {
                         System.out.print(guesses.get(i) + ", "); // comma between guesses
                     }
                 }
-                System.out.println("");
+            }
+            System.out.println("");
+
+            System.out.print(YELLOW + "Input a guess: " + RESET);
+            String test = scan.next();
+            errorCheck(test, min1, max1, "Input a guess: "); // call to method
+            int temp = validInput;
+
+            guesses.add(temp); // add guess to arraylist
+
+            // check if guess is correct, higher, or lower
+            if (temp == answer) {
+                playSoundBackground("win.wav"); // start sound first
+                System.out.print(GREEN);
+                ghostwriter("You got it!");
+                System.out.print(RESET);
                 break;
             } else if (temp > answer) {
                 playSoundBackground("incorrect_sound.wav"); // start sound first
@@ -276,18 +290,11 @@ public class Assignment2 {
                 counter1 -= 1;
             }
 
-            // show remaining guesses in yellow and current guesses in cyan
-            System.out.println(YELLOW + "You have " + counter1 + " guesses remaining" + RESET);
-            System.out.print(CYAN + "Your current guesses: " + RESET);
-            for (int i = 0; i < guesses.size(); i++) {
-                if (i == guesses.size() - 1) {
-                    System.out.println(guesses.get(i)); // last guess, no comma
-                } else {
-                    System.out.print(guesses.get(i) + ", "); // comma between guesses
-                }
-            }
             System.out.println("");
         }
+
+        System.out.print("\033[H\033[2J\033[3J"); // clears the screen after each guess
+        System.out.flush();
 
         // if player ran out of guesses
         if (counter1 == 0) {
@@ -295,17 +302,21 @@ public class Assignment2 {
             System.out.print(RED);
             ghostwriter("You ran out of guesses! The answer was " + answer);
             System.out.print(RESET);
-
-            System.out.print(CYAN + "Your guesses: " + RESET);
-            for (int i = 0; i < guesses.size(); i++) {
-                if (i == guesses.size() - 1) {
-                    System.out.println(guesses.get(i)); // last guess, no comma
-                } else {
-                    System.out.print(guesses.get(i) + ", "); // comma between guesses
-                }
-            }
-            System.out.println("");
+        } else {
+            System.out.print(GREEN);
+            ghostwriter("Correct! The answer was " + answer);
+            System.out.print(RESET);
         }
+
+        System.out.print(CYAN + "Your current guesses: " + RESET);
+        for (int i = 0; i < guesses.size(); i++) {
+            if (i == guesses.size() - 1) {
+                System.out.println(guesses.get(i)); // last guess, no comma
+            } else {
+                System.out.print(guesses.get(i) + ", "); // comma between guesses
+            }
+        }
+        System.out.println("");
 
         delay(); // 3s delay
     }
@@ -338,7 +349,7 @@ public class Assignment2 {
         playSoundBackground("load.wav"); // play loading sound at same time as animation
         String dots = "....";
         for (int i = 0; i < 4; i++){
-            System.out.print("\033[H\033[2J");
+            System.out.print("\033[H\033[2J\033[3J");
             System.out.flush();
             System.out.print("Loading" + "");
             for (int j = 0; j < dots.length(); j++){
@@ -360,7 +371,8 @@ public class Assignment2 {
                 if (validInput < min1 || validInput > max1){
                     System.out.println(RED + "Enter between " + min1 + " and " + max1 + RESET);
                     timer2();
-                    System.out.print("\033[H\033[2J");
+                    System.out.print("\033[H\033[2J\033[3J");
+                    System.out.flush();
                     System.out.print(YELLOW + prompt + RESET);
                     word = scan.next();
                 }
@@ -373,7 +385,8 @@ public class Assignment2 {
             catch (Exception e) {
                 System.out.println(RED + "Enter an integer only!" + RESET);
                 timer2();
-                System.out.print("\033[H\033[2J");
+                System.out.print("\033[H\033[2J\033[3J");
+                System.out.flush();
                 System.out.print(YELLOW + prompt + RESET);
                 word = scan.next();
             }
