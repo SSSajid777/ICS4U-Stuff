@@ -9,7 +9,7 @@ The program tracks and displays all guesses using an ArrayList.
 
 Resources:
 https://www.asciiart.eu/text-to-ascii-art#google_vignette (ASCII art for titles)
-https://www.w3schools.com/java/java_arraylist.asp (I used this to the arraylist equivalent of .length and [i])(which is .size() and .get(i))
+https://www.w3schools.com/java/java_arraylist.asp (I used this for the arraylist equivalent of .length and [i], which is .size() and .get(i))
 */
 
 import java.io.File;
@@ -50,7 +50,7 @@ public class Assignment2 {
             while (true) {
                 System.out.print("\033[H\033[2J"); // clears the screen
 
-                // main menu ASCII art typed out with ghostwriter
+                // main menu ASCII art in purple typed out with ghostwriterArt
                 String mainArt = (PURPLE + """
                         .-..-.        _
                         : `' :       :_;
@@ -66,12 +66,12 @@ public class Assignment2 {
                         """ + RESET);
                 ghostwriterArt(mainArt);
 
-                // menu options stay on screen so user can read and pick
+                // menu options in blue
                 System.out.println(BLUE + "        1.) Hi-Lo Guessing Game" + RESET);
                 System.out.println(BLUE + "        2.) Exit Program" + RESET);
                 System.out.println("");
 
-                System.out.print("Enter a choice: ");
+                System.out.print(YELLOW + "Enter a choice: " + RESET);
                 String test = scan.next();
                 errorCheck(test, 1, 2, "Enter a choice: "); // call to method
                 choice1 = validInput;
@@ -95,7 +95,7 @@ public class Assignment2 {
                     while (true) {
                         System.out.print("\033[H\033[2J"); // clears the screen
 
-                        // sub menu ASCII art typed out with ghostwriter
+                        // sub menu ASCII art in purple typed out with ghostwriterArt
                         String subArt = (PURPLE + """
 .-..-. _            .-.                                                    
 : :; ::_;           : :                                                    
@@ -113,7 +113,7 @@ public class Assignment2 {
                                 """ + RESET);
                         ghostwriterArt(subArt);
 
-                        // menu options stay on screen so user can read and pick
+                        // menu options in blue
                         System.out.println(BLUE + "        1.) Easy   (1 - 20,   100 guesses)" + RESET);
                         System.out.println(BLUE + "        2.) Medium (1 - 100,  10 guesses)" + RESET);
                         System.out.println(BLUE + "        3.) Hard   (1 - 100,  3 guesses)" + RESET);
@@ -121,7 +121,7 @@ public class Assignment2 {
                         System.out.println(BLUE + "        5.) Return to Main Menu" + RESET);
                         System.out.println("");
 
-                        System.out.print("Enter a choice: ");
+                        System.out.print(YELLOW + "Enter a choice: " + RESET);
                         String test = scan.next();
                         errorCheck(test, 1, 5, "Enter a choice: "); // call to method
                         choice2 = validInput;
@@ -218,10 +218,10 @@ public class Assignment2 {
         ArrayList<Integer> guesses = new ArrayList<>(); // arraylist to store guesses
         int answer = rand.nextInt(min1, max1 + 1); // random number to guess
 
-        // show difficulty info
+        // show difficulty info in purple
         System.out.println(PURPLE + "Difficulty: " + difficultyName + RESET);
         System.out.println("Enter a value between " + min1 + " and " + max1);
-        System.out.println("You have " + counter1 + " guesses remaining");
+        System.out.println(YELLOW + "You have " + counter1 + " guesses remaining" + RESET);
         System.out.println("");
         delay(); // 3s delay
 
@@ -237,19 +237,20 @@ public class Assignment2 {
             // check if guess is correct, higher, or lower
             if (temp == answer) {
                 playSoundBackground("win.wav"); // start sound first
-                ghostwriter(GREEN + "You got it!" + RESET); // types then deletes
+                ghostwriter("You got it!"); // types then deletes
+                System.out.println(GREEN + "Correct answer: " + answer + RESET);
                 break;
             } else if (temp > answer) {
                 playSoundBackground("incorrect_sound.wav"); // start sound first
-                ghostwriter(RED + "Too high, guess lower!" + RESET); // types then deletes
+                System.out.println(RED + "Too high, guess lower!" + RESET); // stays in red
                 counter1 -= 1;
             } else if (temp < answer) {
                 playSoundBackground("incorrect_sound.wav"); // start sound first
-                ghostwriter(BLUE + "Too low, guess higher!" + RESET); // types then deletes
+                System.out.println(BLUE + "Too low, guess higher!" + RESET); // stays in blue
                 counter1 -= 1;
             }
 
-            // show remaining guesses and current guesses so far
+            // show remaining guesses in yellow and current guesses in cyan
             System.out.println(YELLOW + "You have " + counter1 + " guesses remaining" + RESET);
             System.out.print(CYAN + "Your current guesses: " + RESET);
             for (int i = 0; i < guesses.size(); i++) {
@@ -265,7 +266,7 @@ public class Assignment2 {
         // if player ran out of guesses
         if (counter1 == 0) {
             playSoundBackground("lose.wav"); // start sound first
-            ghostwriter(RED + "You ran out of guesses! The answer was " + answer + RESET);
+            ghostwriter("You ran out of guesses! The answer was " + answer); // types then deletes
         }
 
         delay(); // 3s delay
@@ -319,10 +320,10 @@ public class Assignment2 {
                 validInput = Integer.parseInt(word);
                 // prints if outside the max and min values
                 if (validInput < min1 || validInput > max1){
-                    System.out.println("Enter between " + min1 + " and " + max1);
+                    System.out.println(RED + "Enter between " + min1 + " and " + max1 + RESET);
                     timer2();
                     System.out.print("\033[H\033[2J");
-                    System.out.print(prompt);
+                    System.out.print(YELLOW + prompt + RESET);
                     word = scan.next();
                 }
                 // breaks if between the max and min values
@@ -332,10 +333,10 @@ public class Assignment2 {
             }
             // goes here if an integer is not input
             catch (Exception e) {
-                System.out.println("Enter an integer only!");
+                System.out.println(RED + "Enter an integer only!" + RESET);
                 timer2();
                 System.out.print("\033[H\033[2J");
-                System.out.print(prompt);
+                System.out.print(YELLOW + prompt + RESET);
                 word = scan.next();
             }
         }
@@ -369,19 +370,6 @@ public class Assignment2 {
         try{
             Thread.sleep(10); // 10ms
         } catch (Exception e) {}
-    }
-
-    // method to play a sound file and wait for it to finish
-    public static void playSound(String filename){
-        File lol = new File(filename);
-        try {
-            Clip clip = AudioSystem.getClip();
-            clip.open(AudioSystem.getAudioInputStream(lol));
-            clip.start();
-            Thread.sleep(clip.getMicrosecondLength() / 1000); // waits for sound to finish
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     // method to play a sound file without waiting so other things run at same time
