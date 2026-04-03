@@ -9,7 +9,7 @@ After finishing the easy quiz or random quiz, it displays your score at the end.
 Resources:
 https://www.asciiart.eu/text-to-ascii-art#google_vignette (ASCII art for titles)
 https://www.w3schools.com/java/java_variables.asp (seeing the menu template also, I learned that I can intialize a variable without giving it a value, assuming I assign the value later)
- */
+ 
 
 import java.io.File;
 import java.util.Random;
@@ -450,3 +450,4 @@ public class Assignment1 {
         }
     }
 }
+*/
