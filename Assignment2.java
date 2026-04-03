@@ -8,10 +8,12 @@ Custom lets the user pick their own number range and number of guesses.
 The program tracks and displays all guesses using an ArrayList.
 
 Resources:
+In class examples and templates
 https://www.asciiart.eu/text-to-ascii-art#google_vignette (ASCII art for titles)
 https://www.w3schools.com/java/java_arraylist.asp (arraylist equivalent of .length and [i], which is .size() and .get(i))
-https://stackoverflow.com/questions/64562209/clear-the-screen-in-c-without-printing-control-characters(I used \033[3J to fully clear screen as doing it till 2j it only scrolled
-back down, but kept the previous texts in the terminal, and this one fully deletes)
+https://stackoverflow.com/questions/64562209/clear-the-screen-in-c-without-printing-control-characters (I used \033[3J to
+fully clear the screen as \033[2J only scrolled down but kept previous text in the terminal, while \033[3J fully deletes it)
+https://www.w3schools.com/java/java_break.asp (I used continue to skip to the next loop iteration without counting a wrong guess)
 */
 
 import java.io.File;
@@ -49,7 +51,7 @@ public class Assignment2 {
         // main menu loop
         while (decision1) {
             while (true) {
-                System.out.print("\033[H\033[2J\033[3J"); // clears screen and scrollback
+                System.out.print("\033[H\033[2J\033[3J"); // clears the screen fully
                 System.out.flush();
                 ghostwriterArt(PURPLE + """
                         .-..-.        _
@@ -137,7 +139,11 @@ public class Assignment2 {
                         decision2 = false;
                     }
 
-                    decision3 = (decision2 == true);
+                    if (decision2 == false) {
+                        decision3 = false;
+                    } else {
+                        decision3 = true;
+                    }
 
                     // game loop
                     while (decision3) {
@@ -203,13 +209,18 @@ public class Assignment2 {
     public static void hiLo(int min1, int max1, int counter1, String difficultyName) {
         Scanner scan = new Scanner(System.in);
         ArrayList<Integer> guesses = new ArrayList<>(); // arraylist to store guesses
-        int answer = rand.nextInt(max1 - min1 + 1) + min1; // random number to guess
+        int answer = rand.nextInt(min1, max1 + 1); // random number to guess
+
+        // show difficulty once before the guessing loop starts
+        System.out.print("\033[H\033[2J\033[3J");
+        System.out.flush();
+        ghostwriterColor(PURPLE, "Difficulty: " + difficultyName);
+        delay();
 
         // guessing loop
         while (counter1 > 0) {
             System.out.print("\033[H\033[2J\033[3J");
             System.out.flush();
-            ghostwriterColor(PURPLE, "Difficulty: " + difficultyName);
             System.out.println(YELLOW + "You have " + counter1 + " guesses remaining" + RESET);
             System.out.print(CYAN + "Your current guesses: " + RESET);
             if (guesses.size() == 0) {
@@ -240,7 +251,7 @@ public class Assignment2 {
             } catch (Exception e) {
                 System.out.println(RED + "Enter an integer only!" + RESET);
                 timer2();
-                continue; // skips to next loop iteration without counting as a guess
+                continue; // does not count as a guess
             }
 
             guesses.add(temp); // add guess to arraylist
@@ -336,8 +347,6 @@ public class Assignment2 {
                 if (validInput < min1 || validInput > max1) {
                     System.out.println(RED + "Enter between " + min1 + " and " + max1 + RESET);
                     timer2();
-                    System.out.print("\033[H\033[2J\033[3J");
-                    System.out.flush();
                     System.out.print(YELLOW + prompt + RESET);
                     word = scan.next();
                 } else {
@@ -346,8 +355,6 @@ public class Assignment2 {
             } catch (Exception e) { // goes here if not an integer
                 System.out.println(RED + "Enter an integer only!" + RESET);
                 timer2();
-                System.out.print("\033[H\033[2J\033[3J");
-                System.out.flush();
                 System.out.print(YELLOW + prompt + RESET);
                 word = scan.next();
             }
