@@ -398,10 +398,10 @@ public class Assignment2 {
         } catch (Exception e) {}
     }
 
-    // timer at 10ms for fast ASCII art
+    // timer at 7ms for fast ASCII art
     public static void timerArt(){
         try{
-            Thread.sleep(10);
+            Thread.sleep(7);
         } catch (Exception e) {}
     }
 
