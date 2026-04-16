@@ -4,18 +4,19 @@ import java.awt.*;
 
 public class simpleCalculator extends JFrame implements ActionListener {
 
-    // create text field
+    // creates text field
     JTextField f1;
 
-    // create buttons
+    // creates buttons
     JButton b0, b1, b2, b3, b4, b5, b6, b7, b8, b9;
     JButton b10, b11, b12, b13, b14, b15, b16;
 
     // create layered pane window
     JLayeredPane layeredPane = new JLayeredPane();
+
     float firstNum = 0;
     String operator = "";
-    boolean freshInput = true;
+    boolean newInput = true;
 
     public simpleCalculator() {
 
@@ -24,13 +25,13 @@ public class simpleCalculator extends JFrame implements ActionListener {
 
         // sets size of the screen
         setSize(480, 430);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // allows for user to exit the program
 
         // LAYERING SETUP
         layeredPane.setPreferredSize(getSize());
         setContentPane(layeredPane);
 
-        // display textfield
+        // creates a text field
         f1 = new JTextField(20);
         f1.setEditable(false);
         f1.setText("0");
@@ -143,27 +144,186 @@ public class simpleCalculator extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         String action = e.getActionCommand();
-        if (action.equals("1") || action.equals("2") || action.equals("3") ||
-           action.equals("4") || action.equals("5") || action.equals("6") ||
-           action.equals("7") || action.equals("8") || action.equals("9") ||
-           action.equals("0")) 
-           {if (freshInput){
-            f1.setText(action);
-            freshInput=false;
-           }
-           else{
-            f1.setText(f1.getText()+action);
-           }
 
+        // if button pressed is the 1 button
+        if (action.equals("1")) {
+            if (newInput == true) {
+                f1.setText("1");
+                newInput = false;
+            } else {
+                f1.setText(f1.getText() + "1");
+            }
+        }
+        
+        // if button pressed is the 2 button
+        if (action.equals("2")) {
+            if (newInput == true) {
+                f1.setText("2");
+                newInput = false;
+            } else {
+                f1.setText(f1.getText() + "2");
+            }
+        }
+        
+        // if button pressed is the 3 button
+        if (action.equals("3")) {
+            if (newInput == true) {
+                f1.setText("3");
+                newInput = false;
+            } else {
+                f1.setText(f1.getText() + "3");
+            }
+        }
+        
+        // if button pressed is the 4 button
+        if (action.equals("4")) {
+            if (newInput == true) {
+                f1.setText("4");
+                newInput = false;
+            } else {
+                f1.setText(f1.getText() + "4");
+            }
+        }
+        
+        // if button pressed is the 5 button
+        if (action.equals("5")) {
+            if (newInput == true) {
+                f1.setText("5");
+                newInput = false;
+            } else {
+                f1.setText(f1.getText() + "5");
+            }
+        }
+        
+        // if button pressed is the 6 button
+        if (action.equals("6")) {
+            if (newInput == true) {
+                f1.setText("6");
+                newInput = false;
+            } else {
+                f1.setText(f1.getText() + "6");
+            }
+        }
+        
+        // if button pressed is the 7 button
+        if (action.equals("7")) {
+            if (newInput == true) {
+                f1.setText("7");
+                newInput = false;
+            } else {
+                f1.setText(f1.getText() + "7");
+            }
+        }
+        
+        // if button pressed is the 8 button
+        if (action.equals("8")) {
+            if (newInput == true) {
+                f1.setText("8");
+                newInput = false;
+            } else {
+                f1.setText(f1.getText() + "8");
+            }
+        }
+        
+        // if button pressed is the 9 button
+        if (action.equals("9")) {
+            if (newInput == true) {
+                f1.setText("9");
+                newInput = false;
+            } else {
+                f1.setText(f1.getText() + "9");
+            }
+        }
+        
+        // if button pressed is the 0 button
+        if (action.equals("0")) {
+            if (newInput == true) {
+                f1.setText("0");
+                newInput = false;
+            } else {
+                f1.setText(f1.getText() + "0");
+            }
+        }
+        
+        // if button pressed is the + button
+        if (action.equals("+")) {
+            firstNum = Float.parseFloat(f1.getText());
+            operator = "+";
+            newInput = true;
+        }
+        
+        // if button pressed is the - button
+        if (action.equals("-")) {
+            firstNum = Float.parseFloat(f1.getText());
+            operator = "-";
+            newInput = true;
+        }
+        
+        // if button pressed is the * button
+        if (action.equals("*")) {
+            firstNum = Float.parseFloat(f1.getText());
+            operator = "*";
+            newInput = true;
+        }
+        
+        // if button pressed is the / button
+        if (action.equals("/")) {
+            firstNum = Float.parseFloat(f1.getText());
+            operator = "/";
+            newInput = true;
+        }
+        
+        // if button pressed is the = button
+        if (action.equals("=")) {
+            float secondNum = Float.parseFloat(f1.getText());
+            float result = 0;
+            
+            if (operator.equals("+")) {
+                result = firstNum + secondNum;
+                f1.setText(String.valueOf(result));
+            }
+            if (operator.equals("-")) {
+                result = firstNum - secondNum;
+                f1.setText(String.valueOf(result));
+            }
+            if (operator.equals("*")) {
+                result = firstNum * secondNum;
+                f1.setText(String.valueOf(result));
+            }
+            if (operator.equals("/")) {
+                if (secondNum == 0) {
+                    f1.setText("Error");
+                }
+                if (secondNum != 0) {
+                    result = firstNum / secondNum;
+                    f1.setText(String.valueOf(result));
+                }
+            }
+            newInput = true;
+        }
+        
+        // if button pressed is the +/- button
+        if (action.equals("+/-")) {
+            String textOnScreen = f1.getText();
+            if (textOnScreen.equals("Error") == false) {
+                float val = Float.parseFloat(textOnScreen);
+                val = val * -1;
+                String finalResult = String.valueOf(val);
+                f1.setText(finalResult);
+            }
+        }
+        
+        // if button pressed is the CE button
+        if (action.equals("CE")) {
+            f1.setText("0");
+            firstNum = 0;
+            operator = "";
+            newInput = true;
+        }
     }
 
-        if (action.equals("+") || action.equals("-") || action.equals("*") || action.equals("/")) {
-         firstNum = Float.parseFloat(f1.getText());
-         operator = action;
-         freshInput = true;
-}
-
     public static void main(String args[]) {
+        // adds a new class object and sets it to visible
         simpleCalculator x = new simpleCalculator();
         x.setVisible(true);
     }
