@@ -25,7 +25,7 @@ public class simpleCalculator extends JFrame implements ActionListener {
 
         // sets size of the screen
         setSize(480, 430);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // allows for user to exit the program
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // LAYERING SETUP
         layeredPane.setPreferredSize(getSize());
@@ -145,7 +145,7 @@ public class simpleCalculator extends JFrame implements ActionListener {
 
         String action = e.getActionCommand();
 
-        // if button pressed is the 1 button
+        // if 1 button pressed
         if (action.equals("1")) {
             if (newInput == true) {
                 f1.setText("1");
@@ -155,7 +155,7 @@ public class simpleCalculator extends JFrame implements ActionListener {
             }
         }
         
-        // if button pressed is the 2 button
+        // if 2 button pressed
         if (action.equals("2")) {
             if (newInput == true) {
                 f1.setText("2");
@@ -165,7 +165,7 @@ public class simpleCalculator extends JFrame implements ActionListener {
             }
         }
         
-        // if button pressed is the 3 button
+        // if 3 button pressed
         if (action.equals("3")) {
             if (newInput == true) {
                 f1.setText("3");
@@ -175,7 +175,7 @@ public class simpleCalculator extends JFrame implements ActionListener {
             }
         }
         
-        // if button pressed is the 4 button
+        // if 4 button pressed
         if (action.equals("4")) {
             if (newInput == true) {
                 f1.setText("4");
@@ -185,7 +185,7 @@ public class simpleCalculator extends JFrame implements ActionListener {
             }
         }
         
-        // if button pressed is the 5 button
+        // if 5 button pressed
         if (action.equals("5")) {
             if (newInput == true) {
                 f1.setText("5");
@@ -195,7 +195,7 @@ public class simpleCalculator extends JFrame implements ActionListener {
             }
         }
         
-        // if button pressed is the 6 button
+        // if 6 button pressed
         if (action.equals("6")) {
             if (newInput == true) {
                 f1.setText("6");
@@ -205,7 +205,7 @@ public class simpleCalculator extends JFrame implements ActionListener {
             }
         }
         
-        // if button pressed is the 7 button
+        // if 7 button pressed
         if (action.equals("7")) {
             if (newInput == true) {
                 f1.setText("7");
@@ -215,7 +215,7 @@ public class simpleCalculator extends JFrame implements ActionListener {
             }
         }
         
-        // if button pressed is the 8 button
+        // if 8 button pressed
         if (action.equals("8")) {
             if (newInput == true) {
                 f1.setText("8");
@@ -225,7 +225,7 @@ public class simpleCalculator extends JFrame implements ActionListener {
             }
         }
         
-        // if button pressed is the 9 button
+        // if 9 button pressed
         if (action.equals("9")) {
             if (newInput == true) {
                 f1.setText("9");
@@ -235,7 +235,7 @@ public class simpleCalculator extends JFrame implements ActionListener {
             }
         }
         
-        // if button pressed is the 0 button
+        // if 0 button pressed
         if (action.equals("0")) {
             if (newInput == true) {
                 f1.setText("0");
@@ -245,50 +245,47 @@ public class simpleCalculator extends JFrame implements ActionListener {
             }
         }
         
-        // if button pressed is the + button
+        // if + button pressed
         if (action.equals("+")) {
             firstNum = Float.parseFloat(f1.getText());
             operator = "+";
             newInput = true;
         }
         
-        // if button pressed is the - button
+        // if - button pressed
         if (action.equals("-")) {
             firstNum = Float.parseFloat(f1.getText());
             operator = "-";
             newInput = true;
         }
         
-        // if button pressed is the * button
+        // if * button pressed
         if (action.equals("*")) {
             firstNum = Float.parseFloat(f1.getText());
             operator = "*";
             newInput = true;
         }
         
-        // if button pressed is the / button
+        // if / button pressed
         if (action.equals("/")) {
             firstNum = Float.parseFloat(f1.getText());
             operator = "/";
             newInput = true;
         }
         
-        // if button pressed is the = button
+        // if = button pressed
         if (action.equals("=")) {
             float secondNum = Float.parseFloat(f1.getText());
             float result = 0;
             
             if (operator.equals("+")) {
                 result = firstNum + secondNum;
-                f1.setText(String.valueOf(result));
             }
             if (operator.equals("-")) {
                 result = firstNum - secondNum;
-                f1.setText(String.valueOf(result));
             }
             if (operator.equals("*")) {
                 result = firstNum * secondNum;
-                f1.setText(String.valueOf(result));
             }
             if (operator.equals("/")) {
                 if (secondNum == 0) {
@@ -296,24 +293,38 @@ public class simpleCalculator extends JFrame implements ActionListener {
                 }
                 if (secondNum != 0) {
                     result = firstNum / secondNum;
+                }
+            }
+            
+            if (f1.getText().equals("Error") == false) {
+                int cleanNumber = (int) result;
+                
+                if (result == cleanNumber) {
+                    f1.setText(String.valueOf(cleanNumber));
+                } else {
                     f1.setText(String.valueOf(result));
                 }
             }
             newInput = true;
         }
         
-        // if button pressed is the +/- button
+        // if +/- button pressed
         if (action.equals("+/-")) {
-            String textOnScreen = f1.getText();
-            if (textOnScreen.equals("Error") == false) {
-                float val = Float.parseFloat(textOnScreen);
+            if (f1.getText().equals("Error") == false) {
+                float val = Float.parseFloat(f1.getText());
                 val = val * -1;
-                String finalResult = String.valueOf(val);
-                f1.setText(finalResult);
+                
+                int cleanNumber = (int) val;
+                
+                if (val == cleanNumber) {
+                    f1.setText(String.valueOf(cleanNumber));
+                } else {
+                    f1.setText(String.valueOf(val));
+                }
             }
         }
         
-        // if button pressed is the CE button
+        // if CE button pressed
         if (action.equals("CE")) {
             f1.setText("0");
             firstNum = 0;
@@ -323,7 +334,6 @@ public class simpleCalculator extends JFrame implements ActionListener {
     }
 
     public static void main(String args[]) {
-        // adds a new class object and sets it to visible
         simpleCalculator x = new simpleCalculator();
         x.setVisible(true);
     }
