@@ -154,7 +154,7 @@ public class simpleCalculator extends JFrame implements ActionListener {
                 f1.setText(f1.getText() + "1");
             }
         }
-        
+
         // if 2 button pressed
         if (action.equals("2")) {
             if (newInput == true) {
@@ -164,7 +164,7 @@ public class simpleCalculator extends JFrame implements ActionListener {
                 f1.setText(f1.getText() + "2");
             }
         }
-        
+
         // if 3 button pressed
         if (action.equals("3")) {
             if (newInput == true) {
@@ -174,7 +174,7 @@ public class simpleCalculator extends JFrame implements ActionListener {
                 f1.setText(f1.getText() + "3");
             }
         }
-        
+
         // if 4 button pressed
         if (action.equals("4")) {
             if (newInput == true) {
@@ -184,7 +184,7 @@ public class simpleCalculator extends JFrame implements ActionListener {
                 f1.setText(f1.getText() + "4");
             }
         }
-        
+
         // if 5 button pressed
         if (action.equals("5")) {
             if (newInput == true) {
@@ -194,7 +194,7 @@ public class simpleCalculator extends JFrame implements ActionListener {
                 f1.setText(f1.getText() + "5");
             }
         }
-        
+
         // if 6 button pressed
         if (action.equals("6")) {
             if (newInput == true) {
@@ -204,7 +204,7 @@ public class simpleCalculator extends JFrame implements ActionListener {
                 f1.setText(f1.getText() + "6");
             }
         }
-        
+
         // if 7 button pressed
         if (action.equals("7")) {
             if (newInput == true) {
@@ -214,7 +214,7 @@ public class simpleCalculator extends JFrame implements ActionListener {
                 f1.setText(f1.getText() + "7");
             }
         }
-        
+
         // if 8 button pressed
         if (action.equals("8")) {
             if (newInput == true) {
@@ -224,7 +224,7 @@ public class simpleCalculator extends JFrame implements ActionListener {
                 f1.setText(f1.getText() + "8");
             }
         }
-        
+
         // if 9 button pressed
         if (action.equals("9")) {
             if (newInput == true) {
@@ -234,7 +234,7 @@ public class simpleCalculator extends JFrame implements ActionListener {
                 f1.setText(f1.getText() + "9");
             }
         }
-        
+
         // if 0 button pressed
         if (action.equals("0")) {
             if (newInput == true) {
@@ -244,40 +244,40 @@ public class simpleCalculator extends JFrame implements ActionListener {
                 f1.setText(f1.getText() + "0");
             }
         }
-        
+
         // if + button pressed
         if (action.equals("+")) {
             firstNum = Float.parseFloat(f1.getText());
             operator = "+";
             newInput = true;
         }
-        
+
         // if - button pressed
         if (action.equals("-")) {
             firstNum = Float.parseFloat(f1.getText());
             operator = "-";
             newInput = true;
         }
-        
+
         // if * button pressed
         if (action.equals("*")) {
             firstNum = Float.parseFloat(f1.getText());
             operator = "*";
             newInput = true;
         }
-        
+
         // if / button pressed
         if (action.equals("/")) {
             firstNum = Float.parseFloat(f1.getText());
             operator = "/";
             newInput = true;
         }
-        
+
         // if = button pressed
         if (action.equals("=")) {
             float secondNum = Float.parseFloat(f1.getText());
             float result = 0;
-            
+
             if (operator.equals("+")) {
                 result = firstNum + secondNum;
             }
@@ -295,8 +295,8 @@ public class simpleCalculator extends JFrame implements ActionListener {
                     result = firstNum / secondNum;
                 }
             }
-            
-            // Decimal fix using the int cast
+
+            // Decimal fix using (int)
             if (f1.getText().equals("Error") == false) {
                 int cleanInt = (int) result;
                 if (result == cleanInt) {
@@ -307,14 +307,14 @@ public class simpleCalculator extends JFrame implements ActionListener {
             }
             newInput = true;
         }
-        
+
         // if +/- button pressed
         if (action.equals("+/-")) {
             String currentText = f1.getText();
             if (currentText.equals("Error") == false) {
                 float val = Float.parseFloat(currentText);
                 val = val * -1;
-                
+
                 // Decimal fix using the int cast
                 int cleanInt = (int) val;
                 if (val == cleanInt) {
@@ -324,7 +324,7 @@ public class simpleCalculator extends JFrame implements ActionListener {
                 }
             }
         }
-        
+
         // if CE button pressed
         if (action.equals("CE")) {
             f1.setText("0");
