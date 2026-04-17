@@ -296,11 +296,11 @@ public class simpleCalculator extends JFrame implements ActionListener {
                 }
             }
             
+            // Decimal fix using the int cast
             if (f1.getText().equals("Error") == false) {
-                int cleanNumber = (int) result;
-                
-                if (result == cleanNumber) {
-                    f1.setText(String.valueOf(cleanNumber));
+                int cleanInt = (int) result;
+                if (result == cleanInt) {
+                    f1.setText(String.valueOf(cleanInt));
                 } else {
                     f1.setText(String.valueOf(result));
                 }
@@ -310,14 +310,15 @@ public class simpleCalculator extends JFrame implements ActionListener {
         
         // if +/- button pressed
         if (action.equals("+/-")) {
-            if (f1.getText().equals("Error") == false) {
-                float val = Float.parseFloat(f1.getText());
+            String currentText = f1.getText();
+            if (currentText.equals("Error") == false) {
+                float val = Float.parseFloat(currentText);
                 val = val * -1;
                 
-                int cleanNumber = (int) val;
-                
-                if (val == cleanNumber) {
-                    f1.setText(String.valueOf(cleanNumber));
+                // Decimal fix using the int cast
+                int cleanInt = (int) val;
+                if (val == cleanInt) {
+                    f1.setText(String.valueOf(cleanInt));
                 } else {
                     f1.setText(String.valueOf(val));
                 }
