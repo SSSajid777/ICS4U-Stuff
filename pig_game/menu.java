@@ -21,20 +21,25 @@ public class menu extends JFrame implements ActionListener {
         layeredPane.add(bg, Integer.valueOf(0));
 
         // creates the buttons and sets them up to be used in actionPerformed
-        JButton b1 = new JButton("Exit");
-        b1.setBounds(0, 0, 70, 35);
+        JButton b1 = new JButton("Rules");
+        b1.setBounds(100, 430, 150, 40);
         b1.addActionListener(this);
         layeredPane.add(b1, JLayeredPane.PALETTE_LAYER);
 
         JButton b2 = new JButton("Play");
-        b2.setBounds(305, 400, 350, 70);
+        b2.setBounds(390, 430, 150, 40);
         b2.addActionListener(this);
         layeredPane.add(b2, JLayeredPane.PALETTE_LAYER);
 
-        JButton b3 = new JButton("Instructions");
-        b3.setBounds(100, 0, 120, 35);
+        JButton b3 = new JButton("Exit");
+        b3.setBounds(700, 430, 150, 40);
         b3.addActionListener(this);
         layeredPane.add(b3, JLayeredPane.PALETTE_LAYER);
+
+        JButton b4 = new JButton("Button Operation");
+        b4.setBounds(820, 0, 150, 35);
+        b4.addActionListener(this);
+        layeredPane.add(b4, JLayeredPane.PALETTE_LAYER);
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -48,10 +53,13 @@ public class menu extends JFrame implements ActionListener {
             x.setVisible(true);
             dispose();
         }
-        if (action.equals("Instructions")) {
+        if (action.equals("Rules")) {
             instructions x = new instructions();
             x.setVisible(true);
             dispose();
+        }
+        if (action.equals("Button Operation")) {
+            // opens button operation window
         }
     }
 
