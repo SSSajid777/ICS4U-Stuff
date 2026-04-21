@@ -1,3 +1,78 @@
-public class win2 {
-    
+import java.awt.event.*;
+import javax.swing.*;
+
+public class win2 extends JFrame implements ActionListener {
+
+    // creates label
+    JLabel l1;
+
+    // creates button
+    JButton b1, b2;
+
+    // creates text field
+    JTextField f1;
+
+    // create layered pane window
+    JLayeredPane layeredPane = new JLayeredPane();
+
+    public win2() {
+
+        // adds a title to the window
+        super("Game Over");
+
+        // sets size of the screen
+        setSize(725, 457);
+        setVisible(true);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // allows for user to exit the program
+
+        // LAYERING SETUP      
+        layeredPane.setPreferredSize(getSize());
+        setContentPane(layeredPane);
+
+        //adds text to the 1 label created
+        l1 = new JLabel("Player 2 Wins!");
+        l1.setBounds(245, 190, 300, 50);
+        layeredPane.add(l1, JLayeredPane.PALETTE_LAYER);
+
+        // image on panel
+        ImageIcon image1 = new ImageIcon("dice.jpg");
+        JLabel pic = new JLabel(image1);
+        pic.setBounds(150, 0, image1.getIconWidth(), image1.getIconHeight());
+        layeredPane.add(pic, Integer.valueOf(0));
+
+        //"Play Again" button
+        JButton b1 = new JButton("Play Again");
+        b1.addActionListener(this); // calls action listner so that program is able to read user's input
+        b1.setBounds(245, 270, 150, 45);
+        layeredPane.add(b1, JLayeredPane.PALETTE_LAYER);
+
+        //"Main" button
+        JButton b2 = new JButton("Main");
+        b2.addActionListener(this); // calls action listner so that program is able to read user's input
+        b2.setBounds(245, 345, 150, 53);
+        layeredPane.add(b2, JLayeredPane.PALETTE_LAYER);
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        String action = e.getActionCommand();
+
+        //if button pressed is the play again button
+        if (action.equals("Play Again")) {
+            Exercise3 x = new Exercise3();
+            x.setVisible(true);
+            dispose();
+        }
+        //if button pressed is the main button
+        if (action.equals("Main")) {
+            menu x = new menu();
+            x.setVisible(true);
+            dispose();
+        }
+    }
+
+    public static void main(String args[]) {
+        //adds a new class object and sets it to visible
+        win2 x = new win2();
+        x.setVisible(true);
+    }
 }
