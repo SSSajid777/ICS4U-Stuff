@@ -4,6 +4,7 @@ import java.awt.*;
 
 public class menu extends JFrame implements ActionListener {
 
+    // create buttons
     public menu() {
 
         setSize(975, 500);
@@ -19,6 +20,7 @@ public class menu extends JFrame implements ActionListener {
         bg.setBounds(0, 0, image1.getIconWidth(), image1.getIconHeight());
         layeredPane.add(bg, Integer.valueOf(0));
 
+        // creates the buttons and sets them up to be used in actionPerformed
         JButton b1 = new JButton("Exit");
         b1.setBounds(0, 0, 70, 35);
         b1.addActionListener(this);
@@ -54,6 +56,7 @@ public class menu extends JFrame implements ActionListener {
     }
 
     public static void main(String args[]) {
+        // adds a new class object and sets it to visible
         menu x = new menu();
         x.setVisible(true);
     }

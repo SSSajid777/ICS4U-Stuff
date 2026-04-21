@@ -106,6 +106,7 @@ public class Exercise3 extends JFrame implements ActionListener {
     }
 
     public static void main(String args[]) {
+        // adds a new class object and sets it to visible
         Exercise3 x = new Exercise3();
         x.setVisible(true);
     }

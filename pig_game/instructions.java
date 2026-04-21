@@ -4,6 +4,7 @@ import java.awt.*;
 
 public class instructions extends JFrame implements ActionListener {
 
+    // create buttons
     public instructions() {
         JTextArea f1;
 
@@ -40,6 +41,7 @@ The first player to 100 or more points wins.
         layeredPane.add(f1, JLayeredPane.PALETTE_LAYER);
         f1.setText(String.valueOf(intro));
 
+        // creates the buttons and sets them up to be used in actionPerformed
         JButton b1 = new JButton("Exit");
         b1.setBounds(65, 400, 70, 35);
         b1.addActionListener(this);
@@ -65,6 +67,7 @@ The first player to 100 or more points wins.
     }
 
     public static void main(String args[]) {
+        // adds a new class object and sets it to visible
         instructions x = new instructions();
         x.setVisible(true);
     }

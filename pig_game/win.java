@@ -25,11 +25,11 @@ public class win extends JFrame implements ActionListener {
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // allows for user to exit the program
 
-        // LAYERING SETUP      
+        // LAYERING SETUP
         layeredPane.setPreferredSize(getSize());
         setContentPane(layeredPane);
 
-        //adds text to the 1 label created
+        //addsd text to the 1 label created
         l1 = new JLabel("Player 1 Wins!");
         l1.setBounds(245, 190, 300, 50);
         layeredPane.add(l1, JLayeredPane.PALETTE_LAYER);
