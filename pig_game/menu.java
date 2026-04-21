@@ -7,7 +7,7 @@ public class menu extends JFrame implements ActionListener {
     // create buttons
     public menu() {
 
-        setSize(975, 500);
+        setSize(1366, 768);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -22,22 +22,22 @@ public class menu extends JFrame implements ActionListener {
 
         // creates the buttons and sets them up to be used in actionPerformed
         JButton b1 = new JButton("Rules");
-        b1.setBounds(100, 430, 150, 40);
+        b1.setBounds(150, 700, 200, 45);
         b1.addActionListener(this);
         layeredPane.add(b1, JLayeredPane.PALETTE_LAYER);
 
         JButton b2 = new JButton("Play");
-        b2.setBounds(390, 430, 150, 40);
+        b2.setBounds(583, 700, 200, 45);
         b2.addActionListener(this);
         layeredPane.add(b2, JLayeredPane.PALETTE_LAYER);
 
         JButton b3 = new JButton("Exit");
-        b3.setBounds(700, 430, 150, 40);
+        b3.setBounds(1010, 700, 200, 45);
         b3.addActionListener(this);
         layeredPane.add(b3, JLayeredPane.PALETTE_LAYER);
 
         JButton b4 = new JButton("Button Operation");
-        b4.setBounds(820, 0, 150, 35);
+        b4.setBounds(1200, 10, 150, 35);
         b4.addActionListener(this);
         layeredPane.add(b4, JLayeredPane.PALETTE_LAYER);
     }
