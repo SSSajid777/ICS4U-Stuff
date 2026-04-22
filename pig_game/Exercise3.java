@@ -29,7 +29,7 @@ public class Exercise3 extends JFrame implements ActionListener {
         f4 = new JTextField(3);
         f5 = new JTextField(10);
 
-        setSize(975, 500);
+        setSize(1300, 700);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -37,53 +37,65 @@ public class Exercise3 extends JFrame implements ActionListener {
         layeredPane.setPreferredSize(getSize());
         setContentPane(layeredPane);
 
-        ImageIcon image1 = new ImageIcon("Background.png");
+        // BACKGROUND
+        ImageIcon image1 = new ImageIcon("DiceBoard.png");
         JLabel bg = new JLabel(image1);
         bg.setBounds(0, 0, image1.getIconWidth(), image1.getIconHeight());
         layeredPane.add(bg, Integer.valueOf(0));
 
+        // DICES
+        // PALETTE_LAYER is the front layer
         d1.setIcon(new ImageIcon("one.png"));
-        d1.setBounds(350, 130, 100, 100);
+        d1.setBounds(442, 250, 120, 120);
         layeredPane.add(d1, JLayeredPane.PALETTE_LAYER);
 
         d2.setIcon(new ImageIcon("two.png"));
-        d2.setBounds(515, 130, 100, 100);
+        d2.setBounds(620, 250, 120, 120);
         layeredPane.add(d2, JLayeredPane.PALETTE_LAYER);
 
-        f1.setBounds(160, 375, 30, 40);
-        layeredPane.add(f1, JLayeredPane.PALETTE_LAYER);
-
-        f2.setBounds(780, 375, 30, 40);
-        layeredPane.add(f2, JLayeredPane.PALETTE_LAYER);
-
-        f3.setBounds(160, 250, 30, 40);
+        // f3 - player 1 total score, center was (199, -250) -> pixel (199, 251)
+        f3.setBounds(99, 221, 200, 60);
         layeredPane.add(f3, JLayeredPane.PALETTE_LAYER);
 
-        f4.setBounds(780, 250, 30, 40);
+        // f4 - player 2 total score, center was (1103, -251) -> pixel (1103, 252)
+        f4.setBounds(1003, 222, 200, 60);
         layeredPane.add(f4, JLayeredPane.PALETTE_LAYER);
 
-        f5.setBounds(387, 420, 200, 25);
+        // f1 - player 1 round score, center was (200, -505) -> pixel (200, 506)
+        f1.setBounds(100, 476, 200, 60);
+        layeredPane.add(f1, JLayeredPane.PALETTE_LAYER);
+
+        // f2 - player 2 round score, center was (1105, -503) -> pixel (1105, 504)
+        f2.setBounds(1005, 474, 200, 60);
+        layeredPane.add(f2, JLayeredPane.PALETTE_LAYER);
+
+        // f5 - turn indicator at top center
+        f5.setBounds(500, 30, 300, 40);
         layeredPane.add(f5, JLayeredPane.PALETTE_LAYER);
 
+        // Roll button, center was (502, -502) -> pixel (502, 503)
         JButton b1 = new JButton("Roll");
-        b1.setBounds(407, 270, 70, 35);
+        b1.setBounds(442, 483, 120, 40);
         b1.addActionListener(this);
         layeredPane.add(b1, JLayeredPane.PALETTE_LAYER);
 
+        // Hold button, center was (797, -501) -> pixel (797, 502)
         JButton b2 = new JButton("Hold");
-        b2.setBounds(487, 270, 70, 35);
+        b2.setBounds(737, 482, 120, 40);
         b2.addActionListener(this);
         layeredPane.add(b2, JLayeredPane.PALETTE_LAYER);
 
-        JButton b3 = new JButton("Menu");
-        b3.setBounds(487, 325, 100, 35);
-        b3.addActionListener(this);
-        layeredPane.add(b3, JLayeredPane.PALETTE_LAYER);
-
+        // Exit button, center was (500, -653) -> pixel (500, 654)
         JButton b4 = new JButton("Exit");
-        b4.setBounds(377, 325, 100, 35);
+        b4.setBounds(440, 634, 120, 40);
         b4.addActionListener(this);
         layeredPane.add(b4, JLayeredPane.PALETTE_LAYER);
+
+        // Menu button, center was (803, -653) -> pixel (803, 654)
+        JButton b3 = new JButton("Menu");
+        b3.setBounds(743, 634, 120, 40);
+        b3.addActionListener(this);
+        layeredPane.add(b3, JLayeredPane.PALETTE_LAYER);
 
         if (turn == true) {
             f5.setText(String.valueOf(p1));

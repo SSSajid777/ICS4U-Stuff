@@ -7,7 +7,7 @@ public class menu extends JFrame implements ActionListener {
     // create buttons
     public menu() {
 
-        setSize(1366, 768);
+        setSize(1300, 700);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -15,7 +15,7 @@ public class menu extends JFrame implements ActionListener {
         layeredPane.setPreferredSize(getSize());
         setContentPane(layeredPane);
 
-        ImageIcon image1 = new ImageIcon("pig game.png");
+        ImageIcon image1 = new ImageIcon("main_menu.png");
         JLabel bg = new JLabel(image1);
         bg.setBounds(0, 0, image1.getIconWidth(), image1.getIconHeight());
         layeredPane.add(bg, Integer.valueOf(0));
