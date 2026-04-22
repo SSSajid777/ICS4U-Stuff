@@ -53,19 +53,19 @@ public class Exercise3 extends JFrame implements ActionListener {
         d2.setBounds(620, 250, 120, 120);
         layeredPane.add(d2, JLayeredPane.PALETTE_LAYER);
 
-        // f3 - player 1 total score, center was (199, -250) -> pixel (199, 251)
+        // f3 - player 1 total score, center was 
         f3.setBounds(99, 221, 200, 60);
         layeredPane.add(f3, JLayeredPane.PALETTE_LAYER);
 
-        // f4 - player 2 total score, center was (1103, -251) -> pixel (1103, 252)
+        // f4 - player 2 total score, center was (1103, -251) 
         f4.setBounds(1003, 222, 200, 60);
         layeredPane.add(f4, JLayeredPane.PALETTE_LAYER);
 
-        // f1 - player 1 round score, center was (200, -505) -> pixel (200, 506)
+        // f1 - player 1 round score, center was (200, -505) 
         f1.setBounds(100, 476, 200, 60);
         layeredPane.add(f1, JLayeredPane.PALETTE_LAYER);
 
-        // f2 - player 2 round score, center was (1105, -503) -> pixel (1105, 504)
+        // f2 - player 2 round score, center was (1105, -503) 
         f2.setBounds(1005, 474, 200, 60);
         layeredPane.add(f2, JLayeredPane.PALETTE_LAYER);
 
@@ -73,25 +73,25 @@ public class Exercise3 extends JFrame implements ActionListener {
         f5.setBounds(500, 30, 300, 40);
         layeredPane.add(f5, JLayeredPane.PALETTE_LAYER);
 
-        // Roll button, center was (502, -502) -> pixel (502, 503)
+        // Roll button, center was (502, -502) -> pixel 
         JButton b1 = new JButton("Roll");
         b1.setBounds(442, 483, 120, 40);
         b1.addActionListener(this);
         layeredPane.add(b1, JLayeredPane.PALETTE_LAYER);
 
-        // Hold button, center was (797, -501) -> pixel (797, 502)
+        // Hold button, center was (797, -501) 
         JButton b2 = new JButton("Hold");
         b2.setBounds(737, 482, 120, 40);
         b2.addActionListener(this);
         layeredPane.add(b2, JLayeredPane.PALETTE_LAYER);
 
-        // Exit button, center was (500, -653) -> pixel (500, 654)
+        // Exit button, center was (500, -653) 
         JButton b4 = new JButton("Exit");
         b4.setBounds(440, 634, 120, 40);
         b4.addActionListener(this);
         layeredPane.add(b4, JLayeredPane.PALETTE_LAYER);
 
-        // Menu button, center was (803, -653) -> pixel (803, 654)
+        // Menu button, center was (803, -653) 
         JButton b3 = new JButton("Menu");
         b3.setBounds(743, 634, 120, 40);
         b3.addActionListener(this);
