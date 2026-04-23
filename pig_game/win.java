@@ -63,7 +63,7 @@ public class win extends JFrame implements ActionListener {
             dispose();
         }
         //if button pressed is the main button
-        if (action.equals("Main")) {
+        if (action.equals("Main Menu")) {
             menu x = new menu();
             x.setVisible(true);
             dispose();
