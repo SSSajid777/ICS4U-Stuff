@@ -46,54 +46,71 @@ public class Exercise3 extends JFrame implements ActionListener {
         // DICES
         // PALETTE_LAYER is the front layer
         d1.setIcon(new ImageIcon("one.png"));
-        d1.setBounds(442, 250, 120, 120);
+        d1.setBounds(450, 270, 100, 100);
         layeredPane.add(d1, JLayeredPane.PALETTE_LAYER);
 
         d2.setIcon(new ImageIcon("two.png"));
-        d2.setBounds(620, 250, 120, 120);
+        d2.setBounds(750, 270, 100, 100);
         layeredPane.add(d2, JLayeredPane.PALETTE_LAYER);
 
-        // f3 - player 1 total score, center was 
+        // SCORE FIELDS
+        f3.setFont(new Font("Arial", Font.BOLD, 24));
+        f3.setForeground(Color.BLUE);
         f3.setBounds(99, 221, 200, 60);
         layeredPane.add(f3, JLayeredPane.PALETTE_LAYER);
 
-        // f4 - player 2 total score, center was (1103, -251) 
+        f4.setFont(new Font("Arial", Font.BOLD, 24));
+        f4.setForeground(Color.RED);
         f4.setBounds(1003, 222, 200, 60);
         layeredPane.add(f4, JLayeredPane.PALETTE_LAYER);
 
-        // f1 - player 1 round score, center was (200, -505) 
+        f1.setFont(new Font("Arial", Font.BOLD, 24));
+        f1.setForeground(Color.BLUE);
         f1.setBounds(100, 476, 200, 60);
         layeredPane.add(f1, JLayeredPane.PALETTE_LAYER);
 
-        // f2 - player 2 round score, center was (1105, -503) 
+        f2.setFont(new Font("Arial", Font.BOLD, 24));
+        f2.setForeground(Color.RED);
         f2.setBounds(1005, 474, 200, 60);
         layeredPane.add(f2, JLayeredPane.PALETTE_LAYER);
 
-        // f5 - turn indicator at top center
-        f5.setBounds(500, 30, 300, 40);
+        // turn indicator
+        f5.setFont(new Font("Arial", Font.BOLD, 28));
+        f5.setForeground(Color.WHITE);
+        f5.setBackground(Color.BLACK);
+        f5.setBounds(450, 20, 400, 55);
         layeredPane.add(f5, JLayeredPane.PALETTE_LAYER);
 
-        // Roll button, center was (502, -502) -> pixel 
+        // BUTTONS
         JButton b1 = new JButton("Roll");
-        b1.setBounds(442, 483, 120, 40);
+        b1.setBackground(Color.GREEN);
+        b1.setFont(new Font("Arial", Font.BOLD, 24));
+        b1.setPreferredSize(new Dimension(150, 55));
+        b1.setBounds(420, 490, 150, 55);
         b1.addActionListener(this);
         layeredPane.add(b1, JLayeredPane.PALETTE_LAYER);
 
-        // Hold button, center was (797, -501) 
         JButton b2 = new JButton("Hold");
-        b2.setBounds(737, 482, 120, 40);
+        b2.setBackground(Color.ORANGE);
+        b2.setFont(new Font("Arial", Font.BOLD, 24));
+        b2.setPreferredSize(new Dimension(150, 55));
+        b2.setBounds(720, 490, 150, 55);
         b2.addActionListener(this);
         layeredPane.add(b2, JLayeredPane.PALETTE_LAYER);
 
-        // Exit button, center was (500, -653) 
         JButton b4 = new JButton("Exit");
-        b4.setBounds(440, 634, 120, 40);
+        b4.setBackground(Color.RED);
+        b4.setFont(new Font("Arial", Font.BOLD, 24));
+        b4.setPreferredSize(new Dimension(150, 55));
+        b4.setBounds(420, 620, 150, 55);
         b4.addActionListener(this);
         layeredPane.add(b4, JLayeredPane.PALETTE_LAYER);
 
-        // Menu button, center was (803, -653) 
         JButton b3 = new JButton("Menu");
-        b3.setBounds(743, 634, 120, 40);
+        b3.setBackground(Color.YELLOW);
+        b3.setFont(new Font("Arial", Font.BOLD, 24));
+        b3.setPreferredSize(new Dimension(150, 55));
+        b3.setBounds(720, 620, 150, 55);
         b3.addActionListener(this);
         layeredPane.add(b3, JLayeredPane.PALETTE_LAYER);
 

@@ -51,6 +51,11 @@ The first player to 100 or more points wins.
         b2.setBounds(170, 400, 70, 35);
         b2.addActionListener(this);
         layeredPane.add(b2, JLayeredPane.PALETTE_LAYER);
+
+        JButton b3 = new JButton("Play");
+        b3.setBounds(275, 400, 70, 35);
+        b3.addActionListener(this);
+        layeredPane.add(b3, JLayeredPane.PALETTE_LAYER);
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -61,6 +66,11 @@ The first player to 100 or more points wins.
         }
         if (action.equals("Menu")) {
             menu x = new menu();
+            x.setVisible(true);
+            dispose();
+        }
+        if (action.equals("Play")) {
+            Exercise3 x = new Exercise3();
             x.setVisible(true);
             dispose();
         }
