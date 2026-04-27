@@ -210,8 +210,24 @@ public class game extends JFrame implements ActionListener {
                     // you need swingutilities so that it will work after the thread animation of the dice
                     SwingUtilities.invokeLater(() -> {
 
-                        // if dice1 is 1, score resets and turn ends
-                        if (number1 + 1 == 1) {
+                        // if both dice are 1, total score resets and turn ends
+                        if (number1 + 1 == 1 && number2 + 1 == 1) {
+                            if (turn % 2 == 0) {
+                                player1_total_score = 0;
+                                player1_round_score = 0;
+                                f1.setText(String.valueOf(player1_total_score));
+                                f3.setText(String.valueOf(player1_round_score));
+                                f5.setText("Player 2's Turn");
+                            } else {
+                                player2_total_score = 0;
+                                player2_round_score = 0;
+                                f2.setText(String.valueOf(player2_total_score));
+                                f4.setText(String.valueOf(player2_round_score));
+                                f5.setText("Player 1's Turn");
+                            }
+                            turn++;
+                        // if only dice1 is 1, round score resets and turn ends
+                        } else if (number1 + 1 == 1) {
                             if (turn % 2 == 0) {
                                 player1_round_score = 0;
                                 f3.setText(String.valueOf(player1_round_score));
@@ -222,33 +238,16 @@ public class game extends JFrame implements ActionListener {
                                 f5.setText("Player 1's Turn");
                             }
                             turn++;
-                        // if dice1 is not 1 and dice2 is 1, score resets and turn ends
-                        } else if (number1 + 1 != 1 && number2 + 1 == 1) {
-                            // if both are 1 total score resets too
-                            if (number1 + 1 == 1 && number2 + 1 == 1) {
-                                if (turn % 2 == 0) {
-                                    player1_total_score = 0;
-                                    player1_round_score = 0;
-                                    f1.setText(String.valueOf(player1_total_score));
-                                    f3.setText(String.valueOf(player1_round_score));
-                                    f5.setText("Player 2's Turn");
-                                } else {
-                                    player2_total_score = 0;
-                                    player2_round_score = 0;
-                                    f2.setText(String.valueOf(player2_total_score));
-                                    f4.setText(String.valueOf(player2_round_score));
-                                    f5.setText("Player 1's Turn");
-                                }
+                        // if only dice2 is 1, round score resets and turn ends
+                        } else if (number2 + 1 == 1) {
+                            if (turn % 2 == 0) {
+                                player1_round_score = 0;
+                                f3.setText(String.valueOf(player1_round_score));
+                                f5.setText("Player 2's Turn");
                             } else {
-                                if (turn % 2 == 0) {
-                                    player1_round_score = 0;
-                                    f3.setText(String.valueOf(player1_round_score));
-                                    f5.setText("Player 2's Turn");
-                                } else {
-                                    player2_round_score = 0;
-                                    f4.setText(String.valueOf(player2_round_score));
-                                    f5.setText("Player 1's Turn");
-                                }
+                                player2_round_score = 0;
+                                f4.setText(String.valueOf(player2_round_score));
+                                f5.setText("Player 1's Turn");
                             }
                             turn++;
                         // no 1 rolled, add to round score
