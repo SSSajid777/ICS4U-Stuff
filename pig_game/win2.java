@@ -1,5 +1,6 @@
 import java.awt.event.*;
 import javax.swing.*;
+import java.awt.*;
 
 public class win2 extends JFrame implements ActionListener {
 
@@ -37,14 +38,18 @@ public class win2 extends JFrame implements ActionListener {
 
         //"Play Again" button
         JButton b1 = new JButton("Play Again");
+        b1.setBackground(Color.GREEN);
+        b1.setFont(new Font("Arial", Font.BOLD, 24));
         b1.addActionListener(this); // calls action listner so that program is able to read user's input
-        b1.setBounds(350, 610, 200, 50);
+        b1.setBounds(300, 610, 200, 50);
         layeredPane.add(b1, JLayeredPane.PALETTE_LAYER);
 
         //"Main" button
         JButton b2 = new JButton("Main");
+        b2.setBackground(Color.YELLOW);
+        b2.setFont(new Font("Arial", Font.BOLD, 24));
         b2.addActionListener(this); // calls action listner so that program is able to read user's input
-        b2.setBounds(750, 610, 200, 50);
+        b2.setBounds(800, 610, 200, 50);
         layeredPane.add(b2, JLayeredPane.PALETTE_LAYER);
     }
 
