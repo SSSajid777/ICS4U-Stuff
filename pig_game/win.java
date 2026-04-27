@@ -21,7 +21,7 @@ public class win extends JFrame implements ActionListener {
         super("Game Over");
 
         // sets size of the screen
-        setSize(725, 457);
+        setSize(1300, 700);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // allows for user to exit the program
 
@@ -29,27 +29,22 @@ public class win extends JFrame implements ActionListener {
         layeredPane.setPreferredSize(getSize());
         setContentPane(layeredPane);
 
-        //addsd text to the 1 label created
-        l1 = new JLabel("Player 1 Wins!");
-        l1.setBounds(245, 190, 300, 50);
-        layeredPane.add(l1, JLayeredPane.PALETTE_LAYER);
-
         // image on panel
-        ImageIcon image1 = new ImageIcon("dice.jpg");
+        ImageIcon image1 = new ImageIcon("P1 win.png");
         JLabel pic = new JLabel(image1);
-        pic.setBounds(150, 0, image1.getIconWidth(), image1.getIconHeight());
+        pic.setBounds(0, 0, image1.getIconWidth(), image1.getIconHeight());
         layeredPane.add(pic, Integer.valueOf(0));
 
         //"Play Again" button
         JButton b1 = new JButton("Play Again");
         b1.addActionListener(this); // calls action listner so that program is able to read user's input
-        b1.setBounds(245, 270, 150, 45);
+        b1.setBounds(350, 610, 200, 50);
         layeredPane.add(b1, JLayeredPane.PALETTE_LAYER);
 
         //"Main" button
         JButton b2 = new JButton("Main");
         b2.addActionListener(this); // calls action listner so that program is able to read user's input
-        b2.setBounds(245, 345, 150, 53);
+        b2.setBounds(750, 610, 200, 50);
         layeredPane.add(b2, JLayeredPane.PALETTE_LAYER);
     }
 
@@ -63,7 +58,7 @@ public class win extends JFrame implements ActionListener {
             dispose();
         }
         //if button pressed is the main button
-        if (action.equals("Main Menu")) {
+        if (action.equals("Main")) {
             menu x = new menu();
             x.setVisible(true);
             dispose();

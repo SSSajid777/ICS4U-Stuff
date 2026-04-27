@@ -11,6 +11,10 @@ public class Exercise3 extends JFrame implements ActionListener {
     JLayeredPane layeredPane = new JLayeredPane();
     static JLabel diceLabel;
     static ImageIcon[] diceImages = new ImageIcon[6]; //array to load dice images
+    public String dice1;
+    public String dice2;
+    public int dice1_value;
+    public int dice2_value;
     // initializes the player scores to zero to start the game
     public int player1_total_score = 0;
     public int player1_round_score = 0;
@@ -83,9 +87,11 @@ public class Exercise3 extends JFrame implements ActionListener {
         layeredPane.add(f4, JLayeredPane.PALETTE_LAYER);
 
         // adds the labels for the dice to the layeredpane
+        d1.setIcon(new ImageIcon(dice1));
         d1.setBounds(450, 270, 100, 100);
         layeredPane.add(d1, JLayeredPane.PALETTE_LAYER);
 
+        d2.setIcon(new ImageIcon(dice2));
         d2.setBounds(750, 270, 100, 100);
         layeredPane.add(d2, JLayeredPane.PALETTE_LAYER);
 

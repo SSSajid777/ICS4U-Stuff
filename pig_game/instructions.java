@@ -15,6 +15,7 @@ public class instructions extends JFrame implements ActionListener {
         layeredPane.setPreferredSize(getSize());
         setContentPane(layeredPane);
 
+        // game background image
         ImageIcon image1 = new ImageIcon("rules.png");
         JLabel bg = new JLabel(image1);
         bg.setBounds(0, 0, image1.getIconWidth(), image1.getIconHeight());

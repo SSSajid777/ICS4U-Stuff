@@ -39,11 +39,6 @@ public class menu extends JFrame implements ActionListener {
         b3.setBounds(950, 610, 200, 50);
         b3.addActionListener(this);
         layeredPane.add(b3, JLayeredPane.PALETTE_LAYER);
-
-        JButton b4 = new JButton("Button Operation");
-        b4.setBounds(1100, 10, 170, 35);
-        b4.addActionListener(this);
-        layeredPane.add(b4, JLayeredPane.PALETTE_LAYER);
     }
 
     // function to play a sound/music
@@ -73,9 +68,6 @@ public class menu extends JFrame implements ActionListener {
             instructions x = new instructions();
             x.setVisible(true);
             dispose();
-        }
-        if (action.equals("Button Operation")) {
-            // opens button operation window
         }
     }
 
