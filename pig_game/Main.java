@@ -26,7 +26,7 @@ public class Main extends JFrame implements ActionListener {
 
         // creates the buttons and sets them up to be used in actionPerformed
         JButton b1 = new JButton("Rules");
-        b1.setBackground(Color.BLUE);
+        b1.setBackground(Color.CYAN);
         b1.setFont(new Font("Arial", Font.BOLD, 20));
         b1.setBounds(150, 610, 200, 50);
         b1.addActionListener(this);
