@@ -1,6 +1,9 @@
 import java.awt.event.*;
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 
 public class menu extends JFrame implements ActionListener {
 
@@ -43,6 +46,18 @@ public class menu extends JFrame implements ActionListener {
         layeredPane.add(b4, JLayeredPane.PALETTE_LAYER);
     }
 
+    // function to play a sound/music
+    public static void music(String sound) {
+        File lol = new File(sound);
+        try {
+            Clip clip = AudioSystem.getClip();
+            clip.open(AudioSystem.getAudioInputStream(lol));
+            clip.start();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public void actionPerformed(ActionEvent e) {
         String action = e.getActionCommand();
 
@@ -66,6 +81,7 @@ public class menu extends JFrame implements ActionListener {
 
     public static void main(String args[]) {
         // adds a new class object and sets it to visible
+        music("menu_music.wav");
         menu x = new menu();
         x.setVisible(true);
     }
