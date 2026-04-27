@@ -11,7 +11,7 @@ public class Main extends JFrame implements ActionListener {
     public Main() {
         // adds a title to the window
 
-        setSize(1300, 730);
+        setSize(1314, 730);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

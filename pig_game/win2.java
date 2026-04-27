@@ -22,7 +22,7 @@ public class win2 extends JFrame implements ActionListener {
         super("Game Over");
 
         // sets size of the screen
-        setSize(1300, 730);
+        setSize(1314, 730);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // allows for user to exit the program
 

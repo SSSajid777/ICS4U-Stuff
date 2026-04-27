@@ -36,7 +36,7 @@ public class game extends JFrame implements ActionListener {
         // adds a title to the window
         super("Pig Game");
         // sets size of the screen
-        setSize(1300, 730);
+        setSize(1314, 730);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // layering setup
