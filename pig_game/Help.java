@@ -7,7 +7,7 @@ public class Help extends JFrame implements ActionListener {
     // create buttons
     public Help() {
 
-        setSize(1300, 700);
+        setSize(1300, 730);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

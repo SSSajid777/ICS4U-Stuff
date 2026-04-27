@@ -36,7 +36,7 @@ public class game extends JFrame implements ActionListener {
         // adds a title to the window
         super("Pig Game");
         // sets size of the screen
-        setSize(1300, 700);
+        setSize(1300, 730);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // layering setup
@@ -99,8 +99,7 @@ public class game extends JFrame implements ActionListener {
         // text field that will display which players turn it is
         f5 = new JTextField(10);
         f5.setFont(new Font("Arial", Font.BOLD, 28));
-        f5.setForeground(Color.WHITE);
-        f5.setBackground(Color.BLACK);
+        f5.setForeground(Color.BLUE);
         f5.setBounds(450, 20, 400, 55);
         f5.setText("Player 1's Turn");
         layeredPane.add(f5, JLayeredPane.PALETTE_LAYER);
@@ -167,6 +166,7 @@ public class game extends JFrame implements ActionListener {
                 f3.setText(String.valueOf(player1_round_score));
 
                 f5.setText("Player 2's Turn");
+                f5.setForeground(Color.RED);
             }
             // if player 2 presses hold
             else {
@@ -177,6 +177,7 @@ public class game extends JFrame implements ActionListener {
                 f4.setText(String.valueOf(player2_round_score));
 
                 f5.setText("Player 1's Turn");
+                f5.setForeground(Color.BLUE);
             }
             turn++; // increase the turn number to switch turns
 
@@ -218,12 +219,14 @@ public class game extends JFrame implements ActionListener {
                                 f1.setText(String.valueOf(player1_total_score));
                                 f3.setText(String.valueOf(player1_round_score));
                                 f5.setText("Player 2's Turn");
+                                f5.setForeground(Color.RED);
                             } else {
                                 player2_total_score = 0;
                                 player2_round_score = 0;
                                 f2.setText(String.valueOf(player2_total_score));
                                 f4.setText(String.valueOf(player2_round_score));
                                 f5.setText("Player 1's Turn");
+                                f5.setForeground(Color.BLUE);
                             }
                             turn++;
                         // if only dice1 is 1, round score resets and turn ends
@@ -232,10 +235,12 @@ public class game extends JFrame implements ActionListener {
                                 player1_round_score = 0;
                                 f3.setText(String.valueOf(player1_round_score));
                                 f5.setText("Player 2's Turn");
+                                f5.setForeground(Color.RED);
                             } else {
                                 player2_round_score = 0;
                                 f4.setText(String.valueOf(player2_round_score));
                                 f5.setText("Player 1's Turn");
+                                f5.setForeground(Color.BLUE);
                             }
                             turn++;
                         // if only dice2 is 1, round score resets and turn ends
@@ -244,10 +249,12 @@ public class game extends JFrame implements ActionListener {
                                 player1_round_score = 0;
                                 f3.setText(String.valueOf(player1_round_score));
                                 f5.setText("Player 2's Turn");
+                                f5.setForeground(Color.RED);
                             } else {
                                 player2_round_score = 0;
                                 f4.setText(String.valueOf(player2_round_score));
                                 f5.setText("Player 1's Turn");
+                                f5.setForeground(Color.BLUE);
                             }
                             turn++;
                         // no 1 rolled, add to round score
