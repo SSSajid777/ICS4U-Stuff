@@ -202,12 +202,46 @@ public class Exercise3 extends JFrame implements ActionListener {
 
                     // you need swingutilities so that it will work after the thread animation of the dice
                     SwingUtilities.invokeLater(() -> {
-                        if (turn % 2 == 0) {
-                            player1_round_score += (number1 + 1) + (number2 + 1);
-                            f3.setText(String.valueOf(player1_round_score));
+                        // if either dice is 1, reset round score and switch turn
+                        if (number1 + 1 == 1 || number2 + 1 == 1) {
+                            // if both dice are 1, reset total score too
+                            if (number1 + 1 == 1 && number2 + 1 == 1) {
+                                if (turn % 2 == 0) {
+                                    player1_total_score = 0;
+                                    player1_round_score = 0;
+                                    f1.setText(String.valueOf(player1_total_score));
+                                    f3.setText(String.valueOf(player1_round_score));
+                                    f5.setText("Player 2's Turn");
+                                } else {
+                                    player2_total_score = 0;
+                                    player2_round_score = 0;
+                                    f2.setText(String.valueOf(player2_total_score));
+                                    f4.setText(String.valueOf(player2_round_score));
+                                    f5.setText("Player 1's Turn");
+                                }
+                                turn++;
+                            } else {
+                                // single 1 rolled, just reset round score and switch turn
+                                if (turn % 2 == 0) {
+                                    player1_round_score = 0;
+                                    f3.setText(String.valueOf(player1_round_score));
+                                    f5.setText("Player 2's Turn");
+                                } else {
+                                    player2_round_score = 0;
+                                    f4.setText(String.valueOf(player2_round_score));
+                                    f5.setText("Player 1's Turn");
+                                }
+                                turn++;
+                            }
                         } else {
-                            player2_round_score += (number1 + 1) + (number2 + 1);
-                            f4.setText(String.valueOf(player2_round_score));
+                            // no 1 rolled, add to round score
+                            if (turn % 2 == 0) {
+                                player1_round_score += (number1 + 1) + (number2 + 1);
+                                f3.setText(String.valueOf(player1_round_score));
+                            } else {
+                                player2_round_score += (number1 + 1) + (number2 + 1);
+                                f4.setText(String.valueOf(player2_round_score));
+                            }
                         }
                     });
 
