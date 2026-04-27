@@ -2,10 +2,10 @@ import java.awt.event.*;
 import javax.swing.*;
 import java.awt.*;
 
-public class instructions extends JFrame implements ActionListener {
+public class Help extends JFrame implements ActionListener {
 
     // create buttons
-    public instructions() {
+    public Help() {
 
         setSize(1300, 700);
         setVisible(true);
@@ -51,12 +51,12 @@ public class instructions extends JFrame implements ActionListener {
             System.exit(0);
         }
         if (action.equals("Menu")) {
-            menu x = new menu();
+            Main x = new Main();
             x.setVisible(true);
             dispose();
         }
         if (action.equals("Play")) {
-            Exercise3 x = new Exercise3();
+            game x = new game();
             x.setVisible(true);
             dispose();
         }
@@ -64,7 +64,7 @@ public class instructions extends JFrame implements ActionListener {
 
     public static void main(String args[]) {
         // adds a new class object and sets it to visible
-        instructions x = new instructions();
+        Help x = new Help();
         x.setVisible(true);
     }
 }

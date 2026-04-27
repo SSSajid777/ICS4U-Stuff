@@ -58,13 +58,13 @@ public class win2 extends JFrame implements ActionListener {
 
         //if button pressed is the play again button
         if (action.equals("Play Again")) {
-            Exercise3 x = new Exercise3();
+            game x = new game();
             x.setVisible(true);
             dispose();
         }
         //if button pressed is the main button
         if (action.equals("Main")) {
-            menu x = new menu();
+            Main x = new Main();
             x.setVisible(true);
             dispose();
         }

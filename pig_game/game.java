@@ -1,3 +1,4 @@
+// imports for java swing, action events and random
 import java.awt.event.*;
 import java.util.Random;
 import javax.swing.*;
@@ -6,16 +7,16 @@ import java.io.File;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
-public class Exercise3 extends JFrame implements ActionListener {
+public class game extends JFrame implements ActionListener {
 
     JLayeredPane layeredPane = new JLayeredPane();
     static JLabel diceLabel;
-    static ImageIcon[] diceImages = new ImageIcon[6]; //array to load dice images
+    static ImageIcon[] diceImages = new ImageIcon[6];
     public String dice1;
     public String dice2;
     public int dice1_value;
     public int dice2_value;
-    // initializes the player scores to zero to start the game
+    // initialzes the player scores to zero to start the game
     public int player1_total_score = 0;
     public int player1_round_score = 0;
     public int player2_total_score = 0;
@@ -31,7 +32,7 @@ public class Exercise3 extends JFrame implements ActionListener {
     // creates the text fields used in the game
     JTextField f1, f2, f3, f4, f5;
 
-    public Exercise3() {
+    public game() {
         // adds a title to the window
         super("Pig Game");
         // sets size of the screen
@@ -151,7 +152,7 @@ public class Exercise3 extends JFrame implements ActionListener {
         }
         // if user presses menu button, take them back to the menu
         if (action.equals("Menu")) {
-            menu x = new menu();
+            Main x = new Main();
             x.setVisible(true);
             dispose();
         }
@@ -208,9 +209,22 @@ public class Exercise3 extends JFrame implements ActionListener {
 
                     // you need swingutilities so that it will work after the thread animation of the dice
                     SwingUtilities.invokeLater(() -> {
-                        // if either dice is 1, reset round score and switch turn
-                        if (number1 + 1 == 1 || number2 + 1 == 1) {
-                            // if both dice are 1, reset total score too
+
+                        // if dice1 is 1, score resets and turn ends
+                        if (number1 + 1 == 1) {
+                            if (turn % 2 == 0) {
+                                player1_round_score = 0;
+                                f3.setText(String.valueOf(player1_round_score));
+                                f5.setText("Player 2's Turn");
+                            } else {
+                                player2_round_score = 0;
+                                f4.setText(String.valueOf(player2_round_score));
+                                f5.setText("Player 1's Turn");
+                            }
+                            turn++;
+                        // if dice1 is not 1 and dice2 is 1, score resets and turn ends
+                        } else if (number1 + 1 != 1 && number2 + 1 == 1) {
+                            // if both are 1 total score resets too
                             if (number1 + 1 == 1 && number2 + 1 == 1) {
                                 if (turn % 2 == 0) {
                                     player1_total_score = 0;
@@ -225,9 +239,7 @@ public class Exercise3 extends JFrame implements ActionListener {
                                     f4.setText(String.valueOf(player2_round_score));
                                     f5.setText("Player 1's Turn");
                                 }
-                                turn++;
                             } else {
-                                // single 1 rolled, just reset round score and switch turn
                                 if (turn % 2 == 0) {
                                     player1_round_score = 0;
                                     f3.setText(String.valueOf(player1_round_score));
@@ -237,10 +249,10 @@ public class Exercise3 extends JFrame implements ActionListener {
                                     f4.setText(String.valueOf(player2_round_score));
                                     f5.setText("Player 1's Turn");
                                 }
-                                turn++;
                             }
+                            turn++;
+                        // no 1 rolled, add to round score
                         } else {
-                            // no 1 rolled, add to round score
                             if (turn % 2 == 0) {
                                 player1_round_score += (number1 + 1) + (number2 + 1);
                                 f3.setText(String.valueOf(player1_round_score));
@@ -272,7 +284,7 @@ public class Exercise3 extends JFrame implements ActionListener {
 
     public static void main(String args[]) {
         // adds a new class object and sets it to visible
-        Exercise3 x = new Exercise3();
-        x.setVisible(true);
+        game y = new game();
+        y.setVisible(true);
     }
 }

@@ -5,10 +5,10 @@ import java.io.File;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
-public class menu extends JFrame implements ActionListener {
+public class Main extends JFrame implements ActionListener {
 
     // create buttons
-    public menu() {
+    public Main() {
         // adds a title to the window
 
         setSize(1300, 700);
@@ -60,12 +60,12 @@ public class menu extends JFrame implements ActionListener {
             System.exit(0);
         }
         if (action.equals("Play")) {
-            Exercise3 x = new Exercise3();
+            game x = new game();
             x.setVisible(true);
             dispose();
         }
         if (action.equals("Rules")) {
-            instructions x = new instructions();
+            Help x = new Help();
             x.setVisible(true);
             dispose();
         }
@@ -74,7 +74,7 @@ public class menu extends JFrame implements ActionListener {
     public static void main(String args[]) {
         // adds a new class object and sets it to visible
         music("menu_music.wav");
-        menu x = new menu();
+        Main x = new Main();
         x.setVisible(true);
     }
 }
