@@ -55,7 +55,7 @@ public class game extends JFrame implements ActionListener {
         bg.setBounds(0, 0, image1.getIconWidth(), image1.getIconHeight());
         layeredPane.add(bg, Integer.valueOf(0));
 
-        // player 1 total score field on the left side
+        // player 1 total score on the left side
         f1 = new JTextField(10);
         f1.setFont(new Font("Arial", Font.BOLD, 24));
         f1.setForeground(Color.BLUE);
@@ -63,7 +63,7 @@ public class game extends JFrame implements ActionListener {
         f1.setText(String.valueOf(player1_total_score));
         layeredPane.add(f1, JLayeredPane.PALETTE_LAYER);
 
-        // player 1 round score field on the left side
+        // player 1 round score on the left side
         f3 = new JTextField(10);
         f3.setFont(new Font("Arial", Font.BOLD, 24));
         f3.setForeground(Color.BLUE);
@@ -71,7 +71,7 @@ public class game extends JFrame implements ActionListener {
         f3.setText(String.valueOf(player1_round_score));
         layeredPane.add(f3, JLayeredPane.PALETTE_LAYER);
 
-        // player 2 total score field on the right side
+        // player 2 total score on the right side
         f2 = new JTextField(10);
         f2.setFont(new Font("Arial", Font.BOLD, 24));
         f2.setForeground(Color.RED);
@@ -79,7 +79,7 @@ public class game extends JFrame implements ActionListener {
         f2.setText(String.valueOf(player2_total_score));
         layeredPane.add(f2, JLayeredPane.PALETTE_LAYER);
 
-        // player 2 round score field on the right side
+        // player 2 round score on the right side
         f4 = new JTextField(10);
         f4.setFont(new Font("Arial", Font.BOLD, 24));
         f4.setForeground(Color.RED);
@@ -104,7 +104,7 @@ public class game extends JFrame implements ActionListener {
         f5.setText("Player 1's Turn");
         layeredPane.add(f5, JLayeredPane.PALETTE_LAYER);
 
-        // roll button to roll the dice
+        // "Roll" button
         JButton b1 = new JButton("Roll");
         b1.setBackground(Color.GREEN);
         b1.setFont(new Font("Arial", Font.BOLD, 24));
@@ -113,7 +113,7 @@ public class game extends JFrame implements ActionListener {
         b1.setBounds(420, 490, 150, 55);
         layeredPane.add(b1, JLayeredPane.PALETTE_LAYER);
 
-        // hold button to bank the round score
+        // "Hold" button
         JButton b2 = new JButton("Hold");
         b2.setBackground(Color.ORANGE);
         b2.setFont(new Font("Arial", Font.BOLD, 24));
@@ -122,7 +122,7 @@ public class game extends JFrame implements ActionListener {
         b2.setBounds(720, 490, 150, 55);
         layeredPane.add(b2, JLayeredPane.PALETTE_LAYER);
 
-        // menu button to go back to main menu
+        // "Menu" button
         JButton b3 = new JButton("Menu");
         b3.setBackground(Color.YELLOW);
         b3.setFont(new Font("Arial", Font.BOLD, 24));
@@ -131,7 +131,7 @@ public class game extends JFrame implements ActionListener {
         b3.setBounds(720, 620, 150, 55);
         layeredPane.add(b3, JLayeredPane.PALETTE_LAYER);
 
-        // exit button to close the game
+        // "Exit" button
         JButton b4 = new JButton("Exit");
         b4.setBackground(Color.RED);
         b4.setFont(new Font("Arial", Font.BOLD, 24));

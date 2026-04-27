@@ -19,6 +19,7 @@ public class Main extends JFrame implements ActionListener {
         layeredPane.setPreferredSize(getSize());
         setContentPane(layeredPane);
 
+        // game background image
         ImageIcon image1 = new ImageIcon("main_menu.png");
         JLabel bg = new JLabel(image1);
         bg.setBounds(0, 0, image1.getIconWidth(), image1.getIconHeight());
@@ -62,14 +63,17 @@ public class Main extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         String action = e.getActionCommand();
 
+        // if button pressed is the exit button
         if (action.equals("Exit")) {
             System.exit(0);
         }
+        // if button pressed is the play button
         if (action.equals("Play")) {
             game x = new game();
             x.setVisible(true);
             dispose();
         }
+        // if button pressed is the rules button
         if (action.equals("Rules")) {
             Help x = new Help();
             x.setVisible(true);

@@ -26,7 +26,7 @@ public class win extends JFrame implements ActionListener {
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // allows for user to exit the program
 
-        // LAYERING SETUP
+        // layering setup
         layeredPane.setPreferredSize(getSize());
         setContentPane(layeredPane);
 
