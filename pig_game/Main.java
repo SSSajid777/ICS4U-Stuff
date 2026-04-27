@@ -26,16 +26,22 @@ public class Main extends JFrame implements ActionListener {
 
         // creates the buttons and sets them up to be used in actionPerformed
         JButton b1 = new JButton("Rules");
+        b1.setBackground(Color.BLUE);
+        b1.setFont(new Font("Arial", Font.BOLD, 20));
         b1.setBounds(150, 610, 200, 50);
         b1.addActionListener(this);
         layeredPane.add(b1, JLayeredPane.PALETTE_LAYER);
 
         JButton b2 = new JButton("Play");
+        b2.setBackground(Color.GREEN);
+        b2.setFont(new Font("Arial", Font.BOLD, 20));
         b2.setBounds(550, 610, 200, 50);
         b2.addActionListener(this);
         layeredPane.add(b2, JLayeredPane.PALETTE_LAYER);
 
         JButton b3 = new JButton("Exit");
+        b3.setBackground(Color.RED);
+        b3.setFont(new Font("Arial", Font.BOLD, 20));
         b3.setBounds(950, 610, 200, 50);
         b3.addActionListener(this);
         layeredPane.add(b3, JLayeredPane.PALETTE_LAYER);
