@@ -292,5 +292,11 @@ public class game extends JFrame implements ActionListener {
         // adds a new class object and sets it to visible
         game y = new game();
         y.setVisible(true);
+        
     }
+
+
+    
+
+    
 }

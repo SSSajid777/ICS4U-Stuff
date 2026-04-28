@@ -23,6 +23,7 @@ public class win2 extends JFrame implements ActionListener {
 
         // adds a title to the window
         super("Game Over");
+        music("win.wav");
 
         // sets size of the screen
         setSize(1314, 730);
@@ -87,7 +88,6 @@ public class win2 extends JFrame implements ActionListener {
 
     public static void main(String args[]) {
         //adds a new class object and sets it to visible
-        music("win.wav");
         win2 x = new win2();
         x.setVisible(true);
     }

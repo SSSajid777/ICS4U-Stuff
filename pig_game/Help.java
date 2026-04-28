@@ -1,4 +1,8 @@
 import java.awt.event.*;
+import java.io.File;
+
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.*;
 import java.awt.*;
 
@@ -68,9 +72,21 @@ public class Help extends JFrame implements ActionListener {
         }
     }
 
+    public static void music(String sound) {
+        File lol = new File(sound);
+        try {
+            Clip clip = AudioSystem.getClip();
+            clip.open(AudioSystem.getAudioInputStream(lol));
+            clip.start();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String args[]) {
         // adds a new class object and sets it to visible
         Help x = new Help();
+        music("help_music.wav");
         x.setVisible(true);
     }
 }
