@@ -31,6 +31,7 @@ public class game extends JFrame implements ActionListener {
     JLabel d2 = new JLabel();
     // creates the text fields used in the game
     JTextField f1, f2, f3, f4, f5;
+    static Clip clip;
 
     public game() {
         // adds a title to the window
@@ -39,6 +40,7 @@ public class game extends JFrame implements ActionListener {
         setSize(1314, 730);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        music("game_music.wav");
         // layering setup
         layeredPane.setPreferredSize(getSize());
         setContentPane(layeredPane);
@@ -280,7 +282,10 @@ public class game extends JFrame implements ActionListener {
     public static void music(String sound) {
         File lol = new File(sound);
         try {
-            Clip clip = AudioSystem.getClip();
+            if (clip != null) {
+                clip.stop();
+            }
+            clip = AudioSystem.getClip();
             clip.open(AudioSystem.getAudioInputStream(lol));
             clip.start();
         } catch (Exception e) {
@@ -292,11 +297,5 @@ public class game extends JFrame implements ActionListener {
         // adds a new class object and sets it to visible
         game y = new game();
         y.setVisible(true);
-        
     }
-
-
-    
-
-    
 }

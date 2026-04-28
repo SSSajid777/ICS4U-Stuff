@@ -1,19 +1,21 @@
 import java.awt.event.*;
-import java.io.File;
-
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 
 public class Help extends JFrame implements ActionListener {
 
     // create buttons
+    static Clip clip;
+
     public Help() {
 
         setSize(1314, 730);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        music("rules_music.wav");
 
         // layering setup
         JLayeredPane layeredPane = new JLayeredPane();
@@ -51,6 +53,21 @@ public class Help extends JFrame implements ActionListener {
         layeredPane.add(b3, JLayeredPane.PALETTE_LAYER);
     }
 
+    // function to play a sound/music
+    public static void music(String sound) {
+        File lol = new File(sound);
+        try {
+            if (clip != null) {
+                clip.stop();
+            }
+            clip = AudioSystem.getClip();
+            clip.open(AudioSystem.getAudioInputStream(lol));
+            clip.start();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public void actionPerformed(ActionEvent e) {
         String action = e.getActionCommand();
 
@@ -72,21 +89,9 @@ public class Help extends JFrame implements ActionListener {
         }
     }
 
-    public static void music(String sound) {
-        File lol = new File(sound);
-        try {
-            Clip clip = AudioSystem.getClip();
-            clip.open(AudioSystem.getAudioInputStream(lol));
-            clip.start();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     public static void main(String args[]) {
         // adds a new class object and sets it to visible
         Help x = new Help();
-        music("help_music.wav");
         x.setVisible(true);
     }
 }

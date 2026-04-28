@@ -8,6 +8,8 @@ import javax.sound.sampled.Clip;
 public class Main extends JFrame implements ActionListener {
 
     // create buttons
+    static Clip clip;
+
     public Main() {
         // adds a title to the window
 
@@ -52,7 +54,10 @@ public class Main extends JFrame implements ActionListener {
     public static void music(String sound) {
         File lol = new File(sound);
         try {
-            Clip clip = AudioSystem.getClip();
+            if (clip != null) {
+                clip.stop();
+            }
+            clip = AudioSystem.getClip();
             clip.open(AudioSystem.getAudioInputStream(lol));
             clip.start();
         } catch (Exception e) {
