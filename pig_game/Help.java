@@ -7,18 +7,22 @@ import javax.sound.sampled.Clip;
 
 public class Help extends JFrame implements ActionListener {
 
+    JLayeredPane layeredPane = new JLayeredPane();
+    // create labels
+    JLabel l1;
     // create buttons
+    JButton b1, b2, b3;
     static Clip clip;
 
     public Help() {
-
+        // adds a title to the window
+        super("Help Menu");
+        // sets size of the screen
         setSize(1314, 730);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         music("rules_music.wav");
-
         // layering setup
-        JLayeredPane layeredPane = new JLayeredPane();
         layeredPane.setPreferredSize(getSize());
         setContentPane(layeredPane);
 
@@ -32,24 +36,24 @@ public class Help extends JFrame implements ActionListener {
         JButton b1 = new JButton("Exit");
         b1.setBackground(Color.RED);
         b1.setFont(new Font("Arial", Font.BOLD, 24));
-        b1.setBounds(150, 610, 200, 50);
         b1.addActionListener(this); // calls action listner so that program is able to read user's input
+        b1.setBounds(150, 610, 200, 50);
         layeredPane.add(b1, JLayeredPane.PALETTE_LAYER);
 
         // "Menu" button
         JButton b2 = new JButton("Menu");
         b2.setBackground(Color.YELLOW);
         b2.setFont(new Font("Arial", Font.BOLD, 24));
-        b2.setBounds(550, 610, 200, 50);
         b2.addActionListener(this); // calls action listner so that program is able to read user's input
+        b2.setBounds(550, 610, 200, 50);
         layeredPane.add(b2, JLayeredPane.PALETTE_LAYER);
 
         // "Play" button
         JButton b3 = new JButton("Play");
         b3.setBackground(Color.GREEN);
         b3.setFont(new Font("Arial", Font.BOLD, 24));
-        b3.setBounds(950, 610, 200, 50);
         b3.addActionListener(this); // calls action listner so that program is able to read user's input
+        b3.setBounds(950, 610, 200, 50);
         layeredPane.add(b3, JLayeredPane.PALETTE_LAYER);
     }
 
@@ -90,7 +94,7 @@ public class Help extends JFrame implements ActionListener {
     }
 
     public static void main(String args[]) {
-        // adds a new class object and sets it to visible
+        //adds a new class object and sets it to visible
         Help x = new Help();
         x.setVisible(true);
     }

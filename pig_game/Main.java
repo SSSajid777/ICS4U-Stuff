@@ -7,17 +7,21 @@ import javax.sound.sampled.Clip;
 
 public class Main extends JFrame implements ActionListener {
 
+    JLayeredPane layeredPane = new JLayeredPane();
+    // create labels
+    JLabel l1;
     // create buttons
+    JButton b1, b2, b3;
     static Clip clip;
 
     public Main() {
         // adds a title to the window
-
+        super("Main Menu");
+        // sets size of the screen
         setSize(1314, 730);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        JLayeredPane layeredPane = new JLayeredPane();
+        // layering setup
         layeredPane.setPreferredSize(getSize());
         setContentPane(layeredPane);
 
@@ -31,22 +35,24 @@ public class Main extends JFrame implements ActionListener {
         JButton b1 = new JButton("Rules");
         b1.setBackground(Color.CYAN);
         b1.setFont(new Font("Arial", Font.BOLD, 20));
+        b1.addActionListener(this); // calls action listner so that program is able to read user's input
         b1.setBounds(150, 610, 200, 50);
-        b1.addActionListener(this);
         layeredPane.add(b1, JLayeredPane.PALETTE_LAYER);
 
+        // "Play" button
         JButton b2 = new JButton("Play");
         b2.setBackground(Color.GREEN);
         b2.setFont(new Font("Arial", Font.BOLD, 20));
+        b2.addActionListener(this); // calls action listner so that program is able to read user's input
         b2.setBounds(550, 610, 200, 50);
-        b2.addActionListener(this);
         layeredPane.add(b2, JLayeredPane.PALETTE_LAYER);
 
+        // "Exit" button
         JButton b3 = new JButton("Exit");
         b3.setBackground(Color.RED);
         b3.setFont(new Font("Arial", Font.BOLD, 20));
+        b3.addActionListener(this); // calls action listner so that program is able to read user's input
         b3.setBounds(950, 610, 200, 50);
-        b3.addActionListener(this);
         layeredPane.add(b3, JLayeredPane.PALETTE_LAYER);
     }
 

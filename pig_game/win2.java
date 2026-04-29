@@ -18,6 +18,7 @@ public class win2 extends JFrame implements ActionListener {
 
     // create layered pane window
     JLayeredPane layeredPane = new JLayeredPane();
+    static Clip clip;
 
     public win2() {
 
@@ -61,7 +62,10 @@ public class win2 extends JFrame implements ActionListener {
     public static void music(String sound) {
         File lol = new File(sound);
         try {
-            Clip clip = AudioSystem.getClip();
+            if (clip != null) {
+                clip.stop();
+            }
+            clip = AudioSystem.getClip();
             clip.open(AudioSystem.getAudioInputStream(lol));
             clip.start();
         } catch (Exception e) {

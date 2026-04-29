@@ -16,22 +16,28 @@ public class game extends JFrame implements ActionListener {
     public String dice2;
     public int dice1_value;
     public int dice2_value;
-    // initialzes the player scores to zero to start the game
-    public int player1_total_score = 0;
-    public int player1_round_score = 0;
-    public int player2_total_score = 0;
-    public int player2_round_score = 0;
     // used to switch turns for player 1 and 2
-    public int turn = 0;
+    public boolean turn = true;
     // to add the scores from the dice
     public int number1;
     public int number2;
+    public int p1ts = 0;
+    public int p2ts = 0;
+    public int score = 0;
+    public static String p1 = "Player 1's Turn";
+    public static String p2 = "Player 2's Turn";
+    static Clip clip;
+
     // this is the labels used to display dice1 and dice2
     JLabel d1 = new JLabel();
     JLabel d2 = new JLabel();
     // creates the text fields used in the game
     JTextField f1, f2, f3, f4, f5;
-    static Clip clip;
+    // creates the buttons used in the game
+    JButton b1 = new JButton("Roll");
+    JButton b2 = new JButton("Hold");
+    JButton b3 = new JButton("Menu");
+    JButton b4 = new JButton("Exit");
 
     public game() {
         // adds a title to the window
@@ -44,6 +50,7 @@ public class game extends JFrame implements ActionListener {
         // layering setup
         layeredPane.setPreferredSize(getSize());
         setContentPane(layeredPane);
+
         // Images for the dice animation
         diceImages[0] = new ImageIcon("one.png");
         diceImages[1] = new ImageIcon("two.png");
@@ -51,6 +58,7 @@ public class game extends JFrame implements ActionListener {
         diceImages[3] = new ImageIcon("four.png");
         diceImages[4] = new ImageIcon("five.png");
         diceImages[5] = new ImageIcon("six.png");
+
         // game background image
         ImageIcon image1 = new ImageIcon("DiceBoard.png");
         JLabel bg = new JLabel(image1);
@@ -62,7 +70,7 @@ public class game extends JFrame implements ActionListener {
         f1.setFont(new Font("Arial", Font.BOLD, 24));
         f1.setForeground(Color.BLUE);
         f1.setBounds(99, 221, 200, 60);
-        f1.setText(String.valueOf(player1_total_score));
+        f1.setText(String.valueOf(score));
         layeredPane.add(f1, JLayeredPane.PALETTE_LAYER);
 
         // player 1 round score on the left side
@@ -70,7 +78,7 @@ public class game extends JFrame implements ActionListener {
         f3.setFont(new Font("Arial", Font.BOLD, 24));
         f3.setForeground(Color.BLUE);
         f3.setBounds(100, 476, 200, 60);
-        f3.setText(String.valueOf(player1_round_score));
+        f3.setText(String.valueOf(score));
         layeredPane.add(f3, JLayeredPane.PALETTE_LAYER);
 
         // player 2 total score on the right side
@@ -78,7 +86,7 @@ public class game extends JFrame implements ActionListener {
         f2.setFont(new Font("Arial", Font.BOLD, 24));
         f2.setForeground(Color.RED);
         f2.setBounds(1003, 222, 200, 60);
-        f2.setText(String.valueOf(player2_total_score));
+        f2.setText(String.valueOf(score));
         layeredPane.add(f2, JLayeredPane.PALETTE_LAYER);
 
         // player 2 round score on the right side
@@ -86,7 +94,7 @@ public class game extends JFrame implements ActionListener {
         f4.setFont(new Font("Arial", Font.BOLD, 24));
         f4.setForeground(Color.RED);
         f4.setBounds(1005, 474, 200, 60);
-        f4.setText(String.valueOf(player2_round_score));
+        f4.setText(String.valueOf(score));
         layeredPane.add(f4, JLayeredPane.PALETTE_LAYER);
 
         // adds the labels for the dice to the layeredpane
@@ -103,11 +111,10 @@ public class game extends JFrame implements ActionListener {
         f5.setFont(new Font("Arial", Font.BOLD, 28));
         f5.setForeground(Color.BLUE);
         f5.setBounds(450, 20, 400, 55);
-        f5.setText("Player 1's Turn");
+        f5.setText(p1);
         layeredPane.add(f5, JLayeredPane.PALETTE_LAYER);
 
         // "Roll" button
-        JButton b1 = new JButton("Roll");
         b1.setBackground(Color.GREEN);
         b1.setFont(new Font("Arial", Font.BOLD, 24));
         b1.setPreferredSize(new Dimension(150, 55));
@@ -116,7 +123,6 @@ public class game extends JFrame implements ActionListener {
         layeredPane.add(b1, JLayeredPane.PALETTE_LAYER);
 
         // "Hold" button
-        JButton b2 = new JButton("Hold");
         b2.setBackground(Color.ORANGE);
         b2.setFont(new Font("Arial", Font.BOLD, 24));
         b2.setPreferredSize(new Dimension(150, 55));
@@ -125,7 +131,6 @@ public class game extends JFrame implements ActionListener {
         layeredPane.add(b2, JLayeredPane.PALETTE_LAYER);
 
         // "Menu" button
-        JButton b3 = new JButton("Menu");
         b3.setBackground(Color.YELLOW);
         b3.setFont(new Font("Arial", Font.BOLD, 24));
         b3.setPreferredSize(new Dimension(150, 55));
@@ -134,7 +139,6 @@ public class game extends JFrame implements ActionListener {
         layeredPane.add(b3, JLayeredPane.PALETTE_LAYER);
 
         // "Exit" button
-        JButton b4 = new JButton("Exit");
         b4.setBackground(Color.RED);
         b4.setFont(new Font("Arial", Font.BOLD, 24));
         b4.setPreferredSize(new Dimension(150, 55));
@@ -160,34 +164,31 @@ public class game extends JFrame implements ActionListener {
 
         if (action.equals("Hold")) {
             // if player 1 presses hold
-            if (turn % 2 == 0) {
-                player1_total_score += player1_round_score;
-                player1_round_score = 0;
-
-                f1.setText(String.valueOf(player1_total_score));
-                f3.setText(String.valueOf(player1_round_score));
-
-                f5.setText("Player 2's Turn");
+            if (turn) {
+                p1ts += score;
+                score = 0;
+                f1.setText(String.valueOf(p1ts));
+                f3.setText(String.valueOf(score));
+                f5.setText(p2);
                 f5.setForeground(Color.RED);
+                turn = false;
             }
             // if player 2 presses hold
             else {
-                player2_total_score += player2_round_score;
-                player2_round_score = 0;
-
-                f2.setText(String.valueOf(player2_total_score));
-                f4.setText(String.valueOf(player2_round_score));
-
-                f5.setText("Player 1's Turn");
+                p2ts += score;
+                score = 0;
+                f2.setText(String.valueOf(p2ts));
+                f4.setText(String.valueOf(score));
+                f5.setText(p1);
                 f5.setForeground(Color.BLUE);
+                turn = true;
             }
-            turn++; // increase the turn number to switch turns
 
-            if (player1_total_score >= 100) {
+            if (p1ts >= 100) {
                 win x = new win();
                 x.setVisible(true);
                 dispose();
-            } else if (player2_total_score >= 100) {
+            } else if (p2ts >= 100) {
                 win2 x = new win2();
                 x.setVisible(true);
                 dispose();
@@ -209,65 +210,171 @@ public class game extends JFrame implements ActionListener {
                         d2.setIcon(diceImages[number2]);
                         Thread.sleep(45);
                     }
+                    System.out.println(number1 + 1);
+                    System.out.println(number2 + 1);
 
                     // you need swingutilities so that it will work after the thread animation of the dice
                     SwingUtilities.invokeLater(() -> {
+                        Random die1 = new Random();
+                        Random die2 = new Random();
+                        int dice1 = die1.nextInt(1, 7);
+                        int dice2 = die2.nextInt(1, 7);
+
+                        // if doubles are rolled, player must roll again so hold is disabled
+                        if (dice1 == dice2 && dice1 > 1 && dice2 > 1) {
+                            b2.setEnabled(false);
+                        } else {
+                            b2.setEnabled(true);
+                        }
 
                         // if both dice are 1, total score resets and turn ends
-                        if (number1 + 1 == 1 && number2 + 1 == 1) {
-                            if (turn % 2 == 0) {
-                                player1_total_score = 0;
-                                player1_round_score = 0;
-                                f1.setText(String.valueOf(player1_total_score));
-                                f3.setText(String.valueOf(player1_round_score));
-                                f5.setText("Player 2's Turn");
+                        if (dice1 == 1 && dice2 == 1) {
+                            d1.setIcon(new ImageIcon("one.png"));
+                            d1.setBounds(450, 270, 100, 100);
+                            d2.setIcon(new ImageIcon("one.png"));
+                            d2.setBounds(750, 270, 100, 100);
+                            score = 0;
+                            if (turn == true) {
+                                p1ts = 0;
+                                f1.setText(String.valueOf(p1ts));
+                                f3.setText(String.valueOf(score));
+                                f5.setText(p2);
                                 f5.setForeground(Color.RED);
-                            } else {
-                                player2_total_score = 0;
-                                player2_round_score = 0;
-                                f2.setText(String.valueOf(player2_total_score));
-                                f4.setText(String.valueOf(player2_round_score));
-                                f5.setText("Player 1's Turn");
+                                turn = false;
+                            } else if (turn == false) {
+                                p2ts = 0;
+                                f2.setText(String.valueOf(p2ts));
+                                f4.setText(String.valueOf(score));
+                                f5.setText(p1);
+                                f5.setForeground(Color.BLUE);
+                                turn = true;
+                            }
+                        } else if (dice1 == 1) {
+                            d1.setIcon(new ImageIcon("one.png"));
+                            d1.setBounds(450, 270, 100, 100);
+                            score = 0;
+                            if (turn == true) {
+                                turn = false;
+                                f3.setText(String.valueOf(score));
+                                f5.setText(p2);
+                                f5.setForeground(Color.RED);
+                            } else if (turn == false) {
+                                turn = true;
+                                f4.setText(String.valueOf(score));
+                                f5.setText(p1);
                                 f5.setForeground(Color.BLUE);
                             }
-                            turn++;
-                        // if only dice1 is 1, round score resets and turn ends
-                        } else if (number1 + 1 == 1) {
-                            if (turn % 2 == 0) {
-                                player1_round_score = 0;
-                                f3.setText(String.valueOf(player1_round_score));
-                                f5.setText("Player 2's Turn");
+                        } else if (dice1 == 2) {
+                            d1.setIcon(new ImageIcon("two.png"));
+                            d1.setBounds(450, 270, 100, 100);
+                            score += 2;
+                            if (turn == true) {
+                                f3.setText(String.valueOf(score));
+                            } else if (turn == false) {
+                                f4.setText(String.valueOf(score));
+                            }
+                        } else if (dice1 == 3) {
+                            d1.setIcon(new ImageIcon("three.png"));
+                            d1.setBounds(450, 270, 100, 100);
+                            score += 3;
+                            if (turn == true) {
+                                f3.setText(String.valueOf(score));
+                            } else if (turn == false) {
+                                f4.setText(String.valueOf(score));
+                            }
+                        } else if (dice1 == 4) {
+                            d1.setIcon(new ImageIcon("four.png"));
+                            d1.setBounds(450, 270, 100, 100);
+                            score += 4;
+                            if (turn == true) {
+                                f3.setText(String.valueOf(score));
+                            } else if (turn == false) {
+                                f4.setText(String.valueOf(score));
+                            }
+                        } else if (dice1 == 5) {
+                            d1.setIcon(new ImageIcon("five.png"));
+                            d1.setBounds(450, 270, 100, 100);
+                            score += 5;
+                            if (turn == true) {
+                                f3.setText(String.valueOf(score));
+                            } else if (turn == false) {
+                                f4.setText(String.valueOf(score));
+                            }
+                        } else if (dice1 == 6) {
+                            d1.setIcon(new ImageIcon("six.png"));
+                            d1.setBounds(450, 270, 100, 100);
+                            score += 6;
+                            if (turn == true) {
+                                f3.setText(String.valueOf(score));
+                            } else if (turn == false) {
+                                f4.setText(String.valueOf(score));
+                            }
+                        }
+                        if (dice1 > 1 && dice2 == 1) {
+                            d2.setIcon(new ImageIcon("one.png"));
+                            d2.setBounds(750, 270, 100, 100);
+                            score = 0;
+                            if (turn == true) {
+                                turn = false;
+                                f3.setText(String.valueOf(score));
+                                f5.setText(p2);
                                 f5.setForeground(Color.RED);
-                            } else {
-                                player2_round_score = 0;
-                                f4.setText(String.valueOf(player2_round_score));
-                                f5.setText("Player 1's Turn");
+                            } else if (turn == false) {
+                                turn = true;
+                                f4.setText(String.valueOf(score));
+                                f5.setText(p1);
                                 f5.setForeground(Color.BLUE);
                             }
-                            turn++;
-                        // if only dice2 is 1, round score resets and turn ends
-                        } else if (number2 + 1 == 1) {
-                            if (turn % 2 == 0) {
-                                player1_round_score = 0;
-                                f3.setText(String.valueOf(player1_round_score));
-                                f5.setText("Player 2's Turn");
-                                f5.setForeground(Color.RED);
-                            } else {
-                                player2_round_score = 0;
-                                f4.setText(String.valueOf(player2_round_score));
-                                f5.setText("Player 1's Turn");
-                                f5.setForeground(Color.BLUE);
+                        } else if (dice1 > 1 && dice2 == 2) {
+                            d2.setIcon(new ImageIcon("two.png"));
+                            d2.setBounds(750, 270, 100, 100);
+                            score += 2;
+                            if (turn == true) {
+                                f3.setText(String.valueOf(score));
+                            } else if (turn == false) {
+                                f4.setText(String.valueOf(score));
                             }
-                            turn++;
-                        // no 1 rolled, add to round score
-                        } else {
-                            if (turn % 2 == 0) {
-                                player1_round_score += (number1 + 1) + (number2 + 1);
-                                f3.setText(String.valueOf(player1_round_score));
-                            } else {
-                                player2_round_score += (number1 + 1) + (number2 + 1);
-                                f4.setText(String.valueOf(player2_round_score));
+                        } else if (dice1 > 1 && dice2 == 3) {
+                            d2.setIcon(new ImageIcon("three.png"));
+                            d2.setBounds(750, 270, 100, 100);
+                            score += 3;
+                            if (turn == true) {
+                                f3.setText(String.valueOf(score));
+                            } else if (turn == false) {
+                                f4.setText(String.valueOf(score));
                             }
+                        } else if (dice1 > 1 && dice2 == 4) {
+                            d2.setIcon(new ImageIcon("four.png"));
+                            d2.setBounds(750, 270, 100, 100);
+                            score += 4;
+                            if (turn == true) {
+                                f3.setText(String.valueOf(score));
+                            } else if (turn == false) {
+                                f4.setText(String.valueOf(score));
+                            }
+                        } else if (dice1 > 1 && dice2 == 5) {
+                            d2.setIcon(new ImageIcon("five.png"));
+                            d2.setBounds(750, 270, 100, 100);
+                            score += 5;
+                            if (turn == true) {
+                                f3.setText(String.valueOf(score));
+                            } else if (turn == false) {
+                                f4.setText(String.valueOf(score));
+                            }
+                        } else if (dice1 > 1 && dice2 == 6) {
+                            d2.setIcon(new ImageIcon("six.png"));
+                            d2.setBounds(750, 270, 100, 100);
+                            score += 6;
+                            if (turn == true) {
+                                f3.setText(String.valueOf(score));
+                            } else if (turn == false) {
+                                f4.setText(String.valueOf(score));
+                            }
+                        }
+                        if (turn == true) {
+                            f5.setText(String.valueOf(p1));
+                        } else if (turn == false) {
+                            f5.setText(String.valueOf(p2));
                         }
                     });
 
