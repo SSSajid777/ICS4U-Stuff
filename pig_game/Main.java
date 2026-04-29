@@ -17,6 +17,7 @@ public class Main extends JFrame implements ActionListener {
     public Main() {
         // adds a title to the window
         super("Main Menu");
+        music("menu_music.wav");
         // sets size of the screen
         setSize(1314, 730);
         setVisible(true);
@@ -100,7 +101,6 @@ public class Main extends JFrame implements ActionListener {
 
     public static void main(String args[]) {
         // adds a new class object and sets it to visible
-        music("menu_music.wav");
         Main x = new Main();
         x.setVisible(true);
     }
