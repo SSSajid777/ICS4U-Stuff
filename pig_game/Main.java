@@ -71,26 +71,32 @@ public class Main extends JFrame implements ActionListener {
         }
     }
 
-    public void actionPerformed(ActionEvent e) {
-        String action = e.getActionCommand();
+   public void actionPerformed(ActionEvent e) {
+    String action = e.getActionCommand();
 
-        // if button pressed is the exit button
-        if (action.equals("Exit")) {
-            System.exit(0);
-        }
-        // if button pressed is the play button
-        if (action.equals("Play")) {
-            game x = new game();
-            x.setVisible(true);
-            dispose();
-        }
-        // if button pressed is the rules button
-        if (action.equals("Rules")) {
-            Help x = new Help();
-            x.setVisible(true);
-            dispose();
-        }
+    // if button pressed is the exit button
+    if (action.equals("Exit")) {
+        System.exit(0);
     }
+    // if button pressed is the play button
+    if (action.equals("Play")) {
+        if (clip != null) {
+            clip.stop();
+        }
+        game x = new game();
+        x.setVisible(true);
+        dispose();
+    }
+    // if button pressed is the rules button
+    if (action.equals("Rules")) {
+        if (clip != null) {
+            clip.stop();
+        }
+        Help x = new Help();
+        x.setVisible(true);
+        dispose();
+    }
+}
 
     public static void main(String args[]) {
         // adds a new class object and sets it to visible

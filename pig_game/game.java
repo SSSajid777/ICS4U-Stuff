@@ -157,6 +157,9 @@ public class game extends JFrame implements ActionListener {
         }
         // if user presses menu button, take them back to the menu
         if (action.equals("Menu")) {
+            if (clip != null) {
+                clip.stop();
+            }
             Main x = new Main();
             x.setVisible(true);
             dispose();
@@ -185,10 +188,16 @@ public class game extends JFrame implements ActionListener {
             }
 
             if (p1ts >= 100) {
+                if (clip != null) {
+                    clip.stop();
+                }
                 win x = new win();
                 x.setVisible(true);
                 dispose();
             } else if (p2ts >= 100) {
+                if (clip != null) {
+                    clip.stop();
+                }
                 win2 x = new win2();
                 x.setVisible(true);
                 dispose();
@@ -234,6 +243,7 @@ public class game extends JFrame implements ActionListener {
                             d2.setIcon(new ImageIcon("one.png"));
                             d2.setBounds(750, 270, 100, 100);
                             score = 0;
+                            b2.setEnabled(true);
                             if (turn == true) {
                                 p1ts = 0;
                                 f1.setText(String.valueOf(p1ts));
@@ -253,6 +263,7 @@ public class game extends JFrame implements ActionListener {
                             d1.setIcon(new ImageIcon("one.png"));
                             d1.setBounds(450, 270, 100, 100);
                             score = 0;
+                            b2.setEnabled(true);
                             if (turn == true) {
                                 turn = false;
                                 f3.setText(String.valueOf(score));
@@ -314,6 +325,7 @@ public class game extends JFrame implements ActionListener {
                             d2.setIcon(new ImageIcon("one.png"));
                             d2.setBounds(750, 270, 100, 100);
                             score = 0;
+                            b2.setEnabled(true);
                             if (turn == true) {
                                 turn = false;
                                 f3.setText(String.valueOf(score));

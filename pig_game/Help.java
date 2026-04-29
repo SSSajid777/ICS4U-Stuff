@@ -73,25 +73,31 @@ public class Help extends JFrame implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
-        String action = e.getActionCommand();
+    String action = e.getActionCommand();
 
-        //if button pressed is the exit button
-        if (action.equals("Exit")) {
-            System.exit(0);
-        }
-        //if button pressed is the menu button
-        if (action.equals("Menu")) {
-            Main x = new Main();
-            x.setVisible(true);
-            dispose();
-        }
-        //if button pressed is the play button
-        if (action.equals("Play")) {
-            game x = new game();
-            x.setVisible(true);
-            dispose();
-        }
+    //if button pressed is the exit button
+    if (action.equals("Exit")) {
+        System.exit(0);
     }
+    //if button pressed is the menu button
+    if (action.equals("Menu")) {
+        if (clip != null) {
+            clip.stop();
+        }
+        Main x = new Main();
+        x.setVisible(true);
+        dispose();
+    }
+    //if button pressed is the play button
+    if (action.equals("Play")) {
+        if (clip != null) {
+            clip.stop();
+        }
+        game x = new game();
+        x.setVisible(true);
+        dispose();
+    }
+}
 
     public static void main(String args[]) {
         //adds a new class object and sets it to visible
