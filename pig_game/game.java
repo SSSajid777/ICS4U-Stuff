@@ -8,7 +8,6 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
 
-
 public class game extends JFrame implements ActionListener {
 
     JLayeredPane layeredPane = new JLayeredPane();
@@ -213,7 +212,7 @@ public class game extends JFrame implements ActionListener {
                 try {
                     number1 = 0;
                     number2 = 0;
-                    music("Dice Rolling Sound.wav");
+                    diceSound("Dice Rolling Sound.wav");
                     for (int i = 0; i < 10; i++) {
                         number1 = rand.nextInt(6);
                         number2 = rand.nextInt(6);
@@ -399,25 +398,36 @@ public class game extends JFrame implements ActionListener {
         }
     }
 
-
     // function to play a sound/music
-public static void music(String sound) {
-    File lol = new File(sound);
-    try {
-        if (clip != null) {
-            clip.stop();
+    public static void music(String sound) {
+        File lol = new File(sound);
+        try {
+            if (clip != null) {
+                clip.stop();
+            }
+            clip = AudioSystem.getClip();
+            clip.open(AudioSystem.getAudioInputStream(lol));
+            // Get volume control
+            FloatControl volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+            // Set volume (in decibels)
+            volume.setValue(-30.0f); // lower volume
+            clip.start();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        clip = AudioSystem.getClip();
-        clip.open(AudioSystem.getAudioInputStream(lol));
-        // Get volume control
-        FloatControl volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-        // Set volume (in decibels)
-        volume.setValue(-30.0f); // lower volume
-        clip.start();
-    } catch (Exception e) {
-        e.printStackTrace();
     }
-}
+
+    // function to play dice sound without stopping background music
+    public static void diceSound(String sound) {
+        File lol = new File(sound);
+        try {
+            Clip diceClip = AudioSystem.getClip();
+            diceClip.open(AudioSystem.getAudioInputStream(lol));
+            diceClip.start();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     public static void main(String args[]) {
         // adds a new class object and sets it to visible
