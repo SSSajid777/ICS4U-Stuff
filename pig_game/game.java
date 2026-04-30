@@ -6,6 +6,8 @@ import java.awt.*;
 import java.io.File;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.sound.sampled.FloatControl;
+
 
 public class game extends JFrame implements ActionListener {
 
@@ -397,20 +399,25 @@ public class game extends JFrame implements ActionListener {
         }
     }
 
+
     // function to play a sound/music
-    public static void music(String sound) {
-        File lol = new File(sound);
-        try {
-            if (clip != null) {
-                clip.stop();
-            }
-            clip = AudioSystem.getClip();
-            clip.open(AudioSystem.getAudioInputStream(lol));
-            clip.start();
-        } catch (Exception e) {
-            e.printStackTrace();
+public static void music(String sound) {
+    File lol = new File(sound);
+    try {
+        if (clip != null) {
+            clip.stop();
         }
+        clip = AudioSystem.getClip();
+        clip.open(AudioSystem.getAudioInputStream(lol));
+        // Get volume control
+        FloatControl volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+        // Set volume (in decibels)
+        volume.setValue(-30.0f); // lower volume
+        clip.start();
+    } catch (Exception e) {
+        e.printStackTrace();
     }
+}
 
     public static void main(String args[]) {
         // adds a new class object and sets it to visible
