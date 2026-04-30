@@ -33,7 +33,7 @@ public class Help extends JFrame implements ActionListener {
         layeredPane.add(bg, Integer.valueOf(0));
 
         // creates the buttons and sets them up to be used in actionPerformed
-        JButton b1 = new JButton("Exit");
+        JButton b1 = new JButton("Exit"); //Exit button
         b1.setBackground(Color.RED);
         b1.setFont(new Font("Arial", Font.BOLD, 24));
         b1.addActionListener(this); // calls action listner so that program is able to read user's input
