@@ -5,7 +5,7 @@ import java.io.File;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
-public class win extends JFrame implements ActionListener {
+public class win1 extends JFrame implements ActionListener {
 
     // creates label
     JLabel l1;
@@ -20,7 +20,7 @@ public class win extends JFrame implements ActionListener {
     JLayeredPane layeredPane = new JLayeredPane();
     static Clip clip;
 
-    public win() {
+    public win1() {
 
         // adds a title to the window
         super("Game Over");
@@ -92,7 +92,7 @@ public class win extends JFrame implements ActionListener {
 
     public static void main(String args[]) {
         //adds a new class object and sets it to visible
-        win x = new win();
+        win1 x = new win1();
         x.setVisible(true);
     }
 }

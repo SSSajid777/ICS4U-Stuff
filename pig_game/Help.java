@@ -33,7 +33,8 @@ public class Help extends JFrame implements ActionListener {
         layeredPane.add(bg, Integer.valueOf(0));
 
         // creates the buttons and sets them up to be used in actionPerformed
-        JButton b1 = new JButton("Exit"); //Exit button
+        // "Exit" button
+        JButton b1 = new JButton("Exit");
         b1.setBackground(Color.RED);
         b1.setFont(new Font("Arial", Font.BOLD, 24));
         b1.addActionListener(this); // calls action listner so that program is able to read user's input
@@ -73,31 +74,31 @@ public class Help extends JFrame implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
-    String action = e.getActionCommand();
+        String action = e.getActionCommand();
 
-    //if button pressed is the exit button
-    if (action.equals("Exit")) {
-        System.exit(0);
-    }
-    //if button pressed is the menu button
-    if (action.equals("Menu")) {
-        if (clip != null) {
-            clip.stop();
+        //if button pressed is the exit button
+        if (action.equals("Exit")) {
+            System.exit(0);
         }
-        Main x = new Main();
-        x.setVisible(true);
-        dispose();
-    }
-    //if button pressed is the play button
-    if (action.equals("Play")) {
-        if (clip != null) {
-            clip.stop();
+        //if button pressed is the menu button
+        if (action.equals("Menu")) {
+            if (clip != null) {
+                clip.stop();
+            }
+            Main x = new Main();
+            x.setVisible(true);
+            dispose();
         }
-        game x = new game();
-        x.setVisible(true);
-        dispose();
+        //if button pressed is the play button
+        if (action.equals("Play")) {
+            if (clip != null) {
+                clip.stop();
+            }
+            game x = new game();
+            x.setVisible(true);
+            dispose();
+        }
     }
-}
 
     public static void main(String args[]) {
         //adds a new class object and sets it to visible

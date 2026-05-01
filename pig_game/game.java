@@ -192,7 +192,7 @@ public class game extends JFrame implements ActionListener {
                 if (clip != null) {
                     clip.stop();
                 }
-                win x = new win();
+                win1 x = new win();
                 x.setVisible(true);
                 dispose();
             } else if (p2ts >= 100) {
