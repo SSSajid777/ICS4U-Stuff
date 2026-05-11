@@ -1,7 +1,7 @@
 /*
  * Name: Nasrin [Last Name]
  * Date: May 8, 2026
- * Description: Shin-chan's apartment building, Matazure-sou (またずれ荘)
+ * Description: Shin-chan's apartment building, Matazure-sou
  *              Desmos y values are all negative, so java_y = -desmos_y
  */
 
@@ -34,7 +34,7 @@ public class houseBonus extends JPanel {
         int w = getWidth();
         int h = getHeight();
 
-        // sky gradient
+        // sky
         GradientPaint sky = new GradientPaint(0, 0, new Color(102, 188, 240), 0, 640, new Color(188, 228, 255));
         g2.setPaint(sky);
         g2.fillRect(0, 0, w, h);
@@ -50,7 +50,7 @@ public class houseBonus extends JPanel {
         int[] cy24 = {168, 113, 91, 121, 110, 116};
         g.fillPolygon(cx24, cy24, 6);
 
-        // left background building roof
+        // left background building roof section
         g.setColor(new Color(195, 195, 183));
         int[] lrX = {131, 14, 46, 140};
         int[] lrY = {376, 375, 332, 333};
@@ -74,7 +74,7 @@ public class houseBonus extends JPanel {
         int[] lbaseY = {534, 540, 561, 600};
         g.fillPolygon(lbaseX, lbaseY, 4);
 
-        // right background building top
+        // right background building
         g.setColor(new Color(222, 220, 210));
         int[] rbX = {855, 961, 1000, 1000, 837};
         int[] rbY = {353, 350, 368, 400, 402};
@@ -92,12 +92,9 @@ public class houseBonus extends JPanel {
         int[] mwY = {605, 261, 260, 430};
         g.fillPolygon(mwX, mwY, 4);
 
-        // lower right section of building wall - this area isn't covered by the main polygon above
-        // the main wall cuts off at y=430 on the right side, so we fill it in separately
+        // the main wall polygon cuts off at y=430 on the right side, so fill the gap below it
         g.setColor(new Color(90, 50, 22));
-        int[] lrwX = {564, 834, 834, 564};
-        int[] lrwY = {430, 430, 605, 610};
-        g.fillPolygon(lrwX, lrwY, 4);
+        g.fillRect(564, 430, 270, 175);
 
         // left narrow side panel (x4/y4)
         g.setColor(new Color(70, 38, 15));
@@ -117,14 +114,78 @@ public class houseBonus extends JPanel {
         int[] sbY = {606, 606, 745, 747};
         g.fillPolygon(sbX, sbY, 4);
 
-        // roof main body (x1/y1)
+        // gray ventilation/radiator panel on lower right visible in the image
+        g.setColor(new Color(105, 105, 115));
+        g.fillRect(655, 435, 165, 160);
+        g2.setStroke(new BasicStroke(1));
+        g.setColor(new Color(72, 72, 82));
+        for (int i = 0; i < 8; i++) {
+            g.drawLine(655 + i * 21, 435, 655 + i * 21, 595);
+        }
+
+        // stair steps drawn BEFORE the sign so the sign layer sits on top
+        g.setColor(new Color(118, 108, 98));
+        int[] ssX = {448, 447, 540, 539};
+        int[] ssY = {477, 287, 287, 397};
+        g.fillPolygon(ssX, ssY, 4);
+        g2.setStroke(new BasicStroke(2));
+        g.setColor(new Color(72, 68, 62));
+        g.drawPolygon(ssX, ssY, 4);
+        g2.setStroke(new BasicStroke(1));
+        g.setColor(new Color(78, 73, 67));
+        for (int i = 1; i < 9; i++) {
+            int stepY = 287 + i * (477 - 287) / 9;
+            g.drawLine(447, stepY, 540, stepY);
+        }
+
+        // stair landing (x18/y18) - also before sign
+        g.setColor(new Color(132, 122, 112));
+        int[] landX = {451, 477, 530, 515};
+        int[] landY = {252, 198, 225, 257};
+        g.fillPolygon(landX, landY, 4);
+        g2.setStroke(new BasicStroke(2));
+        g.setColor(new Color(82, 78, 72));
+        g.drawPolygon(landX, landY, 4);
+
+        // small railing post (x19/y19) - before sign
+        g.setColor(new Color(115, 105, 95));
+        int[] rpX = {539, 538, 560, 555, 566};
+        int[] rpY = {212, 246, 214, 232, 247};
+        g.fillPolygon(rpX, rpY, 5);
+
+        // second floor door (x5/y5) - before sign
+        g.setColor(new Color(165, 135, 65));
+        int[] sdX = {365, 327, 327, 365, 365};
+        int[] sdY = {307, 307, 351, 351, 307};
+        g.fillPolygon(sdX, sdY, 5);
+        g.setColor(new Color(88, 68, 28));
+        g.drawPolygon(sdX, sdY, 5);
+
+        // lower left window (from image, not in Desmos)
+        g.setColor(new Color(60, 70, 90));
+        g.fillRect(225, 390, 65, 55);
+        g2.setStroke(new BasicStroke(1));
+        g.setColor(Color.BLACK);
+        g.drawRect(225, 390, 65, 55);
+
+        // lower right window (x20/y20)
+        g.setColor(new Color(60, 70, 90));
+        int[] w3X = {569, 642, 642, 571};
+        int[] w3Y = {545, 546, 594, 594};
+        g.fillPolygon(w3X, w3Y, 4);
+        g2.setStroke(new BasicStroke(1));
+        g.setColor(Color.BLACK);
+        g.drawPolygon(w3X, w3Y, 4);
+
+        // roof outer red shape (x1/y1)
         g.setColor(new Color(138, 27, 27));
         int[] roofX = {115, 493, 875, 864, 493, 122, 114};
         int[] roofY = {253, 70, 256, 266, 90, 265, 254};
         g.fillPolygon(roofX, roofY, 7);
 
-        // roof front face, slightly lighter (x2/y2)
-        g.setColor(new Color(155, 34, 34));
+        // x2 is the white gable face painted on top of x1 - this creates the
+        // white triangular center visible in the image between the red eave edges
+        g.setColor(new Color(232, 228, 212));
         int[] rfX = {158, 497, 831, 159};
         int[] rfY = {259, 101, 258, 260};
         g.fillPolygon(rfX, rfY, 4);
@@ -134,7 +195,7 @@ public class houseBonus extends JPanel {
         g.setColor(new Color(62, 10, 10));
         g.drawPolygon(roofX, roofY, 7);
 
-        // sign board white background
+        // sign board
         g.setColor(Color.WHITE);
         g.fillRect(240, 264, 437, 52);
         g2.setStroke(new BasicStroke(2));
@@ -142,14 +203,12 @@ public class houseBonus extends JPanel {
         g.drawRect(240, 264, 437, 52);
         g.drawLine(386, 264, 386, 316);
         g.drawLine(532, 264, 532, 316);
-
-        // sign text - またずれ荘
         g.setFont(new Font("SansSerif", Font.BOLD, 34));
-        g.drawString("\u307E\u305F", 258, 307);   // また
-        g.drawString("\u305A\u308C", 402, 307);   // ずれ
-        g.drawString("\u8358",       548, 307);   // 荘
+        g.drawString("\u307E\u305F", 258, 307);
+        g.drawString("\u305A\u308C", 402, 307);
+        g.drawString("\u8358", 548, 307);
 
-        // left gable window, left pane (x13/y13 from Desmos)
+        // left gable window pane 1 (x13/y13 from Desmos)
         g.setColor(new Color(60, 70, 90));
         int[] w1X = {343, 342, 395, 395, 342};
         int[] w1Y = {205, 254, 254, 203, 204};
@@ -158,103 +217,42 @@ public class houseBonus extends JPanel {
         g.setColor(Color.BLACK);
         g.drawPolygon(w1X, w1Y, 5);
 
-        // left gable window, right pane (added from image - Desmos only had half)
+        // left gable window pane 2 (added from image, Desmos only had half)
         g.setColor(new Color(60, 70, 90));
         g.fillRect(407, 203, 53, 51);
         g.setColor(Color.BLACK);
         g.drawRect(407, 203, 53, 51);
 
-        // right gable window, left pane (added from image - not in Desmos at all)
+        // right gable window pane 1 (not in Desmos at all, added from image)
         g.setColor(new Color(60, 70, 90));
         g.fillRect(529, 203, 53, 51);
         g.setColor(Color.BLACK);
         g.drawRect(529, 203, 53, 51);
 
-        // right gable window, right pane
+        // right gable window pane 2
         g.setColor(new Color(60, 70, 90));
         g.fillRect(595, 203, 53, 51);
         g.setColor(Color.BLACK);
         g.drawRect(595, 203, 53, 51);
 
-        // small door at top of stairs (x5/y5)
-        g.setColor(new Color(165, 135, 65));
-        int[] w2X = {365, 327, 327, 365, 365};
-        int[] w2Y = {307, 307, 351, 351, 307};
-        g.fillPolygon(w2X, w2Y, 5);
-        g.setColor(new Color(88, 68, 28));
-        g.drawPolygon(w2X, w2Y, 5);
-
-        // lower left window (added from image)
-        g.setColor(new Color(60, 70, 90));
-        g.fillRect(225, 390, 65, 55);
-        g.setColor(Color.BLACK);
-        g2.setStroke(new BasicStroke(1));
-        g.drawRect(225, 390, 65, 55);
-
-        // lower right window (x20/y20 from Desmos)
-        g.setColor(new Color(60, 70, 90));
-        int[] w3X = {569, 642, 642, 571};
-        int[] w3Y = {545, 546, 594, 594};
-        g.fillPolygon(w3X, w3Y, 4);
-        g.setColor(Color.BLACK);
-        g.drawPolygon(w3X, w3Y, 4);
-
-        // gray radiator/pipe panel on lower right - visible in the image
-        g.setColor(new Color(105, 105, 115));
-        g.fillRect(655, 435, 165, 160);
-        g2.setStroke(new BasicStroke(1));
-        g.setColor(new Color(72, 72, 82));
-        for (int i = 0; i < 8; i++) {
-            g.drawLine(655 + i * 21, 435, 655 + i * 21, 595);
-        }
-
-        // stair steps (x11/y11)
-        g.setColor(new Color(118, 108, 98));
-        int[] ssX = {448, 447, 540, 539};
-        int[] ssY = {477, 287, 287, 397};
-        g.fillPolygon(ssX, ssY, 4);
+        // antenna/hash detail in gable (x26/y26)
         g2.setStroke(new BasicStroke(2));
-        g.setColor(new Color(72, 68, 62));
-        g.drawPolygon(ssX, ssY, 4);
-
-        // step lines
-        g2.setStroke(new BasicStroke(1));
-        g.setColor(new Color(78, 73, 67));
-        for (int i = 1; i < 9; i++) {
-            int stepY = 287 + i * (477 - 287) / 9;
-            g.drawLine(447, stepY, 540, stepY);
-        }
-
-        // stair landing (x18/y18)
-        g.setColor(new Color(132, 122, 112));
-        int[] landX = {451, 477, 530, 515};
-        int[] landY = {252, 198, 225, 257};
-        g.fillPolygon(landX, landY, 4);
-        g2.setStroke(new BasicStroke(2));
-        g.setColor(new Color(82, 78, 72));
-        g.drawPolygon(landX, landY, 4);
-
-        // small railing post (x19/y19)
-        g.setColor(new Color(115, 105, 95));
-        int[] rpX = {539, 538, 560, 555, 566};
-        int[] rpY = {212, 246, 214, 232, 247};
-        g.fillPolygon(rpX, rpY, 5);
-
-        // antenna pole
         g.setColor(new Color(42, 42, 42));
-        g2.setStroke(new BasicStroke(2));
-        g.drawLine(370, 72, 370, 215);
-
-        // antenna arms (x26/y26)
         int[] antX = {367, 355, 374, 358, 376, 363, 356, 375};
         int[] antY = {212, 219, 217, 230, 228, 248, 240, 243};
         g.drawPolyline(antX, antY, 8);
-
-        // antenna tip triangle (x27/y27)
         g2.setStroke(new BasicStroke(1));
         int[] atX = {408, 417, 415};
         int[] atY = {219, 211, 244};
         g.drawPolygon(atX, atY, 3);
+
+        // TV antenna mast sitting on the roof ridge
+        g2.setStroke(new BasicStroke(2));
+        g.setColor(new Color(42, 42, 42));
+        g.drawLine(465, 20, 465, 80);
+        g.drawLine(440, 38, 490, 38);
+        g.drawLine(442, 52, 488, 52);
+        g.drawLine(445, 65, 485, 65);
 
         // building outline
         g2.setStroke(new BasicStroke(2));
@@ -279,7 +277,7 @@ public class houseBonus extends JPanel {
         g2.setStroke(new BasicStroke(3));
         g.drawLine(581, 619, 581, 727);
 
-        // ground patch between fence and building (x12/y12)
+        // ground triangle between fence and building (x12/y12)
         g.setColor(new Color(85, 118, 65));
         int[] gpX = {314, 419, 550};
         int[] gpY = {591, 500, 499};
