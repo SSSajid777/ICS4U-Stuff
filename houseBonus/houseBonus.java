@@ -1,12 +1,6 @@
-/*
- * Date: May 11, 2026
- * Name: [Your Name Here]
- * Description: ICS4U Programming Assignment Part 4. 
- * This program draws a highly accurate landscape of "Matazure Sou" (The Falling Apartments) 
- * from Crayon Shinchan based on reference images. It features exact details including 
- * the red roof trim, slanted background roofs, two-pane windows with awnings, standalone 
- * staircase structure, balcony support pillars, the crooked signboard, and block walls.
- */
+// Date: May 11, 2026
+// Name: [Your Name Here]
+// Description: ICS4U Programming Assignment Part 4. 
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -21,7 +15,6 @@ public class houseBonus extends JPanel {
 
     public houseBonus() {
         mainFrame = new JFrame();
-        // Sets up screen - Scaled to perfectly fit the blueprint bounds
         mainFrame.setSize(1050, 750);
         mainFrame.setLocation(50, 50);
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -32,306 +25,294 @@ public class houseBonus extends JPanel {
     }
 
     public void paint(Graphics g) {
-        Graphics2D g2 = (Graphics2D) g; // needed for outline strokes
-        Graphics2D g2d = (Graphics2D) g; // needed for gradient
+        Graphics2D g2 = (Graphics2D) g; 
+        Graphics2D g2d = (Graphics2D) g; 
         int w = getWidth();
         int h = getHeight();
 
-        // ==========================================
-        // 1. SKY WITH GRADIENT
-        // ==========================================
+        // sky
         GradientPaint gp = new GradientPaint(
-            0, 0, new Color(40, 110, 180), // Deep blue top
-            0, h/2, new Color(135, 206, 235) // Light blue horizon
+            0, 0, new Color(40, 110, 180), 
+            0, h/2, new Color(135, 206, 235)
         );
         g2d.setPaint(gp);
         g2d.fillRect(0, 0, w, h);
 
-        // ==========================================
-        // 2. CLOUDS
-        // ==========================================
+        // clouds
         g.setColor(Color.WHITE);
-        // Left cloud
-        g.fillOval(80, 80, 90, 40);
-        g.fillOval(120, 60, 70, 50);
-        // Right cloud 
-        g.fillOval(750, 30, 120, 40);
-        g.fillOval(800, 10, 80, 50);
+        g.fillOval(70, 70, 100, 45);
+        g.fillOval(120, 50, 80, 55);
+        g.fillOval(760, 25, 130, 45);
+        g.fillOval(820, 15, 90, 55);
 
-        // ==========================================
-        // 3. BACKGROUND HOUSES (With Slanted Roofs)
-        // ==========================================
-        // Left Background Building
-        g.setColor(new Color(180, 200, 220)); // Light blue-grey base
-        g.fillRect(0, 350, 130, 250);
-        g.setColor(new Color(60, 100, 150)); // Windows
-        g.fillRect(20, 390, 25, 40);
-        g.fillRect(70, 390, 25, 40);
-        // Left Building Slanted Roof
-        g.setColor(new Color(20, 60, 110)); // Dark Blue Roof
-        int[] bgLeftRoofX = {0, 130, 90, 0};
-        int[] bgLeftRoofY = {350, 350, 310, 310};
+        // background left
+        g.setColor(new Color(180, 200, 220)); 
+        g.fillRect(0, 360, 180, 250); 
+        g.setColor(new Color(60, 100, 150)); 
+        g.fillRect(30, 400, 25, 40);
+        g.fillRect(80, 400, 25, 40);
+        
+        g.setColor(new Color(20, 60, 110)); 
+        int[] bgLeftRoofX = {0, 180, 130, 0};
+        int[] bgLeftRoofY = {360, 360, 330, 330};
         g.fillPolygon(bgLeftRoofX, bgLeftRoofY, 4);
 
-        // Right Background Building
+        // background right
         g.setColor(new Color(180, 200, 220));
-        g.fillRect(860, 360, 190, 240);
-        // Right Building Slanted Roof
+        g.fillRect(800, 370, 250, 240); 
+        
         g.setColor(new Color(20, 60, 110)); 
-        int[] bgRightRoofX = {860, 1050, 1050, 900};
-        int[] bgRightRoofY = {360, 360, 320, 320};
+        int[] bgRightRoofX = {800, 1050, 1050, 840};
+        int[] bgRightRoofY = {370, 370, 340, 340};
         g.fillPolygon(bgRightRoofX, bgRightRoofY, 4);
 
-        // ==========================================
-        // 4. MAIN HOUSE BODY (Wood Base)
-        // ==========================================
-        g.setColor(new Color(110, 60, 70)); // Purplish dark wood
-        int[] houseX = {158, 832, 832, 158};
-        int[] houseY = {261, 261, 605, 605}; 
+        // house base
+        g.setColor(new Color(110, 60, 70)); 
+        int[] houseX = {180, 800, 800, 180};
+        int[] houseY = {260, 260, 715, 715}; 
         g.fillPolygon(houseX, houseY, 4);
         
-        // Wood Plank Vertical Lines
         g.setColor(new Color(70, 30, 40)); 
         g2.setStroke(new BasicStroke(1));
-        for (int i = 170; i < 830; i += 30) {
-            g.drawLine(i, 261, i, 605);
+        for (int i = 180; i < 800; i += 31) {
+            g.drawLine(i, 260, i, 715);
         }
         
-        // House Base Outline
         g.setColor(Color.BLACK);
         g2.setStroke(new BasicStroke(3));
         g.drawPolygon(houseX, houseY, 4);
 
-        // ==========================================
-        // 5. MAIN ROOF (Red Trim + Grey Layers)
-        // ==========================================
-        // 5A. Red Roof Trim (The thick red border underneath)
-        g.setColor(new Color(180, 40, 40)); // Dark Red
-        int[] redX = {100, 495, 890, 880, 495, 110};
+        // foundation
+        g.setColor(new Color(150, 160, 170));
+        g.fillRect(180, 680, 620, 35);
+        g.setColor(Color.BLACK);
+        g.drawRect(180, 680, 620, 35);
+
+        // red roof
+        g.setColor(new Color(180, 40, 40)); 
+        int[] redX = {110, 490, 870, 860, 490, 120};
         int[] redY = {260, 60, 260, 275, 85, 275};
         g.fillPolygon(redX, redY, 6);
         g.setColor(Color.BLACK);
         g.drawPolygon(redX, redY, 6);
 
-        // 5B. Grey Outer Roof (Sits inside the red trim)
-        g.setColor(new Color(150, 160, 170)); // Grey/Blue
-        int[] greyX = {115, 495, 875, 865, 495, 125};
-        int[] greyY = {257, 70, 257, 267, 92, 267};
+        // grey roof
+        g.setColor(new Color(150, 160, 170)); 
+        int[] greyX = {125, 490, 855, 845, 490, 135};
+        int[] greyY = {258, 70, 258, 267, 92, 267};
         g.fillPolygon(greyX, greyY, 6);
         g.setColor(Color.BLACK);
         g.drawPolygon(greyX, greyY, 6);
 
-        // 5C. Main Inner Grey Peak
+        // inner peak
         g.setColor(new Color(180, 190, 200)); 
-        int[] innerX = {160, 495, 830}; 
-        int[] innerY = {260, 102, 260};
+        int[] innerX = {180, 490, 800}; 
+        int[] innerY = {260, 110, 260};
         g.fillPolygon(innerX, innerY, 3);
         g.setColor(Color.BLACK);
         g.drawPolygon(innerX, innerY, 3);
 
-        // ==========================================
-        // 6. ROOF DETAILS (# Vent & Antenna)
-        // ==========================================
+        // roof vent
         g2.setStroke(new BasicStroke(3));
-        // # Symbol
-        g.drawLine(480, 130, 510, 130);
-        g.drawLine(480, 145, 510, 145);
-        g.drawLine(490, 120, 490, 155);
-        g.drawLine(500, 120, 500, 155);
+        g.drawLine(475, 130, 505, 130);
+        g.drawLine(475, 145, 505, 145);
+        g.drawLine(485, 120, 485, 155);
+        g.drawLine(495, 120, 495, 155);
 
-        // Antenna
+        // antenna
         g2.setStroke(new BasicStroke(2));
-        g.drawLine(250, 180, 250, 100); 
-        g.drawLine(210, 130, 290, 130);  
-        g.drawLine(210, 130, 230, 110);  
-        g.drawLine(290, 130, 270, 110);  
+        g.drawLine(250, 180, 250, 95); 
+        g.drawLine(210, 125, 290, 125);  
+        g.drawLine(210, 125, 230, 105);  
+        g.drawLine(290, 125, 270, 105);  
 
-        // ==========================================
-        // 7. SIGN BOARD
-        // ==========================================
+        // signboard
         g.setColor(Color.WHITE);
-        g.fillRect(320, 210, 340, 55);
+        g.fillRect(320, 215, 340, 50);
         g.setColor(Color.BLACK);
         g2.setStroke(new BasicStroke(2));
-        g.drawRect(320, 210, 340, 55);
+        g.drawRect(320, 215, 340, 50);
         
-        // 5 Character Tiles (Middle one crooked)
         g.setColor(Color.WHITE);
         for (int i = 0; i < 5; i++) {
-            if (i == 2) continue; // Skip middle
-            int boxX = 330 + (i * 65);
-            g.fillRect(boxX, 215, 50, 45);
+            if (i == 2) continue; 
+            int boxX = 325 + (i * 66);
+            g.fillRect(boxX, 220, 45, 40);
             g.setColor(Color.BLACK);
-            g.drawRect(boxX, 215, 50, 45);
+            g.drawRect(boxX, 220, 45, 40);
             g.setColor(Color.WHITE);
         }
         
-        // Crooked Middle Tile
+        // crooked tile
         g.setColor(Color.WHITE);
-        int[] crookedX = {455, 515, 505, 445};
-        int[] crookedY = {205, 215, 260, 250};
+        int[] crookedX = {460, 510, 500, 450};
+        int[] crookedY = {210, 220, 260, 250};
         g.fillPolygon(crookedX, crookedY, 4);
         g.setColor(Color.BLACK);
         g.drawPolygon(crookedX, crookedY, 4);
 
-        // ==========================================
-        // 8. TWO WINDOWS (2 Panes + Awnings)
-        // ==========================================
-        // Left Window
-        g.setColor(new Color(40, 70, 110)); // Dark blue awning
-        int[] leftAwningX = {310, 385, 375, 320};
-        int[] leftAwningY = {305, 305, 295, 295};
-        g.fillPolygon(leftAwningX, leftAwningY, 4);
-        
-        g.setColor(new Color(40, 140, 160)); // Cyan glass
-        g.fillRect(315, 305, 60, 45);
+        // japanese text
+        g.setColor(Color.BLACK);
+        g2.setStroke(new BasicStroke(3)); 
+        g.drawLine(335, 230, 360, 230); 
+        g.drawLine(335, 240, 360, 240); 
+        g.drawLine(347, 225, 347, 250); 
+        g.drawOval(340, 245, 12, 8);   
+        g.drawLine(400, 230, 415, 230); 
+        g.drawLine(405, 225, 410, 250); 
+        g.drawLine(420, 235, 430, 235); 
+        g.drawLine(420, 245, 430, 245); 
+        g.drawLine(465, 225, 495, 230); 
+        g.drawLine(490, 227, 475, 250); 
+        g.drawOval(475, 245, 12, 8);   
+        g.drawLine(495, 220, 500, 225); 
+        g.drawLine(500, 218, 505, 223); 
+        g.drawLine(535, 230, 535, 250); 
+        g.drawLine(545, 230, 545, 245); 
+        g.drawLine(545, 245, 555, 240); 
+        g.drawLine(555, 240, 545, 260); 
+        g.drawLine(545, 260, 560, 250); 
+        g.drawLine(600, 227, 625, 227); 
+        g.drawLine(610, 223, 610, 231); 
+        g.drawLine(620, 223, 620, 231); 
+        g.drawLine(605, 240, 605, 255); 
+        g.drawLine(605, 240, 615, 240); 
+        g.drawLine(605, 250, 615, 250); 
+        g.drawLine(625, 235, 625, 255); 
+        g.drawLine(618, 245, 632, 245); 
+        g2.setStroke(new BasicStroke(2)); 
+
+        // left window
+        g.setColor(new Color(40, 140, 160)); 
+        g.fillRect(320, 310, 60, 45);
         g.setColor(Color.BLACK);
         g2.setStroke(new BasicStroke(3));
-        g.drawRect(315, 305, 60, 45);
-        g.drawLine(345, 305, 345, 350); // Vertical Divider (2 squares)
+        g.drawRect(320, 310, 60, 45);
+        g.drawLine(350, 310, 350, 355); 
 
-        // Right Window
-        g.setColor(new Color(40, 70, 110)); // Dark blue awning
-        int[] rightAwningX = {610, 685, 675, 620};
-        int[] rightAwningY = {305, 305, 295, 295};
-        g.fillPolygon(rightAwningX, rightAwningY, 4);
-
-        g.setColor(new Color(40, 140, 160)); // Cyan glass
-        g.fillRect(615, 305, 60, 45);
+        // right window
+        g.setColor(new Color(40, 140, 160)); 
+        g.fillRect(600, 310, 60, 45);
         g.setColor(Color.BLACK);
-        g.drawRect(615, 305, 60, 45);
-        g.drawLine(645, 305, 645, 350); // Vertical Divider (2 squares)
+        g.drawRect(600, 310, 60, 45);
+        g.drawLine(630, 310, 630, 355); 
 
-        // ==========================================
-        // 9. DOORS & BALCONY STRUCTURE
-        // ==========================================
-        // 2nd Floor Door Inner Void
+        // doors
         g.setColor(new Color(20, 30, 50)); 
-        g.fillRect(455, 280, 80, 120);
+        g.fillRect(460, 280, 60, 120);
         g.setColor(Color.BLACK);
-        g.drawRect(455, 280, 80, 120);
+        g.drawRect(460, 280, 60, 120);
 
-        // 1st Floor Door Inner Void
         g.setColor(new Color(20, 30, 50));
-        g.fillRect(455, 440, 80, 120);
+        g.fillRect(460, 560, 60, 120);
         g.setColor(Color.BLACK);
-        g.drawRect(455, 440, 80, 120);
+        g.drawRect(460, 560, 60, 120);
 
-        // 1st Floor Wall Vent/AC Unit
+        // ac unit
         g.setColor(new Color(110, 140, 170)); 
-        g.fillRect(560, 490, 55, 50);
+        g.fillRect(560, 540, 40, 40);
         g.setColor(Color.BLACK);
-        g.drawRect(560, 490, 55, 50);
+        g.drawRect(560, 540, 40, 40);
         g2.setStroke(new BasicStroke(2));
-        for(int i = 565; i < 610; i += 7) g.drawLine(i, 490, i, 540);
+        for(int i = 565; i < 595; i += 7) g.drawLine(i, 540, i, 580);
 
-        // Balcony Support Pillars (Going down to ground)
+        // balcony
         g.setColor(new Color(110, 130, 150));
-        g.fillRect(440, 425, 8, 180);
-        g.fillRect(542, 425, 8, 180);
+        g.fillRect(445, 430, 8, 250);
+        g.fillRect(525, 430, 8, 250);
         g.setColor(Color.BLACK);
-        g.drawRect(440, 425, 8, 180);
-        g.drawRect(542, 425, 8, 180);
+        g.drawRect(445, 430, 8, 250);
+        g.drawRect(525, 430, 8, 250);
 
-        // Balcony Platform
-        g.setColor(new Color(110, 140, 170)); // Blueish grey
-        g.fillRect(435, 400, 120, 25);
+        g.setColor(new Color(110, 140, 170)); 
+        g.fillRect(420, 400, 140, 30);
         g.setColor(Color.BLACK);
         g2.setStroke(new BasicStroke(3));
-        g.drawRect(435, 400, 120, 25);
+        g.drawRect(420, 400, 140, 30);
         
-        // Balcony Railings
-        g.drawLine(435, 350, 555, 350); // Top horizontal rail
-        for (int i = 440; i <= 550; i += 15) {
-            g.drawLine(i, 350, i, 400); // Vertical balusters
+        g.drawLine(420, 350, 560, 350); 
+        for (int i = 425; i <= 555; i += 15) {
+            g.drawLine(i, 350, i, 400); 
         }
 
-        // ==========================================
-        // 10. DETACHED DIAGONAL STAIRS
-        // ==========================================
-        // The structural stringer/beam
-        g.setColor(new Color(140, 150, 160)); // Grey metal
-        int[] stairX = {150, 435, 435, 150};
-        int[] stairY = {570, 400, 430, 600}; 
+        // stairs
+        g.setColor(new Color(140, 150, 160)); 
+        int[] stairX = {160, 420, 420, 160};
+        int[] stairY = {660, 400, 430, 690}; 
         g.fillPolygon(stairX, stairY, 4);
         g.setColor(Color.BLACK);
         g.drawPolygon(stairX, stairY, 4);
 
-        // Stair Railing Structure
         g2.setStroke(new BasicStroke(4));
-        g.drawLine(150, 520, 435, 350); // Main handrail going up
+        g.drawLine(160, 605, 420, 345); 
         g2.setStroke(new BasicStroke(2));
-        for (int i = 0; i <= 12; i++) {
-            int rx = 150 + (i * 23);
-            int ryTop = 520 - (i * 14); // Point on handrail
-            int ryBot = 570 - (i * 14); // Point on stringer
+        for (int i = 0; i <= 11; i++) {
+            int rx = 160 + (i * 24);
+            int ryTop = 605 - (i * 24); 
+            int ryBot = 660 - (i * 24); 
             g.drawLine(rx, ryTop, rx, ryBot); 
         }
 
-        // ==========================================
-        // 11. BUSHES / VEGETATION
-        // ==========================================
-        g.setColor(new Color(30, 130, 50)); // Dark green
-        // Left Bush
-        g.fillOval(30, 520, 80, 80);
+        // left bush
+        g.setColor(new Color(30, 130, 50)); 
+        int[] lbX = {0, 20, 40, 80, 120, 160, 180, 0};
+        int[] lbY = {600, 560, 540, 530, 540, 570, 600, 600};
+        g.fillPolygon(lbX, lbY, 8);
         g.setColor(Color.BLACK);
-        g.drawOval(30, 520, 80, 80);
+        g.drawPolygon(lbX, lbY, 8);
         
-        // Right Bushes
+        // tree
         g.setColor(new Color(30, 130, 50));
-        g.fillOval(740, 450, 180, 160); // Main large puff
-        g.fillOval(860, 480, 120, 130); // Right edge puff
-        g.fillOval(720, 530, 100, 80);  // Bottom left puff
+        int[] rbX = {800, 810, 830, 870, 920, 970, 1020, 1040, 1040, 1040, 800};
+        int[] rbY = {600, 510, 450, 420, 420, 420, 440, 480, 540, 600, 600};
+        g.fillPolygon(rbX, rbY, 11);
         g.setColor(Color.BLACK);
-        g.drawOval(740, 450, 180, 160);
-        g.drawOval(860, 480, 120, 130);
-        g.drawOval(720, 530, 100, 80);
+        g.drawPolygon(rbX, rbY, 11);
 
-        // ==========================================
-        // 12. FRONT WALL / BLOCKS & GATE
-        // ==========================================
-        g.setColor(new Color(245, 230, 180)); // Pale yellow bricks
-        g.fillRect(0, 600, 300, 120); // Left wall
-        g.fillRect(550, 600, 500, 120); // Right wall
+        // front wall
+        g.setColor(new Color(245, 230, 180)); 
+        g.fillRect(0, 600, 280, 150); 
+        g.fillRect(560, 600, 490, 150); 
 
-        // Wall Block Grid Lines
+        // fence bricks
         g.setColor(Color.BLACK);
         g2.setStroke(new BasicStroke(2));
-        // Horizontals
-        for (int y = 600; y <= 720; y += 40) {
-            g.drawLine(0, y, 300, y);
-            g.drawLine(550, y, 1050, y);
+        for (int y = 600; y <= 750; y += 40) {
+            g.drawLine(0, y, 280, y);
+            g.drawLine(560, y, 1050, y);
         }
-        // Verticals (staggered for brick pattern)
-        for (int y = 600; y < 720; y += 40) {
-            int offset = (y % 80 == 0) ? 0 : 40;
-            for (int x = 0; x < 300; x += 80) g.drawLine(x + offset, y, x + offset, y + 40);
-            for (int x = 550; x < 1050; x += 80) g.drawLine(x + offset, y, x + offset, y + 40);
+        for (int y = 600; y < 750; y += 40) {
+            int offset = (y == 600 || y == 680) ? 40 : 0;
+            for (int x = 0; x <= 280; x += 80) {
+                if (x + offset <= 280) g.drawLine(x + offset, y, x + offset, y + 40);
+            }
+            for (int x = 560; x <= 1050; x += 80) {
+                if (x + offset <= 1050) g.drawLine(x + offset, y, x + offset, y + 40);
+            }
         }
 
-        // Gate Pillars
-        g.setColor(new Color(130, 140, 150)); // Grey pillars
-        g.fillRect(260, 560, 60, 160);
-        g.fillRect(520, 560, 60, 160);
+        // gate pillars
+        g.setColor(new Color(130, 140, 150)); 
+        g.fillRect(280, 560, 60, 190);
+        g.fillRect(520, 560, 60, 190);
         g.setColor(Color.BLACK);
-        g.drawRect(260, 560, 60, 160);
-        g.drawRect(520, 560, 60, 160);
+        g.drawRect(280, 560, 60, 190);
+        g.drawRect(520, 560, 60, 190);
         
-        // Gate Pillar Caps
+        // gate caps
         g.setColor(new Color(160, 170, 180));
-        g.fillRect(250, 550, 80, 10);
+        g.fillRect(270, 550, 80, 10);
         g.fillRect(510, 550, 80, 10);
         g.setColor(Color.BLACK);
-        g.drawRect(250, 550, 80, 10);
+        g.drawRect(270, 550, 80, 10);
         g.drawRect(510, 550, 80, 10);
 
-        // Nameplate on Right Pillar
-        g.setColor(new Color(150, 130, 60)); // Gold/Bronze
+        // nameplate
+        g.setColor(new Color(150, 130, 60)); 
         g.fillRect(535, 610, 30, 50);
         g.setColor(Color.BLACK);
         g.drawRect(535, 610, 30, 50);
         
-        // Final Street/Ground Line
         g.drawLine(0, 715, 1050, 715);
     }
 
