@@ -1,24 +1,18 @@
-/*
- * Date: May 13, 2026
- * Name: [Your Name Here]
- * Description: ICS4U Programming Assignment Part 4. 
- * Corrected line rendering for stairs, balcony, and Japanese text.
- * Written sequentially with NO helper methods.
- */
-
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.BasicStroke;
+import java.awt.GradientPaint;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class houseBonus extends JPanel {
     private JFrame mainFrame;
 
-    public houseBonus() {
+    houseBonus() {
         mainFrame = new JFrame();
-        mainFrame.setSize(1000, 750); 
+        //sets up screen
+        mainFrame.setSize(1000, 750);
         mainFrame.setLocation(50, 50);
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.setTitle("Matazure Sou - Shinchan");
@@ -28,60 +22,63 @@ public class houseBonus extends JPanel {
     }
 
     public void paint(Graphics g) {
-        Graphics2D g2 = (Graphics2D) g; 
+        Graphics2D g2 = (Graphics2D) g;
+        Graphics2D g2d = (Graphics2D) g;
         int w = getWidth();
         int h = getHeight();
 
-        // ==========================================
-        // 1. SKY & CLOUDS
-        // ==========================================
-        g.setColor(new Color(60, 130, 190));
-        g.fillRect(0, 0, w, h);
+        // sky gradient
+        GradientPaint gp = new GradientPaint(
+                0, 0, new Color(40, 110, 180),
+                0, h / 2, new Color(135, 206, 235));
+        g2d.setPaint(gp);
+        g2d.fillRect(0, 0, w, h);
 
-        // Fixed Left Cloud (Using Ovals instead of polygons)
+        // left cloud from desmos
         g.setColor(Color.WHITE);
-        g.fillOval(30, 80, 80, 40);
-        g.fillOval(60, 60, 90, 50);
+        int[] cloudX = {110, 35, 90, 165, 192, 169, 153, 114};
+        int[] cloudY = {95, 125, 170, 167, 155, 131, 126, 93};
+        g.fillPolygon(cloudX, cloudY, 8);
         
-        // Right Clouds
+        // right clouds
         g.fillOval(760, 25, 130, 45); 
         g.fillOval(820, 15, 90, 55);  
 
-        // ==========================================
-        // 2. BACKGROUND HOUSES ("BLUE STUFF")
-        // ==========================================
-        // Left Background House
+        // left background house
         g.setColor(new Color(180, 200, 220)); 
-        int[] bgLeftBodyX = {0, 132, 132, 0}; 
-        int[] bgLeftBodyY = {380, 380, 600, 600};
-        g.fillPolygon(bgLeftBodyX, bgLeftBodyY, 4);
+        int[] bgLeftBodyX = {14, 15, 132, 132, 14};
+        int[] bgLeftBodyY = {526, 379, 380, 526, 526};
+        g.fillPolygon(bgLeftBodyX, bgLeftBodyY, 5);
 
-        g.setColor(new Color(60, 100, 150)); // Left BG Window
-        g.fillRect(30, 400, 25, 45);
+        // left background window
+        g.setColor(new Color(60, 100, 150)); 
+        int[] bgLeftWinX = {36, 57, 58, 36, 36};
+        int[] bgLeftWinY = {395, 395, 441, 440, 396};
+        g.fillPolygon(bgLeftWinX, bgLeftWinY, 5);
 
-        g.setColor(new Color(20, 60, 110)); // Left BG Roof
-        int[] bgLeftRoofX = {0, 140, 100, 0};
-        int[] bgLeftRoofY = {380, 380, 340, 340};
-        g.fillPolygon(bgLeftRoofX, bgLeftRoofY, 4);
+        // left background roof
+        g.setColor(new Color(20, 60, 110)); 
+        int[] bgLeftRoofX = {132, 14, 47, 150, 133};
+        int[] bgLeftRoofY = {377, 376, 333, 332, 376};
+        g.fillPolygon(bgLeftRoofX, bgLeftRoofY, 5);
 
-        // Right Background House 
+        // right background house
         g.setColor(new Color(180, 200, 220)); 
         g.fillRect(841, 352, 160, 260); 
 
-        g.setColor(new Color(20, 60, 110)); // Right BG Roof
-        int[] bgRightRoofX = {841, 1000, 1000, 880};
-        int[] bgRightRoofY = {352, 352, 320, 320};
-        g.fillPolygon(bgRightRoofX, bgRightRoofY, 4);
+        // right background roof
+        g.setColor(new Color(20, 60, 110)); 
+        int[] bgRightRoofX = {841, 959, 998, 1001, 835, 842};
+        int[] bgRightRoofY = {352, 351, 370, 400, 403, 352};
+        g.fillPolygon(bgRightRoofX, bgRightRoofY, 6);
 
-        // ==========================================
-        // 3. MAIN HOUSE BODY
-        // ==========================================
+        // main house body
         g.setColor(new Color(110, 60, 70)); 
         int[] houseBodyX = {159, 831, 831, 159};
         int[] houseBodyY = {260, 260, 715, 715};
         g.fillPolygon(houseBodyX, houseBodyY, 4);
         
-        // Vertical Wood Lines
+        // vertical wood lines
         g.setColor(new Color(70, 30, 40)); 
         g2.setStroke(new BasicStroke(1));
         for (int i = 169; i < 831; i += 32) {
@@ -92,16 +89,13 @@ public class houseBonus extends JPanel {
         g2.setStroke(new BasicStroke(3));
         g.drawPolygon(houseBodyX, houseBodyY, 4);
 
-        // Concrete Foundation Base
+        // foundation
         g.setColor(new Color(150, 160, 170));
         g.fillRect(159, 680, 672, 35);
         g.setColor(Color.BLACK);
         g.drawRect(159, 680, 672, 35);
 
-        // ==========================================
-        // 4. MAIN ROOF
-        // ==========================================
-        // Red Roof Trim
+        // red roof trim
         g.setColor(new Color(180, 40, 40)); 
         int[] redX = {100, 495, 890, 880, 495, 110};
         int[] redY = {255, 60, 258, 269, 80, 267};
@@ -109,60 +103,66 @@ public class houseBonus extends JPanel {
         g.setColor(Color.BLACK);
         g.drawPolygon(redX, redY, 6);
 
-        // Grey Roof Outer 
+        // grey roof outer
         g.setColor(new Color(150, 160, 170)); 
-        int[] greyX = {115, 495, 875, 865, 495, 122};
-        int[] greyY = {253, 70, 256, 267, 90, 265};
-        g.fillPolygon(greyX, greyY, 6);
+        int[] greyX = {115, 493, 875, 865, 494, 122, 115};
+        int[] greyY = {253, 70, 256, 267, 90, 265, 254};
+        g.fillPolygon(greyX, greyY, 7);
         g.setColor(Color.BLACK);
-        g.drawPolygon(greyX, greyY, 6);
+        g.drawPolygon(greyX, greyY, 7);
 
-        // Inner Grey Peak 
+        // inner grey peak
         g.setColor(new Color(180, 190, 200)); 
-        int[] innerX = {159, 495, 831};
-        int[] innerY = {259, 102, 258};
-        g.fillPolygon(innerX, innerY, 3);
+        int[] innerX = {159, 497, 831, 159};
+        int[] innerY = {259, 102, 258, 260};
+        g.fillPolygon(innerX, innerY, 4);
         g.setColor(Color.BLACK);
-        g.drawPolygon(innerX, innerY, 3);
+        g.drawPolygon(innerX, innerY, 4);
 
-        // Roof Vent
-        g2.setStroke(new BasicStroke(3));
+        // roof vent
         g.drawLine(480, 130, 510, 130);
         g.drawLine(480, 145, 510, 145);
         g.drawLine(490, 120, 490, 155);
         g.drawLine(500, 120, 500, 155);
         
-        // Antenna
+        // antenna
         g2.setStroke(new BasicStroke(2));
-        g.drawLine(278, 168, 278, 113); // Main pole
-        g.drawLine(278, 113, 212, 121); // Left branch
-        g.drawLine(212, 121, 254, 91);  // Left fork
-        g.drawLine(278, 113, 322, 116); // Right branch
-        g.drawLine(322, 116, 262, 110); // Right fork
+        int[] antX = {277, 278, 254, 212, 262, 322};
+        int[] antY = {168, 113, 91, 121, 110, 116};
+        g.drawLine(antX[0], antY[0], antX[1], antY[1]); 
+        g.drawLine(antX[1], antY[1], antX[3], antY[3]); 
+        g.drawLine(antX[3], antY[3], antX[2], antY[2]);  
+        g.drawLine(antX[1], antY[1], antX[5], antY[5]); 
+        g.drawLine(antX[5], antY[5], antX[4], antY[4]); 
 
-        // ==========================================
-        // 5. SIGNBOARD & JAPANESE TEXT (Cleaned up)
-        // ==========================================
+        // signboard base
         g.setColor(Color.WHITE);
         g.fillRect(315, 195, 360, 65);
         g.setColor(Color.BLACK);
-        g2.setStroke(new BasicStroke(2));
         g.drawRect(315, 195, 360, 65);
         
-        // Tile 1
-        g.setColor(Color.WHITE); g.fillRect(325, 203, 48, 48);
-        g.setColor(Color.BLACK); g.drawRect(325, 203, 48, 48);
-        g.drawLine(335, 220, 365, 220); 
-        g.drawLine(340, 210, 340, 240); 
-        g.drawOval(350, 225, 10, 10);
+        // tile 1
+        g.setColor(Color.WHITE);
+        int[] tile1X = {343, 342, 395, 395, 343};
+        int[] tile1Y = {205, 255, 254, 203, 204};
+        g.fillPolygon(tile1X, tile1Y, 5);
+        g.setColor(Color.BLACK);
+        g.drawPolygon(tile1X, tile1Y, 5);
+        g.drawLine(355, 220, 355, 240);
+        g.drawOval(360, 225, 10, 10);
+        g.drawLine(375, 220, 385, 220);
+        
+        // tile 2
+        g.setColor(Color.WHITE); 
+        g.fillRect(400, 203, 48, 48);
+        g.setColor(Color.BLACK); 
+        g.drawRect(400, 203, 48, 48);
+        int[] text2X = {408, 418, 415};
+        int[] text2Y = {219, 211, 244};
+        g.drawPolyline(text2X, text2Y, 3);
+        g.drawOval(425, 220, 10, 8);
 
-        // Tile 2
-        g.setColor(Color.WHITE); g.fillRect(385, 203, 48, 48);
-        g.setColor(Color.BLACK); g.drawRect(385, 203, 48, 48);
-        g.drawLine(405, 210, 405, 240); 
-        g.drawOval(415, 215, 12, 12);
-
-        // Tile 3 (Crooked Tile)
+        // tile 3 crooked
         g.setColor(Color.WHITE);
         int[] crookedX = {452, 477, 530, 515};
         int[] crookedY = {253, 198, 225, 257};
@@ -172,64 +172,69 @@ public class houseBonus extends JPanel {
         g.drawLine(470, 230, 490, 210); 
         g.drawOval(495, 225, 12, 12);
 
-        // Tile 4
-        g.setColor(Color.WHITE); g.fillRect(545, 203, 48, 48);
-        g.setColor(Color.BLACK); g.drawRect(545, 203, 48, 48);
-        g.drawLine(560, 210, 560, 240); 
-        g.drawLine(560, 225, 580, 215);
+        // tile 4
+        g.setColor(Color.WHITE); 
+        g.fillRect(530, 203, 48, 48);
+        g.setColor(Color.BLACK); 
+        g.drawRect(530, 203, 48, 48);
+        int[] text4X = {539, 538, 561, 555, 566};
+        int[] text4Y = {212, 247, 215, 233, 248};
+        g.drawPolyline(text4X, text4Y, 5);
 
-        // Tile 5
-        g.setColor(Color.WHITE); g.fillRect(605, 203, 48, 48);
-        g.setColor(Color.BLACK); g.drawRect(605, 203, 48, 48);
-        g.drawLine(615, 215, 635, 215); 
-        g.drawLine(625, 210, 625, 235);
+        // tile 5 shifted from left
+        g.setColor(Color.WHITE); 
+        g.fillRect(590, 203, 48, 48);
+        g.setColor(Color.BLACK); 
+        g.drawRect(590, 203, 48, 48);
+        int[] text5X = {367, 355, 374, 358, 376, 363, 356, 376};
+        int[] text5Y = {212, 219, 217, 230, 228, 248, 240, 243};
+        for(int i = 0; i < text5X.length; i++) text5X[i] += 235; 
+        g.drawPolyline(text5X, text5Y, 8);
 
-        // ==========================================
-        // 6. WINDOWS
-        // ==========================================
-        g2.setStroke(new BasicStroke(3));
-        
-        // Left Window
+        // left window
         g.setColor(new Color(40, 140, 160)); 
-        g.fillRect(328, 307, 37, 44);
+        int[] winLeftX = {365, 328, 328, 365};
+        int[] winLeftY = {307, 307, 351, 351};
+        g.fillPolygon(winLeftX, winLeftY, 4);
         g.setColor(Color.BLACK);
-        g.drawRect(328, 307, 37, 44);
+        g2.setStroke(new BasicStroke(3));
+        g.drawPolygon(winLeftX, winLeftY, 4);
         g.drawLine(346, 307, 346, 351); 
 
-        // Right Window 
+        // right window duplicated bounds
         g.setColor(new Color(40, 140, 160)); 
         g.fillRect(620, 307, 37, 44);
         g.setColor(Color.BLACK);
         g.drawRect(620, 307, 37, 44);
         g.drawLine(638, 307, 638, 351); 
 
-        // ==========================================
-        // 7. DOORS & AC UNIT
-        // ==========================================
-        // Top Floor Door 
+        // top floor door
         g.setColor(new Color(20, 30, 50)); 
-        g.fillRect(447, 287, 93, 114);
+        int[] topDoorX = {448, 447, 540, 539};
+        int[] topDoorY = {477, 288, 287, 398};
+        g.fillPolygon(topDoorX, topDoorY, 4);
         g.setColor(Color.BLACK);
-        g.drawRect(447, 287, 93, 114);
+        g.drawPolygon(topDoorX, topDoorY, 4);
 
-        // Bottom Floor Door (Fixed black triangle issue)
+        // bottom floor door
         g.setColor(new Color(20, 30, 50)); 
         g.fillRect(447, 560, 93, 120);
         g.setColor(Color.BLACK);
         g.drawRect(447, 560, 93, 120);
 
-        // AC Unit 
+        // ac unit
         g.setColor(new Color(110, 140, 170)); 
-        g.fillRect(569, 545, 73, 50);
+        int[] acX = {569, 642, 642, 572};
+        int[] acY = {545, 546, 594, 595};
+        g.fillPolygon(acX, acY, 4);
         g.setColor(Color.BLACK);
-        g.drawRect(569, 545, 73, 50);
+        g.drawPolygon(acX, acY, 4);
         g2.setStroke(new BasicStroke(2));
-        for(int i = 575; i < 635; i += 8) g.drawLine(i, 545, i, 594); 
+        for(int i = 575; i < 635; i += 8) {
+            g.drawLine(i, 545, i, 594); 
+        }
 
-        // ==========================================
-        // 8. BALCONY & STAIRS (Fixed with proper lines)
-        // ==========================================
-        // Balcony Support Posts 
+        // balcony support posts
         g.setColor(new Color(110, 130, 150));
         g.fillRect(440, 421, 8, 259);
         g.fillRect(540, 421, 8, 259);
@@ -237,20 +242,20 @@ public class houseBonus extends JPanel {
         g.drawRect(440, 421, 8, 259);
         g.drawRect(540, 421, 8, 259);
 
-        // Balcony Floor
+        // balcony floor
         g.setColor(new Color(110, 140, 170)); 
         g.fillRect(420, 401, 145, 20);
         g.setColor(Color.BLACK);
         g2.setStroke(new BasicStroke(3));
         g.drawRect(420, 401, 145, 20);
 
-        // Balcony Railings 
-        g.drawLine(420, 350, 565, 350); // Top rail
+        // balcony railings
+        g.drawLine(420, 350, 565, 350); 
         for (int i = 425; i <= 560; i += 15) {
-            g.drawLine(i, 350, i, 401); // Vertical spindles
+            g.drawLine(i, 350, i, 401); 
         }
 
-        // Stairs Diagonal Base (Filled grey, no weird boxes)
+        // stairs base body
         g.setColor(new Color(140, 150, 160)); 
         int[] stairBaseX = {160, 420, 420, 160};
         int[] stairBaseY = {660, 400, 421, 681};
@@ -258,103 +263,98 @@ public class houseBonus extends JPanel {
         g.setColor(Color.BLACK);
         g.drawPolygon(stairBaseX, stairBaseY, 4);
 
-        // Stairs Railings
+        // stairs handrail and vertical posts
         g2.setStroke(new BasicStroke(4));
-        g.drawLine(160, 600, 420, 340); // Top diagonal handrail
+        g.drawLine(160, 600, 420, 340); 
         g2.setStroke(new BasicStroke(2));
         for (int i = 0; i <= 10; i++) {
             int currentX = 160 + (i * 26);
             int topY = 600 - (i * 26); 
             int bottomY = 660 - (i * 26); 
-            g.drawLine(currentX, topY, currentX, bottomY); // Vertical spindles
+            g.drawLine(currentX, topY, currentX, bottomY); 
         }
 
-        // ==========================================
-        // 9. BUSHES / TREES 
-        // ==========================================
-        // Left Bush
+        // left bush
         g.setColor(new Color(30, 130, 50)); 
-        int[] leftBushX = {0, 15, 45, 75, 80, 0};
-        int[] leftBushY = {600, 540, 550, 570, 600, 600}; 
+        int[] leftBushX = {4, 38, 68, 71, 0, 0};
+        int[] leftBushY = {534, 541, 561, 600, 600, 534}; 
         g.fillPolygon(leftBushX, leftBushY, 6);
         g.setColor(Color.BLACK);
         g.drawPolygon(leftBushX, leftBushY, 6);
         
-        // Right Tree 
+        // right tree
         g.setColor(new Color(30, 130, 50));
-        int[] rightTreeX = {781, 760, 775, 820, 825, 896, 973, 1000, 1000, 783};
-        int[] rightTreeY = {611, 560, 468, 476, 438, 421, 426, 455, 611, 611};
-        g.fillPolygon(rightTreeX, rightTreeY, 10);
+        int[] rightTreeX = {781, 758, 771, 776, 819, 824, 896, 973, 999, 984, 998, 999, 783};
+        int[] rightTreeY = {611, 560, 527, 468, 476, 438, 421, 426, 455, 517, 551, 610, 611};
+        g.fillPolygon(rightTreeX, rightTreeY, 13);
         g.setColor(Color.BLACK);
-        g.drawPolygon(rightTreeX, rightTreeY, 10);
+        g.drawPolygon(rightTreeX, rightTreeY, 13);
 
-        // ==========================================
-        // 10. FRONT WALL FENCES (Cleaned up right bounds)
-        // ==========================================
+        // front wall fences
         g.setColor(new Color(245, 230, 180)); 
-        g.fillRect(0, 612, 273, 135);     // Left Wall
-        g.fillRect(526, 612, 474, 135);   // Right Wall
+        g.fillRect(0, 612, 273, 135);     
+        
+        int[] fenceRightX = {998, 526, 526, 999};
+        int[] fenceRightY = {613, 612, 747, 746};
+        g.fillPolygon(fenceRightX, fenceRightY, 4);
         
         g.setColor(Color.BLACK);
-        g2.setStroke(new BasicStroke(2));
 
-        // Horizontal brick lines
+        // fence horizontal lines
         for (int y = 612; y <= 747; y += 35) {
             g.drawLine(0, y, 273, y);
             g.drawLine(526, y, 1000, y);
         }
         
-        // Vertical staggered brick lines
+        // fence vertical bricks
         for (int y = 612; y < 747; y += 35) {
             int offset = (y == 612 || y == 682) ? 35 : 0;
             
-            // Left Wall Vertical Bricks
             for (int x = 0; x <= 273; x += 70) {
                 if (x + offset <= 273) g.drawLine(x + offset, y, x + offset, y + 35);
             }
             
-            // Right Wall Vertical Bricks
             for (int x = 526; x <= 1000; x += 70) {
                 if (x + offset <= 1000) g.drawLine(x + offset, y, x + offset, y + 35);
             }
         }
 
-        // ==========================================
-        // 11. GATE PILLARS 
-        // ==========================================
-        // Left Pillar 
+        // right gate pillar
+        g.setColor(new Color(130, 140, 150)); 
+        int[] pillarRightX = {525, 472, 471, 526};
+        int[] pillarRightY = {607, 607, 745, 747};
+        g.fillPolygon(pillarRightX, pillarRightY, 4);
+        g.setColor(Color.BLACK); 
+        g.drawPolygon(pillarRightX, pillarRightY, 4);
+        
+        g.setColor(new Color(160, 170, 180)); 
+        g.fillRect(461, 597, 74, 10); 
+        g.setColor(Color.BLACK); 
+        g.drawRect(461, 597, 74, 10);
+
+        // left gate pillar
         g.setColor(new Color(130, 140, 150)); 
         g.fillRect(273, 607, 54, 140);
         g.setColor(Color.BLACK); 
         g.drawRect(273, 607, 54, 140);
         
         g.setColor(new Color(160, 170, 180)); 
-        g.fillRect(263, 597, 74, 10); // Left Cap
+        g.fillRect(263, 597, 74, 10); 
         g.setColor(Color.BLACK); 
         g.drawRect(263, 597, 74, 10);
 
-        // Right Pillar 
-        g.setColor(new Color(130, 140, 150)); 
-        g.fillRect(471, 607, 54, 140);
-        g.setColor(Color.BLACK); 
-        g.drawRect(471, 607, 54, 140);
-        
-        g.setColor(new Color(160, 170, 180)); 
-        g.fillRect(461, 597, 74, 10); // Right Cap
-        g.setColor(Color.BLACK); 
-        g.drawRect(461, 597, 74, 10);
-
-        // Nameplate
+        // pillar nameplate
         g.setColor(new Color(150, 130, 60)); 
         g.fillRect(485, 650, 27, 45);
         g.setColor(Color.BLACK);
         g.drawRect(485, 650, 27, 45);
         
-        // Base ground line
+        // ground line
         g.drawLine(0, 747, 1000, 747); 
     }
 
     public static void main(String[] args) {
         houseBonus x = new houseBonus();
+        x.setVisible(true);
     }
 }
