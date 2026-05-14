@@ -79,7 +79,7 @@ public class houseBonus extends JPanel {
         int houseBodyY [] = {260, 260, 715, 715};
         g.fillPolygon(houseBodyX, houseBodyY, 4);
         
-        // vertical wood lines drawn manually (ZERO LOOPS)
+        // vertical wood lines drawn manually
         g.setColor(new Color(70, 30, 40)); 
         g2.setStroke(new BasicStroke(1));
         g.drawLine(169, 260, 169, 715);
@@ -226,9 +226,11 @@ public class houseBonus extends JPanel {
 
         // right window
         g.setColor(new Color(40, 140, 160)); 
-        g.fillRect(620, 307, 37, 44);
+        int winRightX [] = {620, 657, 657, 620};
+        int winRightY [] = {307, 307, 351, 351};
+        g.fillPolygon(winRightX, winRightY, 4);
         g.setColor(Color.black);
-        g.drawRect(620, 307, 37, 44);
+        g.drawPolygon(winRightX, winRightY, 4);
         g.drawLine(638, 307, 638, 351); 
 
         // top door from desmos
@@ -254,7 +256,7 @@ public class houseBonus extends JPanel {
         g.drawPolygon(acX, acY, 4);
         g2.setStroke(new BasicStroke(2));
         
-        // manually drawn AC vents (ZERO LOOPS)
+        // manually drawn AC vents
         g.drawLine(575, 545, 575, 594);
         g.drawLine(583, 545, 583, 594);
         g.drawLine(591, 545, 591, 594);
@@ -279,7 +281,7 @@ public class houseBonus extends JPanel {
         g2.setStroke(new BasicStroke(3));
         g.drawRect(420, 401, 145, 20);
 
-        // balcony railings drawn manually (ZERO LOOPS)
+        // balcony railings drawn manually
         g.drawLine(420, 350, 565, 350); 
         g.drawLine(425, 350, 425, 401);
         g.drawLine(440, 350, 440, 401);
@@ -300,7 +302,7 @@ public class houseBonus extends JPanel {
         g.setColor(Color.black);
         g.drawPolygon(stairBaseX, stairBaseY, 4);
 
-        // manually drawn stairs handrail and vertical posts (ZERO LOOPS)
+        // manually drawn stairs handrail and vertical posts
         g2.setStroke(new BasicStroke(4));
         g.drawLine(160, 600, 420, 340); // Top rail
         
@@ -331,7 +333,7 @@ public class houseBonus extends JPanel {
         // right tree
         g.setColor(new Color(30, 130, 50));
         int rightTreeX [] = {781, 758, 771, 776, 819, 824, 896, 973, 999, 984, 998, 999, 783};
-        int rightTreeY [] = {611, 560, 527, 468, 476, 438, 421, 426, 455, 517, 551, 610, 611};
+        int rightTreeY [] = {613, 560, 527, 468, 476, 438, 421, 426, 455, 517, 551, 613, 613};
         g.fillPolygon(rightTreeX, rightTreeY, 13);
         g.setColor(Color.black);
         g.drawPolygon(rightTreeX, rightTreeY, 13);
@@ -350,30 +352,30 @@ public class houseBonus extends JPanel {
         g.setColor(Color.black);
         g.drawPolygon(fenceRightX, fenceRightY, 4);
 
-        // manually drawn inner fence horizontal lines (Removed overlapping top/bottom borders)
+        // manually drawn inner fence horizontal lines
         g.drawLine(0, 646, 273, 646);
         g.drawLine(0, 680, 273, 680);
         g.drawLine(0, 714, 273, 714);
         
-        g.drawLine(526, 646, 1000, 646);
-        g.drawLine(526, 680, 1000, 680);
-        g.drawLine(526, 714, 1000, 714);
+        g.drawLine(526, 646, 998, 646);
+        g.drawLine(526, 680, 998, 680);
+        g.drawLine(526, 714, 998, 714);
 
-        // manually drawn inner fence vertical lines left wall (ZERO LOOPS)
+        // manually drawn inner fence vertical lines left wall
         g.drawLine(55, 612, 55, 747);
         g.drawLine(110, 612, 110, 747);
         g.drawLine(165, 612, 165, 747);
         g.drawLine(220, 612, 220, 747);
 
-        // manually drawn inner fence vertical lines right wall (ZERO LOOPS)
+        // manually drawn inner fence vertical lines right wall
         g.drawLine(582, 612, 582, 747);
         g.drawLine(638, 612, 638, 747);
         g.drawLine(694, 612, 694, 747);
         g.drawLine(750, 612, 750, 747);
-        g.drawLine(806, 612, 806, 747);
-        g.drawLine(862, 612, 862, 747);
-        g.drawLine(918, 612, 918, 747);
-        g.drawLine(974, 612, 974, 747);
+        g.drawLine(806, 613, 806, 746);
+        g.drawLine(862, 613, 862, 746);
+        g.drawLine(918, 613, 918, 746);
+        g.drawLine(974, 613, 974, 746);
 
         // right gate pillar
         g.setColor(new Color(130, 140, 150)); 
