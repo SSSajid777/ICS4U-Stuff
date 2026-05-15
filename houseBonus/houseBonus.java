@@ -1,7 +1,8 @@
 /*
 Name: Sajid Abdullah
 Date: May 14, 2026
-Description: A Java Swing graphics program that manually draws the Shinchan house using polygons, lines, shapes, and gradients.
+Description: A Java Swing graphics program that manually draws the Shinchan house 
+using polygons, lines, shapes, and gradients.
 Resources: Desmos
 Teacher templates and examples
 */
@@ -15,10 +16,10 @@ import java.awt.GradientPaint;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class ShinchanHouse extends JPanel {
+public class houseBonus extends JPanel {
     private JFrame mainFrame;
 
-    ShinchanHouse() {
+    houseBonus() {
         mainFrame = new JFrame();
         // sets up screen
         mainFrame.setSize(1000, 750);
@@ -191,12 +192,6 @@ public class ShinchanHouse extends JPanel {
         g.drawLine(antX[1], antY[1], antX[5], antY[5]); 
         g.drawLine(antX[5], antY[5], antX[4], antY[4]); 
 
-        // signboard base
-        g.setColor(Color.white);
-        g.fillRect(315, 195, 360, 65);
-        g.setColor(Color.black);
-        g.drawRect(315, 195, 360, 65);
-        
         // tile 1
         g.setColor(Color.white);
         int tile1X [] = {343, 342, 395, 395, 343};
@@ -443,7 +438,7 @@ public class ShinchanHouse extends JPanel {
     }
 
     public static void main(String[] args) {
-        ShinchanHouse x = new ShinchanHouse();
+        houseBonus x = new houseBonus();
         x.setVisible(true);
     }
 }
