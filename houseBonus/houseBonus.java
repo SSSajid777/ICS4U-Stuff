@@ -1,7 +1,7 @@
 /*
 Name: Sajid Abdullah
 Date: May 14, 2026
-Description: A Java Swing graphics program that manually draws the Shinchan house using polygons, lines, shapes, and gradients.
+Description: Java Swing graphics program that draws the Shinchan house using polygons, lines, shapes, and gradients.
 Resources: Desmos
 Teacher templates and examples
 */
