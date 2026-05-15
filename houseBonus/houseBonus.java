@@ -4,6 +4,7 @@ Date: May 14, 2026
 Description: Java Swing graphics program that draws the Shinchan house using polygons, lines, shapes, and gradients.
 Resources: Desmos
 Teacher templates and examples
+Desmos link: https://www.desmos.com/calculator/cbcong4stu
 */
 
 // you need the statements below to be able to run graphics
