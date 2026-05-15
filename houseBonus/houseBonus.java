@@ -355,9 +355,9 @@ public class houseBonus extends JPanel {
         g.drawLine(0, 680, 273, 680);
         g.drawLine(0, 714, 273, 714);
         
-        g.drawLine(526, 646, 1000, 646);
-        g.drawLine(526, 680, 1000, 680);
-        g.drawLine(526, 714, 1000, 714);
+        g.drawLine(526, 646, 998, 646);
+        g.drawLine(526, 680, 998, 680);
+        g.drawLine(526, 714, 998, 714);
 
         // manually drawn inner fence vertical lines left wall (ZERO LOOPS)
         g.drawLine(55, 612, 55, 747);
@@ -370,10 +370,10 @@ public class houseBonus extends JPanel {
         g.drawLine(638, 612, 638, 747);
         g.drawLine(694, 612, 694, 747);
         g.drawLine(750, 612, 750, 747);
-        g.drawLine(806, 612, 806, 747);
-        g.drawLine(862, 612, 862, 747);
-        g.drawLine(918, 612, 918, 747);
-        g.drawLine(974, 612, 974, 747);
+        g.drawLine(806, 613, 806, 746); // Adjusted to fit perfectly inside the slanted right polygon
+        g.drawLine(862, 613, 862, 746);
+        g.drawLine(918, 613, 918, 746);
+        g.drawLine(974, 613, 974, 746);
 
         // right gate pillar
         g.setColor(new Color(130, 140, 150)); 
