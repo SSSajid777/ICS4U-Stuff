@@ -11,7 +11,10 @@ public class robot1 extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         // Draws the robot image at (100, 50)
-        g.drawImage(robot, 100, 50, this);
+        g.drawImage(robot, 0, 0, this);
+        g.drawImage(robot, 590, 0, this);
+        g.drawImage(robot, 0, 394, this);
+        g.drawImage(robot, 590, 394, this);
     }
     public static void main(String[] args) {
         JFrame frame = new JFrame("Robot");
