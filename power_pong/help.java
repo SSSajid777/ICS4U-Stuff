@@ -17,33 +17,33 @@ public class help extends JPanel implements MouseListener, MouseMotionListener {
         g.drawImage(bg, 0, 0, 1300, 700, this);
 
         //back button (bottom left)
-        if (mouseX > 20 && mouseX < 220 && mouseY > 620 && mouseY < 690) {
+        if (mouseX > 15 && mouseX < 165 && mouseY > 635 && mouseY < 690) {
             g.setColor(Color.WHITE);
         } else {
             g.setColor(Color.BLACK);
         }
-        g.fillRect(20, 620, 200, 70);
-        if (mouseX > 20 && mouseX < 220 && mouseY > 620 && mouseY < 690) {
+        g.fillRect(15, 635, 150, 55);
+        if (mouseX > 15 && mouseX < 165 && mouseY > 635 && mouseY < 690) {
             g.setColor(Color.BLACK);
         } else {
             g.setColor(Color.WHITE);
         }
-        g.setFont(new Font("Times New Roman", Font.BOLD, 40));
-        g.drawString("Back", 75, 665);
+        g.setFont(new Font("Times New Roman", Font.BOLD, 33));
+        g.drawString("Back", 48, 672);
 
         //play button (bottom right)
-        if (mouseX > 1080 && mouseX < 1280 && mouseY > 620 && mouseY < 690) {
+        if (mouseX > 1135 && mouseX < 1285 && mouseY > 635 && mouseY < 690) {
             g.setColor(Color.WHITE);
         } else {
             g.setColor(Color.BLACK);
         }
-        g.fillRect(1080, 620, 200, 70);
-        if (mouseX > 1080 && mouseX < 1280 && mouseY > 620 && mouseY < 690) {
+        g.fillRect(1135, 635, 150, 55);
+        if (mouseX > 1135 && mouseX < 1285 && mouseY > 635 && mouseY < 690) {
             g.setColor(Color.BLACK);
         } else {
             g.setColor(Color.WHITE);
         }
-        g.drawString("Play", 1140, 665);
+        g.drawString("Play", 1168, 672);
     }
 
     public void mousePressed(MouseEvent e) {
@@ -51,12 +51,12 @@ public class help extends JPanel implements MouseListener, MouseMotionListener {
         int y = e.getY();
 
         //back button
-        if (x > 20 && x < 220 && y > 620 && y < 690) {
+        if (x > 15 && x < 165 && y > 635 && y < 690) {
             //goes to menu screen (add later)
         }
 
         //play button
-        if (x > 1080 && x < 1280 && y > 620 && y < 690) {
+        if (x > 1135 && x < 1285 && y > 635 && y < 690) {
             //goes to game screen (add later)
         }
     }
@@ -84,10 +84,10 @@ public class help extends JPanel implements MouseListener, MouseMotionListener {
         help help = new help();
 
         window.add(help);
+        window.setUndecorated(true);
         window.pack();
 
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setUndecorated(true);
         window.setLocationRelativeTo(null);
         window.setVisible(true);
     }
