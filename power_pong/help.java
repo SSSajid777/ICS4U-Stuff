@@ -16,6 +16,8 @@ public class help extends JPanel implements MouseListener, MouseMotionListener {
         super.paintComponent(g);
         g.drawImage(bg, 0, 0, 1300, 700, this);
 
+        g.setFont(new Font("Courier New", Font.BOLD, 33));
+
         //back button (bottom left)
         if (mouseX > 15 && mouseX < 165 && mouseY > 635 && mouseY < 690) {
             g.setColor(Color.WHITE);
@@ -28,8 +30,7 @@ public class help extends JPanel implements MouseListener, MouseMotionListener {
         } else {
             g.setColor(Color.WHITE);
         }
-        g.setFont(new Font("Times New Roman", Font.BOLD, 33));
-        g.drawString("Back", 48, 672);
+        g.drawString("BACK", 49, 673);
 
         //play button (bottom right)
         if (mouseX > 1135 && mouseX < 1285 && mouseY > 635 && mouseY < 690) {
@@ -43,7 +44,7 @@ public class help extends JPanel implements MouseListener, MouseMotionListener {
         } else {
             g.setColor(Color.WHITE);
         }
-        g.drawString("Play", 1168, 672);
+        g.drawString("PLAY", 1168, 673);
     }
 
     public void mousePressed(MouseEvent e) {
