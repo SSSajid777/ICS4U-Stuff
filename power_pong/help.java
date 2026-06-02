@@ -25,6 +25,8 @@ public class help extends JPanel implements MouseListener, MouseMotionListener {
             g.setColor(Color.BLACK);
         }
         g.fillRect(15, 635, 150, 55);
+        g.setColor(Color.WHITE);
+        g.drawRect(15, 635, 150, 55);
         if (mouseX > 15 && mouseX < 165 && mouseY > 635 && mouseY < 690) {
             g.setColor(Color.BLACK);
         } else {
@@ -39,6 +41,8 @@ public class help extends JPanel implements MouseListener, MouseMotionListener {
             g.setColor(Color.BLACK);
         }
         g.fillRect(1135, 635, 150, 55);
+        g.setColor(Color.WHITE);
+        g.drawRect(1135, 635, 150, 55);
         if (mouseX > 1135 && mouseX < 1285 && mouseY > 635 && mouseY < 690) {
             g.setColor(Color.BLACK);
         } else {
@@ -53,7 +57,16 @@ public class help extends JPanel implements MouseListener, MouseMotionListener {
 
         //back button
         if (x > 15 && x < 165 && y > 635 && y < 690) {
-            //goes to menu screen (add later)
+            menu xy = new menu();
+            JFrame gameWindow = new JFrame("Menu");
+            gameWindow.add(xy);
+            gameWindow.setUndecorated(true);
+            gameWindow.pack();
+            gameWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            gameWindow.setLocationRelativeTo(null);
+            gameWindow.setVisible(true);
+            JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+            currentFrame.dispose();
         }
 
         //play button
