@@ -36,6 +36,13 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
     boolean p2Up = false;
     boolean p2Down = false;
 
+    //ball
+    int ballX = WIDTH / 2;
+    int ballY = HEIGHT / 2;
+    int ballSize = 20;
+    int dx = 7;
+    int dy = 7;
+
     public game() {
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
         setFocusable(true);
@@ -54,15 +61,19 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
         g.drawImage(player, p1X, p1Y, p1Width, p1Height, this);
         g.drawImage(player, p2X, p2Y, p2Width, p2Height, this);
 
+        //ball
+        g.setColor(Color.WHITE);
+        g.fillRect(ballX, ballY, ballSize, ballSize);
+
         //scores
         g.setColor(Color.WHITE);
         g.setFont(new Font("Courier New", Font.BOLD, 70));
         g.drawString(String.valueOf(score1), 590, 115);
         g.drawString(String.valueOf(score2), 661, 115);
 
-        //streak number beside streak text
+        //streak number
         g.setFont(new Font("Courier New", Font.BOLD, 50));
-        g.drawString(String.valueOf(hitStreak), 660, 675);
+        g.drawString(String.valueOf(hitStreak), 650, 675);
 
         //win message
         if (gameOver) {
@@ -82,20 +93,65 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
             return;
         }
 
+        //move ball
+        ballX += dx;
+        ballY += dy;
+
+        //bounce off top and bottom border
+        if (ballY <= 65) {
+            ballY = 65;
+            dy = -dy;
+        }
+        if (ballY + ballSize >= 635) {
+            ballY = 635 - ballSize;
+            dy = -dy;
+        }
+
+        //collision rectangles
+        Rectangle ballRect = new Rectangle(ballX, ballY, ballSize, ballSize);
+        Rectangle p1Rect = new Rectangle(p1X, p1Y, p1Width, p1Height);
+        Rectangle p2Rect = new Rectangle(p2X, p2Y, p2Width, p2Height);
+
+        //ball hits player 1 paddle
+        if (ballRect.intersects(p1Rect)) {
+            dx = -dx;
+            ballX = p1X + p1Width;
+            hitStreak++;
+        }
+
+        //ball hits player 2 paddle
+        if (ballRect.intersects(p2Rect)) {
+            dx = -dx;
+            ballX = p2X - ballSize;
+            hitStreak++;
+        }
+
+        //ball exits left border - player 2 scores
+        if (ballX < 15) {
+            score2++;
+            resetBall();
+        }
+
+        //ball exits right border - player 1 scores
+        if (ballX + ballSize > 1285) {
+            score1++;
+            resetBall();
+        }
+
         //player 1 movement (W/S)
         if (p1Up) {
-            p1Y -= 5;
+            p1Y -= 8;
         }
         if (p1Down) {
-            p1Y += 5;
+            p1Y += 8;
         }
 
         //player 2 movement (up/down arrows)
         if (p2Up) {
-            p2Y -= 5;
+            p2Y -= 8;
         }
         if (p2Down) {
-            p2Y += 5;
+            p2Y += 8;
         }
 
         //keep player 1 inside boundaries
@@ -121,6 +177,14 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
         }
 
         repaint();
+    }
+
+    public void resetBall() {
+        ballX = WIDTH / 2;
+        ballY = HEIGHT / 2;
+        dx = 7;
+        dy = 7;
+        hitStreak = 0;
     }
 
     public void keyPressed(KeyEvent e) {
