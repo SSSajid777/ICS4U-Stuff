@@ -71,7 +71,16 @@ public class help extends JPanel implements MouseListener, MouseMotionListener {
 
         //play button
         if (x > 1135 && x < 1285 && y > 635 && y < 690) {
-            //goes to game screen (add later)
+            game xy = new game();
+            JFrame gameWindow = new JFrame("Game");
+            gameWindow.add(xy);
+            gameWindow.setUndecorated(true);
+            gameWindow.pack();
+            gameWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            gameWindow.setLocationRelativeTo(null);
+            gameWindow.setVisible(true);
+            JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+            currentFrame.dispose();
         }
     }
 
