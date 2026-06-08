@@ -86,10 +86,10 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
             //win text
             g.setFont(new Font("Courier New", Font.BOLD, 50));
             if (score1 == 7) {
-                g.drawString("PLAYER 1 WINS", 403, 300);
+                g.drawString("PLAYER 1 WINS", 463, 300);
             }
             if (score2 == 7) {
-                g.drawString("PLAYER 2 WINS", 403, 300);
+                g.drawString("PLAYER 2 WINS", 463, 300);
             }
 
             //play again button
@@ -107,7 +107,7 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
                 g.setColor(Color.WHITE);
             }
             g.setFont(new Font("Courier New", Font.BOLD, 25));
-            g.drawString("PLAY AGAIN", 378, 372);
+            g.drawString("PLAY AGAIN", 395, 372);
 
             //menu button
             if (mouseX > 710 && mouseX < 930 && mouseY > 335 && mouseY < 390) {
@@ -123,7 +123,7 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
             } else {
                 g.setColor(Color.WHITE);
             }
-            g.drawString("MENU", 775, 372);
+            g.drawString("MENU", 787, 372);
 
             //exit button
             if (mouseX > 370 && mouseX < 930 && mouseY > 415 && mouseY < 470) {
