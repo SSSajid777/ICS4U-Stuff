@@ -41,8 +41,8 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
     int ballX = WIDTH / 2;
     int ballY = HEIGHT / 2;
     int ballSize = 20;
-    int dx = (random.nextInt(2) == 0) ? 7 : -7;
-    int dy = (random.nextInt(2) == 0) ? 7 : -7;
+    int dx = 7;
+    int dy = 7;
 
     public game() {
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
@@ -52,6 +52,12 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
         addMouseMotionListener(this);
         timer = new Timer(16, this);
         timer.start();
+        if (random.nextInt(2) == 0) {
+            dx = -dx;
+        }
+        if (random.nextInt(2) == 0) {
+            dy = -dy;
+        }
     }
 
     public void paintComponent(Graphics g) {
@@ -299,8 +305,14 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
     public void resetBall() {
         ballX = WIDTH / 2;
         ballY = HEIGHT / 2;
-        dx = (random.nextInt(2) == 0) ? 7 : -7;
-        dy = (random.nextInt(2) == 0) ? 7 : -7;
+        dx = 7;
+        dy = 7;
+        if (random.nextInt(2) == 0) {
+            dx = -dx;
+        }
+        if (random.nextInt(2) == 0) {
+            dy = -dy;
+        }
         hitStreak = 0;
     }
 
