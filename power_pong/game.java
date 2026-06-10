@@ -11,6 +11,7 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
     final int HEIGHT = 700;
     Image bg = new ImageIcon("gamebg.png").getImage();
     Image player = new ImageIcon("player.jpg").getImage();
+    Image powerupImg = new ImageIcon("powerup.png").getImage();
     int mouseX = 0;
     int mouseY = 0;
 
@@ -18,14 +19,15 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
     int score1 = 0;
     int score2 = 0;
     int hitStreak = 0;
+    int lastHitter = 0;
     boolean gameOver = false;
-    boolean paused = false;
 
     //player 1 paddle (left)
     int p1X = 60;
     int p1Y = HEIGHT / 2 - 60;
     int p1Width = 20;
     int p1Height = 120;
+    int p1Speed = 11;
     boolean p1Up = false;
     boolean p1Down = false;
 
@@ -34,6 +36,7 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
     int p2Y = HEIGHT / 2 - 60;
     int p2Width = 20;
     int p2Height = 120;
+    int p2Speed = 11;
     boolean p2Up = false;
     boolean p2Down = false;
 
@@ -41,8 +44,17 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
     int ballX = WIDTH / 2;
     int ballY = HEIGHT / 2;
     int ballSize = 20;
-    int dx = 7;
-    int dy = 7;
+    int dx = 9;
+    int dy = 9;
+
+    //powerup
+    boolean powerupOnScreen = false;
+    boolean powerupActive = false;
+    int powerupOwner = 0;
+    int powerupType = 0;
+    int powerupX = 0;
+    int powerupY = 0;
+    int powerupSize = 70;
 
     public game() {
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
@@ -71,6 +83,11 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
         //ball
         g.setColor(Color.WHITE);
         g.fillRect(ballX, ballY, ballSize, ballSize);
+
+        //powerup
+        if (powerupOnScreen) {
+            g.drawImage(powerupImg, powerupX, powerupY, powerupSize, powerupSize, this);
+        }
 
         //scores
         g.setColor(Color.WHITE);
@@ -147,72 +164,11 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
             }
             g.drawString("EXIT", 616, 452);
         }
-
-        //pause screen
-        if (paused) {
-            g.setColor(Color.BLACK);
-            g.fillRect(450, 180, 400, 370);
-            g.setColor(Color.WHITE);
-            g.drawRect(450, 180, 400, 370);
-
-            //paused text
-            g.setFont(new Font("Courier New", Font.BOLD, 55));
-            g.drawString("PAUSED", 558, 255);
-
-            //resume button
-            if (mouseX > 500 && mouseX < 800 && mouseY > 285 && mouseY < 340) {
-                g.setColor(Color.WHITE);
-            } else {
-                g.setColor(Color.BLACK);
-            }
-            g.fillRect(500, 285, 300, 55);
-            g.setColor(Color.WHITE);
-            g.drawRect(500, 285, 300, 55);
-            if (mouseX > 500 && mouseX < 800 && mouseY > 285 && mouseY < 340) {
-                g.setColor(Color.BLACK);
-            } else {
-                g.setColor(Color.WHITE);
-            }
-            g.setFont(new Font("Courier New", Font.BOLD, 30));
-            g.drawString("RESUME", 595, 322);
-
-            //menu button
-            if (mouseX > 500 && mouseX < 800 && mouseY > 365 && mouseY < 420) {
-                g.setColor(Color.WHITE);
-            } else {
-                g.setColor(Color.BLACK);
-            }
-            g.fillRect(500, 365, 300, 55);
-            g.setColor(Color.WHITE);
-            g.drawRect(500, 365, 300, 55);
-            if (mouseX > 500 && mouseX < 800 && mouseY > 365 && mouseY < 420) {
-                g.setColor(Color.BLACK);
-            } else {
-                g.setColor(Color.WHITE);
-            }
-            g.drawString("MENU", 612, 402);
-
-            //exit button
-            if (mouseX > 500 && mouseX < 800 && mouseY > 445 && mouseY < 500) {
-                g.setColor(Color.WHITE);
-            } else {
-                g.setColor(Color.BLACK);
-            }
-            g.fillRect(500, 445, 300, 55);
-            g.setColor(Color.WHITE);
-            g.drawRect(500, 445, 300, 55);
-            if (mouseX > 500 && mouseX < 800 && mouseY > 445 && mouseY < 500) {
-                g.setColor(Color.BLACK);
-            } else {
-                g.setColor(Color.WHITE);
-            }
-            g.drawString("EXIT", 612, 482);
-        }
     }
 
     public void actionPerformed(ActionEvent e) {
 
-        if (gameOver || paused) {
+        if (gameOver) {
             return;
         }
 
@@ -234,12 +190,15 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
         Rectangle ballRect = new Rectangle(ballX, ballY, ballSize, ballSize);
         Rectangle p1Rect = new Rectangle(p1X, p1Y, p1Width, p1Height);
         Rectangle p2Rect = new Rectangle(p2X, p2Y, p2Width, p2Height);
+        Rectangle powerupRect = new Rectangle(powerupX, powerupY, powerupSize, powerupSize);
 
         //ball hits player 1 paddle
         if (ballRect.intersects(p1Rect)) {
             dx = -dx;
             ballX = p1X + p1Width;
             hitStreak++;
+            lastHitter = 1;
+            checkPowerupSpawn();
         }
 
         //ball hits player 2 paddle
@@ -247,6 +206,44 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
             dx = -dx;
             ballX = p2X - ballSize;
             hitStreak++;
+            lastHitter = 2;
+            checkPowerupSpawn();
+        }
+
+        //ball hits powerup
+        if (powerupOnScreen) {
+            if (ballRect.intersects(powerupRect)) {
+                powerupOnScreen = false;
+                powerupActive = true;
+                powerupOwner = lastHitter;
+                //player speed increase (owner's paddle faster)
+                if (powerupType == 1) {
+                    if (powerupOwner == 1) {
+                        p1Speed = 16;
+                    }
+                    if (powerupOwner == 2) {
+                        p2Speed = 16;
+                    }
+                }
+                //opponent speed decrease (other player's paddle slower)
+                if (powerupType == 2) {
+                    if (powerupOwner == 1) {
+                        p2Speed = 5;
+                    }
+                    if (powerupOwner == 2) {
+                        p1Speed = 5;
+                    }
+                }
+                //player size increase (owner's paddle bigger)
+                if (powerupType == 3) {
+                    if (powerupOwner == 1) {
+                        p1Height = 200;
+                    }
+                    if (powerupOwner == 2) {
+                        p2Height = 200;
+                    }
+                }
+            }
         }
 
         //ball exits left border - player 2 scores
@@ -263,18 +260,18 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
 
         //player 1 movement (W/S)
         if (p1Up) {
-            p1Y -= 8;
+            p1Y -= p1Speed;
         }
         if (p1Down) {
-            p1Y += 8;
+            p1Y += p1Speed;
         }
 
         //player 2 movement (up/down arrows)
         if (p2Up) {
-            p2Y -= 8;
+            p2Y -= p2Speed;
         }
         if (p2Down) {
-            p2Y += 8;
+            p2Y += p2Speed;
         }
 
         //keep player 1 inside boundaries
@@ -302,11 +299,58 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
         repaint();
     }
 
+    public void checkPowerupSpawn() {
+        //spawn or respawn powerup at every streak multiple of 3
+        if (hitStreak > 0 && hitStreak % 3 == 0) {
+            //clear any active powerup first
+            clearActivePowerup();
+            //spawn new one
+            powerupOnScreen = true;
+            powerupX = random.nextInt(900) + 200;
+            powerupY = random.nextInt(440) + 120;
+            powerupType = random.nextInt(3) + 1;
+        }
+    }
+
+    public void clearActivePowerup() {
+        if (powerupActive) {
+            //revert player speed increase
+            if (powerupType == 1) {
+                if (powerupOwner == 1) {
+                    p1Speed = 11;
+                }
+                if (powerupOwner == 2) {
+                    p2Speed = 11;
+                }
+            }
+            //revert opponent speed decrease
+            if (powerupType == 2) {
+                if (powerupOwner == 1) {
+                    p2Speed = 11;
+                }
+                if (powerupOwner == 2) {
+                    p1Speed = 11;
+                }
+            }
+            //revert player size increase
+            if (powerupType == 3) {
+                if (powerupOwner == 1) {
+                    p1Height = 120;
+                }
+                if (powerupOwner == 2) {
+                    p2Height = 120;
+                }
+            }
+            powerupActive = false;
+            powerupOwner = 0;
+        }
+    }
+
     public void resetBall() {
         ballX = WIDTH / 2;
         ballY = HEIGHT / 2;
-        dx = 7;
-        dy = 7;
+        dx = 9;
+        dy = 9;
         if (random.nextInt(2) == 0) {
             dx = -dx;
         }
@@ -314,6 +358,13 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
             dy = -dy;
         }
         hitStreak = 0;
+        lastHitter = 0;
+        powerupOnScreen = false;
+        clearActivePowerup();
+        p1Height = 120;
+        p2Height = 120;
+        p1Speed = 11;
+        p2Speed = 11;
     }
 
     public void resetGame() {
@@ -321,7 +372,6 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
         score2 = 0;
         hitStreak = 0;
         gameOver = false;
-        paused = false;
         p1Y = HEIGHT / 2 - 60;
         p2Y = HEIGHT / 2 - 60;
         resetBall();
@@ -342,13 +392,6 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
         }
         if (e.getKeyCode() == KeyEvent.VK_DOWN) {
             p2Down = true;
-        }
-        //pause toggle
-        if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-            if (!gameOver) {
-                paused = !paused;
-                repaint();
-            }
         }
     }
 
@@ -395,32 +438,6 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
             }
             //exit button
             if (x > 370 && x < 930 && y > 415 && y < 470) {
-                System.exit(0);
-            }
-        }
-
-        //pause screen buttons
-        if (paused) {
-            //resume button
-            if (x > 500 && x < 800 && y > 285 && y < 340) {
-                paused = false;
-                repaint();
-            }
-            //menu button
-            if (x > 500 && x < 800 && y > 365 && y < 420) {
-                menu xy = new menu();
-                JFrame gameWindow = new JFrame("Menu");
-                gameWindow.add(xy);
-                gameWindow.setUndecorated(true);
-                gameWindow.pack();
-                gameWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                gameWindow.setLocationRelativeTo(null);
-                gameWindow.setVisible(true);
-                JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
-                currentFrame.dispose();
-            }
-            //exit button
-            if (x > 500 && x < 800 && y > 445 && y < 500) {
                 System.exit(0);
             }
         }
