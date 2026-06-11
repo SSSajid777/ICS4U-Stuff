@@ -21,6 +21,7 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
     int hitStreak = 0;
     int lastHitter = 0;
     boolean gameOver = false;
+    boolean paused = false;
 
     //player 1 paddle (left)
     int p1X = 60;
@@ -54,7 +55,7 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
     int powerupType = 0;
     int powerupX = 0;
     int powerupY = 0;
-    int powerupSize = 70;
+    int powerupSize = 73;
 
     public game() {
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
@@ -74,6 +75,66 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+
+        //pause screen
+        if (paused) {
+            g.setColor(Color.BLACK);
+            g.fillRect(0, 0, WIDTH, HEIGHT);
+            g.setColor(Color.WHITE);
+            g.setFont(new Font("Courier New", Font.BOLD, 60));
+            g.drawString("PAUSED", 540, 260);
+
+            //resume button
+            if (mouseX > 500 && mouseX < 800 && mouseY > 300 && mouseY < 355) {
+                g.setColor(Color.WHITE);
+            } else {
+                g.setColor(Color.BLACK);
+            }
+            g.fillRect(500, 300, 300, 55);
+            g.setColor(Color.WHITE);
+            g.drawRect(500, 300, 300, 55);
+            if (mouseX > 500 && mouseX < 800 && mouseY > 300 && mouseY < 355) {
+                g.setColor(Color.BLACK);
+            } else {
+                g.setColor(Color.WHITE);
+            }
+            g.setFont(new Font("Courier New", Font.BOLD, 30));
+            g.drawString("RESUME", 593, 337);
+
+            //menu button
+            if (mouseX > 500 && mouseX < 800 && mouseY > 380 && mouseY < 435) {
+                g.setColor(Color.WHITE);
+            } else {
+                g.setColor(Color.BLACK);
+            }
+            g.fillRect(500, 380, 300, 55);
+            g.setColor(Color.WHITE);
+            g.drawRect(500, 380, 300, 55);
+            if (mouseX > 500 && mouseX < 800 && mouseY > 380 && mouseY < 435) {
+                g.setColor(Color.BLACK);
+            } else {
+                g.setColor(Color.WHITE);
+            }
+            g.drawString("MENU", 612, 417);
+
+            //exit button
+            if (mouseX > 500 && mouseX < 800 && mouseY > 460 && mouseY < 515) {
+                g.setColor(Color.WHITE);
+            } else {
+                g.setColor(Color.BLACK);
+            }
+            g.fillRect(500, 460, 300, 55);
+            g.setColor(Color.WHITE);
+            g.drawRect(500, 460, 300, 55);
+            if (mouseX > 500 && mouseX < 800 && mouseY > 460 && mouseY < 515) {
+                g.setColor(Color.BLACK);
+            } else {
+                g.setColor(Color.WHITE);
+            }
+            g.drawString("EXIT", 612, 497);
+            return;
+        }
+
         g.drawImage(bg, 0, 0, WIDTH, HEIGHT, this);
 
         //paddles
@@ -115,7 +176,7 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
                 g.drawString("PLAYER 2 WINS", 463, 300);
             }
 
-            //play again button
+            //exit button (small, left)
             if (mouseX > 370 && mouseX < 590 && mouseY > 335 && mouseY < 390) {
                 g.setColor(Color.WHITE);
             } else {
@@ -130,9 +191,9 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
                 g.setColor(Color.WHITE);
             }
             g.setFont(new Font("Courier New", Font.BOLD, 25));
-            g.drawString("PLAY AGAIN", 395, 372);
+            g.drawString("EXIT", 449, 372);
 
-            //menu button
+            //menu button (small, right)
             if (mouseX > 710 && mouseX < 930 && mouseY > 335 && mouseY < 390) {
                 g.setColor(Color.WHITE);
             } else {
@@ -148,7 +209,7 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
             }
             g.drawString("MENU", 787, 372);
 
-            //exit button
+            //play again button
             if (mouseX > 370 && mouseX < 930 && mouseY > 415 && mouseY < 470) {
                 g.setColor(Color.WHITE);
             } else {
@@ -162,13 +223,13 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
             } else {
                 g.setColor(Color.WHITE);
             }
-            g.drawString("EXIT", 616, 452);
+            g.drawString("PLAY AGAIN", 570, 452);
         }
     }
 
     public void actionPerformed(ActionEvent e) {
 
-        if (gameOver) {
+        if (gameOver || paused) {
             return;
         }
 
@@ -300,11 +361,9 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
     }
 
     public void checkPowerupSpawn() {
-        //spawn or respawn powerup at every streak multiple of 3
-        if (hitStreak > 0 && hitStreak % 3 == 0) {
-            //clear any active powerup first
+        //spawn or respawn powerup at every streak multiple of 4
+        if (hitStreak > 0 && hitStreak % 4 == 0) {
             clearActivePowerup();
-            //spawn new one
             powerupOnScreen = true;
             powerupX = random.nextInt(900) + 200;
             powerupY = random.nextInt(440) + 120;
@@ -379,34 +438,42 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
     }
 
     public void keyPressed(KeyEvent e) {
-        //player 1
-        if (e.getKeyCode() == KeyEvent.VK_W) {
-            p1Up = true;
-        }
-        if (e.getKeyCode() == KeyEvent.VK_S) {
-            p1Down = true;
-        }
-        //player 2
-        if (e.getKeyCode() == KeyEvent.VK_UP) {
-            p2Up = true;
-        }
-        if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-            p2Down = true;
+        switch (e.getKeyCode()) {
+            case KeyEvent.VK_ESCAPE:
+                if (!gameOver) {
+                    paused = !paused;
+                    repaint();
+                }
+                break;
+            case KeyEvent.VK_W:
+                p1Up = true;
+                break;
+            case KeyEvent.VK_S:
+                p1Down = true;
+                break;
+            case KeyEvent.VK_UP:
+                p2Up = true;
+                break;
+            case KeyEvent.VK_DOWN:
+                p2Down = true;
+                break;
         }
     }
 
     public void keyReleased(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_W) {
-            p1Up = false;
-        }
-        if (e.getKeyCode() == KeyEvent.VK_S) {
-            p1Down = false;
-        }
-        if (e.getKeyCode() == KeyEvent.VK_UP) {
-            p2Up = false;
-        }
-        if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-            p2Down = false;
+        switch (e.getKeyCode()) {
+            case KeyEvent.VK_W:
+                p1Up = false;
+                break;
+            case KeyEvent.VK_S:
+                p1Down = false;
+                break;
+            case KeyEvent.VK_UP:
+                p2Up = false;
+                break;
+            case KeyEvent.VK_DOWN:
+                p2Down = false;
+                break;
         }
     }
 
@@ -417,14 +484,15 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
         int x = e.getX();
         int y = e.getY();
 
-        //win screen buttons
-        if (gameOver) {
-            //play again button
-            if (x > 370 && x < 590 && y > 335 && y < 390) {
-                resetGame();
+        //pause screen buttons
+        if (paused) {
+            //resume button
+            if (x > 500 && x < 800 && y > 300 && y < 355) {
+                paused = false;
+                repaint();
             }
             //menu button
-            if (x > 710 && x < 930 && y > 335 && y < 390) {
+            if (x > 500 && x < 800 && y > 380 && y < 435) {
                 menu xy = new menu();
                 JFrame gameWindow = new JFrame("Menu");
                 gameWindow.add(xy);
@@ -437,8 +505,33 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
                 currentFrame.dispose();
             }
             //exit button
-            if (x > 370 && x < 930 && y > 415 && y < 470) {
+            if (x > 500 && x < 800 && y > 460 && y < 515) {
                 System.exit(0);
+            }
+        }
+
+        //win screen buttons
+        if (gameOver) {
+            //exit button (small, left)
+            if (x > 370 && x < 590 && y > 335 && y < 390) {
+                System.exit(0);
+            }
+            //menu button (small, right)
+            if (x > 710 && x < 930 && y > 335 && y < 390) {
+                menu xy = new menu();
+                JFrame gameWindow = new JFrame("Menu");
+                gameWindow.add(xy);
+                gameWindow.setUndecorated(true);
+                gameWindow.pack();
+                gameWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                gameWindow.setLocationRelativeTo(null);
+                gameWindow.setVisible(true);
+                JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+                currentFrame.dispose();
+            }
+            //play again button (big, full width)
+            if (x > 370 && x < 930 && y > 415 && y < 470) {
+                resetGame();
             }
         }
     }
