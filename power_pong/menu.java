@@ -1,16 +1,28 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import javax.sound.sampled.*;
+import java.io.File;
 
 public class menu extends JPanel implements MouseListener, MouseMotionListener {
 
     int mouseX = 0;
     int mouseY = 0;
     Image bg = new ImageIcon("menu.png").getImage();
+    Clip music;
     public menu() {
         setPreferredSize(new Dimension(1300, 700));
         addMouseListener(this);
         addMouseMotionListener(this);
+        //play menu music
+        try {
+            AudioInputStream audio = AudioSystem.getAudioInputStream(new File("menu_music.wav"));
+            music = AudioSystem.getClip();
+            music.open(audio);
+            music.loop(Clip.LOOP_CONTINUOUSLY);
+        } catch (Exception e) {
+            System.out.println("Music file not found.");
+        }
     }
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -73,6 +85,9 @@ public class menu extends JPanel implements MouseListener, MouseMotionListener {
 
         //play button
         if (x > 500 && x < 800 && y > 230 && y < 300) {
+            if (music != null) {
+                music.stop();
+            }
             game xy = new game();
             JFrame gameWindow = new JFrame("Game");
             gameWindow.add(xy);
@@ -87,6 +102,9 @@ public class menu extends JPanel implements MouseListener, MouseMotionListener {
 
         //help button
         if (x > 500 && x < 800 && y > 340 && y < 410) {
+            if (music != null) {
+                music.stop();
+            }
             help xy = new help();
             JFrame gameWindow = new JFrame("Help");
             gameWindow.add(xy);

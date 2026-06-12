@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Random;
+import javax.sound.sampled.*;
+import java.io.File;
 
 public class game extends JPanel implements ActionListener, KeyListener, MouseListener, MouseMotionListener {
 
@@ -12,6 +14,8 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
     Image bg = new ImageIcon("gamebg.png").getImage();
     Image player = new ImageIcon("player.jpg").getImage();
     Image powerupImg = new ImageIcon("powerup.png").getImage();
+    Clip music;
+    Clip winSound;
     int mouseX = 0;
     int mouseY = 0;
 
@@ -22,6 +26,7 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
     int lastHitter = 0;
     boolean gameOver = false;
     boolean paused = false;
+    boolean winSoundPlayed = false;
 
     //player 1 paddle (left)
     int p1X = 60;
@@ -70,6 +75,15 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
         }
         if (random.nextInt(2) == 0) {
             dy = -dy;
+        }
+        //play music
+        try {
+            AudioInputStream audio = AudioSystem.getAudioInputStream(new File("whee_whoo_days.wav"));
+            music = AudioSystem.getClip();
+            music.open(audio);
+            music.loop(Clip.LOOP_CONTINUOUSLY);
+        } catch (Exception e) {
+            System.out.println("Music file not found.");
         }
     }
 
@@ -153,12 +167,12 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
         //scores
         g.setColor(Color.WHITE);
         g.setFont(new Font("Courier New", Font.BOLD, 70));
-        g.drawString(String.valueOf(score1), 590, 115);
-        g.drawString(String.valueOf(score2), 661, 115);
+        g.drawString("" + score1, 590, 115);
+        g.drawString("" + score2, 661, 115);
 
         //streak number
         g.setFont(new Font("Courier New", Font.BOLD, 50));
-        g.drawString(String.valueOf(hitStreak), 660, 675);
+        g.drawString("" + hitStreak, 660, 675);
 
         //win screen
         if (gameOver) {
@@ -259,7 +273,42 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
             ballX = p1X + p1Width;
             hitStreak++;
             lastHitter = 1;
-            checkPowerupSpawn();
+            //spawn powerup at streak multiple of 4 (inline)
+            if (hitStreak > 0 && hitStreak % 4 == 0) {
+                //clear active powerup first (inline)
+                if (powerupActive) {
+                    if (powerupType == 1) {
+                        if (powerupOwner == 1) {
+                            p1Speed = 11;
+                        }
+                        if (powerupOwner == 2) {
+                            p2Speed = 11;
+                        }
+                    }
+                    if (powerupType == 2) {
+                        if (powerupOwner == 1) {
+                            p2Speed = 11;
+                        }
+                        if (powerupOwner == 2) {
+                            p1Speed = 11;
+                        }
+                    }
+                    if (powerupType == 3) {
+                        if (powerupOwner == 1) {
+                            p1Height = 120;
+                        }
+                        if (powerupOwner == 2) {
+                            p2Height = 120;
+                        }
+                    }
+                    powerupActive = false;
+                    powerupOwner = 0;
+                }
+                powerupOnScreen = true;
+                powerupX = random.nextInt(900) + 200;
+                powerupY = random.nextInt(440) + 120;
+                powerupType = random.nextInt(3) + 1;
+            }
         }
 
         //ball hits player 2 paddle
@@ -268,7 +317,42 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
             ballX = p2X - ballSize;
             hitStreak++;
             lastHitter = 2;
-            checkPowerupSpawn();
+            //spawn powerup at streak multiple of 4 (inline)
+            if (hitStreak > 0 && hitStreak % 4 == 0) {
+                //clear active powerup first (inline)
+                if (powerupActive) {
+                    if (powerupType == 1) {
+                        if (powerupOwner == 1) {
+                            p1Speed = 11;
+                        }
+                        if (powerupOwner == 2) {
+                            p2Speed = 11;
+                        }
+                    }
+                    if (powerupType == 2) {
+                        if (powerupOwner == 1) {
+                            p2Speed = 11;
+                        }
+                        if (powerupOwner == 2) {
+                            p1Speed = 11;
+                        }
+                    }
+                    if (powerupType == 3) {
+                        if (powerupOwner == 1) {
+                            p1Height = 120;
+                        }
+                        if (powerupOwner == 2) {
+                            p2Height = 120;
+                        }
+                    }
+                    powerupActive = false;
+                    powerupOwner = 0;
+                }
+                powerupOnScreen = true;
+                powerupX = random.nextInt(900) + 200;
+                powerupY = random.nextInt(440) + 120;
+                powerupType = random.nextInt(3) + 1;
+            }
         }
 
         //ball hits powerup
@@ -310,13 +394,103 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
         //ball exits left border - player 2 scores
         if (ballX < 15) {
             score2++;
-            resetBall();
+            //reset ball (inline)
+            ballX = WIDTH / 2;
+            ballY = HEIGHT / 2;
+            dx = 9;
+            dy = 9;
+            if (random.nextInt(2) == 0) {
+                dx = -dx;
+            }
+            if (random.nextInt(2) == 0) {
+                dy = -dy;
+            }
+            hitStreak = 0;
+            lastHitter = 0;
+            powerupOnScreen = false;
+            if (powerupActive) {
+                if (powerupType == 1) {
+                    if (powerupOwner == 1) {
+                        p1Speed = 11;
+                    }
+                    if (powerupOwner == 2) {
+                        p2Speed = 11;
+                    }
+                }
+                if (powerupType == 2) {
+                    if (powerupOwner == 1) {
+                        p2Speed = 11;
+                    }
+                    if (powerupOwner == 2) {
+                        p1Speed = 11;
+                    }
+                }
+                if (powerupType == 3) {
+                    if (powerupOwner == 1) {
+                        p1Height = 120;
+                    }
+                    if (powerupOwner == 2) {
+                        p2Height = 120;
+                    }
+                }
+                powerupActive = false;
+                powerupOwner = 0;
+            }
+            p1Height = 120;
+            p2Height = 120;
+            p1Speed = 11;
+            p2Speed = 11;
         }
 
         //ball exits right border - player 1 scores
         if (ballX + ballSize > 1285) {
             score1++;
-            resetBall();
+            //reset ball (inline)
+            ballX = WIDTH / 2;
+            ballY = HEIGHT / 2;
+            dx = 9;
+            dy = 9;
+            if (random.nextInt(2) == 0) {
+                dx = -dx;
+            }
+            if (random.nextInt(2) == 0) {
+                dy = -dy;
+            }
+            hitStreak = 0;
+            lastHitter = 0;
+            powerupOnScreen = false;
+            if (powerupActive) {
+                if (powerupType == 1) {
+                    if (powerupOwner == 1) {
+                        p1Speed = 11;
+                    }
+                    if (powerupOwner == 2) {
+                        p2Speed = 11;
+                    }
+                }
+                if (powerupType == 2) {
+                    if (powerupOwner == 1) {
+                        p2Speed = 11;
+                    }
+                    if (powerupOwner == 2) {
+                        p1Speed = 11;
+                    }
+                }
+                if (powerupType == 3) {
+                    if (powerupOwner == 1) {
+                        p1Height = 120;
+                    }
+                    if (powerupOwner == 2) {
+                        p2Height = 120;
+                    }
+                }
+                powerupActive = false;
+                powerupOwner = 0;
+            }
+            p1Height = 120;
+            p2Height = 120;
+            p1Speed = 11;
+            p2Speed = 11;
         }
 
         //player 1 movement (W/S)
@@ -355,125 +529,67 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
         if (score1 == 7 || score2 == 7) {
             gameOver = true;
             timer.stop();
+            //stop music and play win sound
+            if (!winSoundPlayed) {
+                if (music != null) {
+                    music.stop();
+                }
+                try {
+                    if (score1 == 7) {
+                        AudioInputStream audio = AudioSystem.getAudioInputStream(new File("win_1.wav"));
+                        winSound = AudioSystem.getClip();
+                        winSound.open(audio);
+                        winSound.start();
+                    }
+                    if (score2 == 7) {
+                        AudioInputStream audio = AudioSystem.getAudioInputStream(new File("win_2.wav"));
+                        winSound = AudioSystem.getClip();
+                        winSound.open(audio);
+                        winSound.start();
+                    }
+                } catch (Exception ex) {
+                    System.out.println("Win sound file not found.");
+                }
+                winSoundPlayed = true;
+            }
         }
 
         repaint();
     }
 
-    public void checkPowerupSpawn() {
-        //spawn or respawn powerup at every streak multiple of 4
-        if (hitStreak > 0 && hitStreak % 4 == 0) {
-            clearActivePowerup();
-            powerupOnScreen = true;
-            powerupX = random.nextInt(900) + 200;
-            powerupY = random.nextInt(440) + 120;
-            powerupType = random.nextInt(3) + 1;
-        }
-    }
-
-    public void clearActivePowerup() {
-        if (powerupActive) {
-            //revert player speed increase
-            if (powerupType == 1) {
-                if (powerupOwner == 1) {
-                    p1Speed = 11;
-                }
-                if (powerupOwner == 2) {
-                    p2Speed = 11;
-                }
-            }
-            //revert opponent speed decrease
-            if (powerupType == 2) {
-                if (powerupOwner == 1) {
-                    p2Speed = 11;
-                }
-                if (powerupOwner == 2) {
-                    p1Speed = 11;
-                }
-            }
-            //revert player size increase
-            if (powerupType == 3) {
-                if (powerupOwner == 1) {
-                    p1Height = 120;
-                }
-                if (powerupOwner == 2) {
-                    p2Height = 120;
-                }
-            }
-            powerupActive = false;
-            powerupOwner = 0;
-        }
-    }
-
-    public void resetBall() {
-        ballX = WIDTH / 2;
-        ballY = HEIGHT / 2;
-        dx = 9;
-        dy = 9;
-        if (random.nextInt(2) == 0) {
-            dx = -dx;
-        }
-        if (random.nextInt(2) == 0) {
-            dy = -dy;
-        }
-        hitStreak = 0;
-        lastHitter = 0;
-        powerupOnScreen = false;
-        clearActivePowerup();
-        p1Height = 120;
-        p2Height = 120;
-        p1Speed = 11;
-        p2Speed = 11;
-    }
-
-    public void resetGame() {
-        score1 = 0;
-        score2 = 0;
-        hitStreak = 0;
-        gameOver = false;
-        p1Y = HEIGHT / 2 - 60;
-        p2Y = HEIGHT / 2 - 60;
-        resetBall();
-        timer.start();
-    }
-
     public void keyPressed(KeyEvent e) {
-        switch (e.getKeyCode()) {
-            case KeyEvent.VK_ESCAPE:
-                if (!gameOver) {
-                    paused = !paused;
-                    repaint();
-                }
-                break;
-            case KeyEvent.VK_W:
-                p1Up = true;
-                break;
-            case KeyEvent.VK_S:
-                p1Down = true;
-                break;
-            case KeyEvent.VK_UP:
-                p2Up = true;
-                break;
-            case KeyEvent.VK_DOWN:
-                p2Down = true;
-                break;
+        if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+            if (!gameOver) {
+                paused = !paused;
+                repaint();
+            }
+        }
+        if (e.getKeyCode() == KeyEvent.VK_W) {
+            p1Up = true;
+        }
+        if (e.getKeyCode() == KeyEvent.VK_S) {
+            p1Down = true;
+        }
+        if (e.getKeyCode() == KeyEvent.VK_UP) {
+            p2Up = true;
+        }
+        if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+            p2Down = true;
         }
     }
 
     public void keyReleased(KeyEvent e) {
-        switch (e.getKeyCode()) {
-            case KeyEvent.VK_W:
-                p1Up = false;
-                break;
-            case KeyEvent.VK_S:
-                p1Down = false;
-                break;
-            case KeyEvent.VK_UP:
-                p2Up = false;
-                break;
-            case KeyEvent.VK_DOWN:
-                p2Down = false;
-                break;
+        if (e.getKeyCode() == KeyEvent.VK_W) {
+            p1Up = false;
+        }
+        if (e.getKeyCode() == KeyEvent.VK_S) {
+            p1Down = false;
+        }
+        if (e.getKeyCode() == KeyEvent.VK_UP) {
+            p2Up = false;
+        }
+        if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+            p2Down = false;
         }
     }
 
@@ -493,6 +609,9 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
             }
             //menu button
             if (x > 500 && x < 800 && y > 380 && y < 435) {
+                if (music != null) {
+                    music.stop();
+                }
                 menu xy = new menu();
                 JFrame gameWindow = new JFrame("Menu");
                 gameWindow.add(xy);
@@ -518,6 +637,9 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
             }
             //menu button (small, right)
             if (x > 710 && x < 930 && y > 335 && y < 390) {
+                if (winSound != null) {
+                    winSound.stop();
+                }
                 menu xy = new menu();
                 JFrame gameWindow = new JFrame("Menu");
                 gameWindow.add(xy);
@@ -531,7 +653,40 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
             }
             //play again button (big, full width)
             if (x > 370 && x < 930 && y > 415 && y < 470) {
-                resetGame();
+                //reset game (inline)
+                if (winSound != null) {
+                    winSound.stop();
+                }
+                score1 = 0;
+                score2 = 0;
+                hitStreak = 0;
+                gameOver = false;
+                winSoundPlayed = false;
+                p1Y = HEIGHT / 2 - 60;
+                p2Y = HEIGHT / 2 - 60;
+                ballX = WIDTH / 2;
+                ballY = HEIGHT / 2;
+                dx = 9;
+                dy = 9;
+                if (random.nextInt(2) == 0) {
+                    dx = -dx;
+                }
+                if (random.nextInt(2) == 0) {
+                    dy = -dy;
+                }
+                lastHitter = 0;
+                powerupOnScreen = false;
+                powerupActive = false;
+                powerupOwner = 0;
+                p1Height = 120;
+                p2Height = 120;
+                p1Speed = 11;
+                p2Speed = 11;
+                if (music != null) {
+                    music.setMicrosecondPosition(0);
+                    music.loop(Clip.LOOP_CONTINUOUSLY);
+                }
+                timer.start();
             }
         }
     }
