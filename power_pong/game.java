@@ -373,10 +373,10 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
                 //opponent speed decrease (other player's paddle slower)
                 if (powerupType == 2) {
                     if (powerupOwner == 1) {
-                        p2Speed = 5;
+                        p2Speed = 4;
                     }
                     if (powerupOwner == 2) {
-                        p1Speed = 5;
+                        p1Speed = 4;
                     }
                 }
                 //player size increase (owner's paddle bigger)
