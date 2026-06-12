@@ -270,6 +270,10 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
         //ball hits player 1 paddle
         if (ballRect.intersects(p1Rect)) {
             dx = -dx;
+            //randomize dy direction on paddle hit
+            if (random.nextInt(3) == 0) {
+                dy = -dy;
+            }
             ballX = p1X + p1Width;
             hitStreak++;
             lastHitter = 1;
@@ -314,6 +318,10 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
         //ball hits player 2 paddle
         if (ballRect.intersects(p2Rect)) {
             dx = -dx;
+            //randomize dy direction on paddle hit
+            if (random.nextInt(3) == 0) {
+                dy = -dy;
+            }
             ballX = p2X - ballSize;
             hitStreak++;
             lastHitter = 2;
