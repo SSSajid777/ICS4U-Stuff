@@ -72,7 +72,7 @@ public class help extends JPanel implements MouseListener, MouseMotionListener {
             if (music != null) {
                 music.stop();
             }
-            menu xy = new menu();
+            main xy = new main();
             JFrame gameWindow = new JFrame("Menu");
             gameWindow.add(xy);
             gameWindow.setUndecorated(true);

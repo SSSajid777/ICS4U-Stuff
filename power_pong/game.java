@@ -60,7 +60,7 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
     int powerupType = 0;
     int powerupX = 0;
     int powerupY = 0;
-    int powerupSize = 73;
+    int powerupSize = 74;
 
     public game() {
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
@@ -634,7 +634,7 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
                 if (music != null) {
                     music.stop();
                 }
-                menu xy = new menu();
+                main xy = new main();
                 JFrame gameWindow = new JFrame("Menu");
                 gameWindow.add(xy);
                 gameWindow.setUndecorated(true);
@@ -662,7 +662,7 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
                 if (winSound != null) {
                     winSound.stop();
                 }
-                menu xy = new menu();
+                main xy = new main();
                 JFrame gameWindow = new JFrame("Menu");
                 gameWindow.add(xy);
                 gameWindow.setUndecorated(true);

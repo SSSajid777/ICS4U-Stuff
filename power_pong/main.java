@@ -4,13 +4,13 @@ import java.awt.event.*;
 import javax.sound.sampled.*;
 import java.io.File;
 
-public class menu extends JPanel implements MouseListener, MouseMotionListener {
+public class main extends JPanel implements MouseListener, MouseMotionListener {
 
     int mouseX = 0;
     int mouseY = 0;
     Image bg = new ImageIcon("menu.png").getImage();
     Clip music;
-    public menu() {
+    public main() {
         setPreferredSize(new Dimension(1300, 700));
         addMouseListener(this);
         addMouseMotionListener(this);
@@ -143,7 +143,7 @@ public class menu extends JPanel implements MouseListener, MouseMotionListener {
 
         JFrame window = new JFrame("Menu");
 
-        menu menu = new menu();
+        main menu = new main();
 
         window.add(menu);
         window.setUndecorated(true);
