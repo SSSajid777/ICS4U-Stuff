@@ -75,7 +75,7 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
     int powerupType = 0;
     int powerupX = 0;
     int powerupY = 0;
-    int powerupSize = 74;
+    int powerupSize = 75;
 
     public game() {
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
